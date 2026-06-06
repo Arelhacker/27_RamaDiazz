@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>JokiLegend — Joki & Top Up Mobile Legends #1</title>
+<title>MABARLAH — Joki & Top Up Mobile Legends #1</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 <style>
 :root{
@@ -272,7 +272,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2r
   <div class="modal-box">
     <div class="modal-top">
       <button class="modal-close" onclick="closeModal('authModal')">✕</button>
-      <div class="modal-logo">⚡ JOKILEGEND</div>
+      <div class="modal-logo">⚡ MABARLAH</div>
       <div class="modal-subtitle">Platform Joki & Top Up Mobile Legends #1</div>
     </div>
     <div class="modal-tabs">
@@ -290,7 +290,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2r
       <div class="form-msg" id="r-msg"></div>
       <div class="form-group"><label class="form-label">Nama Lengkap</label><input class="form-input" id="r-name" type="text" placeholder="Nama kamu"/></div>
       <div class="form-group"><label class="form-label">Username</label><input class="form-input" id="r-user" type="text" placeholder="Username unik"/></div>
-      <div class="form-group"><label class="form-label">No. HP / WhatsApp</label><input class="form-input" id="r-phone" type="text" placeholder="08xxxxxxxxxx"/></div>
+      <div class="form-group"><label class="form-label">Gmail</label><input class="form-input" id="r-gmail" type="email" placeholder="contoh@gmail.com"/></div>
       <div class="form-group"><label class="form-label">Password</label><input class="form-input" id="r-pass" type="password" placeholder="Min. 6 karakter"/></div>
       <button class="btn-auth" onclick="doRegister()">Buat Akun →</button>
     </div>
@@ -318,7 +318,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2r
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a class="logo" href="#"><div class="logo-icon">⚡</div>JOKILEGEND</a>
+    <a class="logo" href="#"><div class="logo-icon">⚡</div>MABARLAH</a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#joki">Joki Rank</a></li>
       <li><a href="#topup">Top Up</a></li>
@@ -443,7 +443,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2r
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <a class="logo" href="#">⚡ JOKILEGEND</a>
+        <a class="logo" href="#">⚡ MABARLAH</a>
         <p>Platform joki rank dan top up diamond Mobile Legends terpercaya. Proses cepat, harga transparan, garansi keamanan akun 100%.</p>
       </div>
       <div class="footer-col">
@@ -463,7 +463,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2r
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 <span>JokiLegend</span>. Bukan afiliasi resmi Moonton.</p>
+      <p>© 2026 <span>MABARLAH</span>. Bukan afiliasi resmi Moonton.</p>
       <p>Mobile Legends: Bang Bang™ adalah merek dagang <span>Moonton</span>.</p>
     </div>
   </div>
@@ -613,10 +613,10 @@ function confirmOrder(){
   let msg = '';
   if(currentOrder.type === 'joki'){
     const j = currentOrder.data;
-    msg = `Halo Admin JokiLegend!%0A%0ASaya ingin order:%0A*Joki Rank ${j.name}*%0ARange: ${j.sub}%0AHarga: ${j.price}%0A%0ANama: ${user.name}%0AUsername: ${user.username}%0A%0AMohon konfirmasi pesanan saya. Terima kasih!`;
+    msg = `Halo Admin MABARLAH!%0A%0ASaya ingin order:%0A*Joki Rank ${j.name}*%0ARange: ${j.sub}%0AHarga: ${j.price}%0A%0ANama: ${user.name}%0AUsername: ${user.username}%0A%0AMohon konfirmasi pesanan saya. Terima kasih!`;
   } else {
     const t = currentOrder.data;
-    msg = `Halo Admin JokiLegend!%0A%0ASaya ingin order:%0A*Top Up ${t.amt}*%0AHarga: ${t.price}%0A%0ANama: ${user.name}%0AUsername: ${user.username}%0A%0AMohon konfirmasi pesanan saya. Terima kasih!`;
+    msg = `Halo Admin MABARLAH!%0A%0ASaya ingin order:%0A*Top Up ${t.amt}*%0AHarga: ${t.price}%0A%0ANama: ${user.name}%0AUsername: ${user.username}%0A%0AMohon konfirmasi pesanan saya. Terima kasih!`;
   }
   closeModal('orderModal');
   window.open(`https://wa.me/6281328282930?text=${msg}`, '_blank');
@@ -626,12 +626,15 @@ function confirmOrder(){
 /* ================================================
    AUTH
 ================================================ */
+function isValidGmail(email){
+  return /^[^\s@]+@gmail\.com$/i.test(email);
+}
+
 function doLogin(){
   const user = document.getElementById('l-user').value.trim();
   const pass = document.getElementById('l-pass').value.trim();
-  const msg = document.getElementById('l-msg');
   if(!user||!pass){setMsg('l-msg','Username dan password wajib diisi!','error');return;}
-  const users = JSON.parse(localStorage.getItem('jlUsers')||'{}');
+  const users = JSON.parse(localStorage.getItem('mlUsers')||'{}');
   if(users[user] && users[user].pass === pass){
     loginSuccess(users[user].name, user);
   } else if((user==='admin'&&pass==='admin123')){
@@ -644,33 +647,34 @@ function doLogin(){
 function doRegister(){
   const name = document.getElementById('r-name').value.trim();
   const user = document.getElementById('r-user').value.trim();
-  const phone = document.getElementById('r-phone').value.trim();
+  const gmail = document.getElementById('r-gmail').value.trim();
   const pass = document.getElementById('r-pass').value.trim();
-  if(!name||!user||!phone||!pass){setMsg('r-msg','Semua kolom wajib diisi!','error');return;}
+  if(!name||!user||!gmail||!pass){setMsg('r-msg','Semua kolom wajib diisi!','error');return;}
+  if(!isValidGmail(gmail)){setMsg('r-msg','Masukkan alamat Gmail yang valid! (contoh@gmail.com)','error');return;}
   if(pass.length < 6){setMsg('r-msg','Password minimal 6 karakter!','error');return;}
-  const users = JSON.parse(localStorage.getItem('jlUsers')||'{}');
+  const users = JSON.parse(localStorage.getItem('mlUsers')||'{}');
   if(users[user]){setMsg('r-msg','Username sudah digunakan!','error');return;}
-  users[user] = {name, pass, phone};
-  localStorage.setItem('jlUsers', JSON.stringify(users));
+  users[user] = {name, pass, gmail};
+  localStorage.setItem('mlUsers', JSON.stringify(users));
   setMsg('r-msg','Akun berhasil dibuat! Silakan masuk 🎉','success');
   setTimeout(()=>switchAuthTab('login'), 1500);
 }
 
 function loginSuccess(name, username){
-  localStorage.setItem('jlSession', JSON.stringify({name, username}));
+  localStorage.setItem('mlSession', JSON.stringify({name, username}));
   updateAuthUI();
   closeModal('authModal');
   showToast(`⚡ Selamat datang, ${name}!`);
 }
 
 function doLogout(){
-  localStorage.removeItem('jlSession');
+  localStorage.removeItem('mlSession');
   updateAuthUI();
   showToast('👋 Sampai jumpa!');
 }
 
-function isLoggedIn(){return !!localStorage.getItem('jlSession')}
-function getUser(){return JSON.parse(localStorage.getItem('jlSession')||'{}')}
+function isLoggedIn(){return !!localStorage.getItem('mlSession')}
+function getUser(){return JSON.parse(localStorage.getItem('mlSession')||'{}')}
 
 function updateAuthUI(){
   const loggedIn = isLoggedIn();

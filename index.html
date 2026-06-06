@@ -1,1074 +1,757 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free HTML CSS Templates | Tooplate</title>
-    <meta name="description" content="Download 80+ free HTML CSS website templates from Tooplate. Responsive, mobile-ready designs for portfolios, businesses, and creative projects. No login required.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --black: #0A0A0A;
-            --concrete: #2C2C2C;
-            --steel: #404040;
-            --industrial-red: #E63946;
-            --industrial-orange: #FF6B35;
-            --light-gray: #A8A8A8;
-            --white: #F5F5F5;
-            --border: #1A1A1A;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--black);
-            color: var(--white);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Bebas Neue', 'Impact', sans-serif;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: linear-gradient(180deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.8) 100%);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            transition: background 0.3s ease;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.75rem;
-            font-weight: 900;
-            color: var(--industrial-red);
-            text-decoration: none;
-            letter-spacing: -0.02em;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            font-family: 'Work Sans', sans-serif;
-        }
-
-        .logo svg {
-            width: 35px;
-            height: 35px;
-        }
-
-        .logo:hover {
-            color: var(--industrial-orange);
-            transform: translateY(-2px);
-        }
-
-        .logo:hover svg path,
-        .logo:hover svg rect {
-            fill: var(--industrial-orange);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 0;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            padding: 0.75rem 1.5rem;
-            display: block;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--white);
-            background: var(--industrial-red);
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 4px;
-            cursor: pointer;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 2px;
-            background: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        /* Hero / About Section */
-        .hero-about {
-            padding: 10rem 0 5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-about::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px),
-                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.02) 2px, rgba(255,255,255,0.02) 4px);
-            pointer-events: none;
-        }
-
-        .hero-about::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--industrial-red), transparent);
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-        }
-
-        .hero-text h1 {
-            font-size: clamp(3rem, 7vw, 5.5rem);
-            line-height: 0.9;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-text h1 span {
-            color: var(--industrial-red);
-        }
-
-        .hero-text p {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: var(--light-gray);
-            margin-bottom: 1rem;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            margin-top: 2.5rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .hero-stat {
-            text-align: left;
-        }
-
-        .hero-stat-number {
-            display: block;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
-            color: var(--industrial-red);
-            letter-spacing: 0.02em;
-            line-height: 1;
-        }
-
-        .hero-stat-label {
-            font-size: 0.8rem;
-            color: var(--light-gray);
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-top: 0.25rem;
-        }
-
-        .hero-visual {
-            position: relative;
-            height: 380px;
-        }
-
-        .hero-code-block {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--concrete);
-            border: 1px solid var(--border);
-            padding: 2rem;
-            overflow: hidden;
-            clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
-        }
-
-        .hero-code-block::before {
-            content: '< / >';
-            position: absolute;
-            bottom: 1.5rem;
-            right: 2rem;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 5rem;
-            color: var(--industrial-red);
-            opacity: 0.08;
-            letter-spacing: 0.05em;
-        }
-
-        .code-header {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .code-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--steel);
-        }
-
-        .code-dot:first-child { background: var(--industrial-red); }
-        .code-dot:nth-child(2) { background: var(--industrial-orange); }
-
-        .code-line {
-            font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
-            color: var(--light-gray);
-            margin-bottom: 0.6rem;
-            opacity: 0;
-            transform: translateX(-10px);
-            animation: codeFade 0.4s ease forwards;
-        }
-
-        .code-line:nth-child(2) { animation-delay: 0.1s; }
-        .code-line:nth-child(3) { animation-delay: 0.2s; }
-        .code-line:nth-child(4) { animation-delay: 0.3s; }
-        .code-line:nth-child(5) { animation-delay: 0.4s; }
-        .code-line:nth-child(6) { animation-delay: 0.5s; }
-        .code-line:nth-child(7) { animation-delay: 0.6s; }
-        .code-line:nth-child(8) { animation-delay: 0.7s; }
-        .code-line:nth-child(9) { animation-delay: 0.8s; }
-
-        .code-tag { color: var(--industrial-red); }
-        .code-attr { color: var(--industrial-orange); }
-        .code-val { color: #7EC8E3; }
-        .code-comment { color: var(--steel); font-style: italic; }
-
-        @keyframes codeFade {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Templates Section */
-        .templates-section {
-            padding: 5rem 0 6rem;
-            background: var(--concrete);
-            position: relative;
-        }
-
-        .templates-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--industrial-red), transparent);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-
-        .section-header h2 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            margin-bottom: 0.75rem;
-        }
-
-        .section-header h2 span {
-            color: var(--industrial-red);
-        }
-
-        .section-header p {
-            max-width: 600px;
-            margin: 0 auto;
-            color: var(--light-gray);
-            font-size: 1rem;
-        }
-
-        /* Template Cards */
-        .templates-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .template-card {
-            background: var(--black);
-            border: 1px solid var(--border);
-            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .template-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 0;
-            background: var(--industrial-red);
-            transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            z-index: 2;
-        }
-
-        .template-card:hover::before {
-            height: 100%;
-        }
-
-        .template-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--industrial-red);
-            box-shadow: 0 20px 50px rgba(230, 57, 70, 0.12);
-        }
-
-        .template-thumb {
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            overflow: hidden;
-            position: relative;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .template-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
-            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .template-card:hover .template-thumb img {
-            transform: scale(1.05);
-        }
-
-        .template-thumb-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, transparent 60%, rgba(10,10,10,0.5) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .template-card:hover .template-thumb-overlay {
-            opacity: 1;
-        }
-
-        .template-number {
-            position: absolute;
-            top: 0.75rem;
-            left: 0.75rem;
-            background: var(--industrial-red);
-            color: var(--white);
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 0.85rem;
-            padding: 0.2rem 0.6rem;
-            letter-spacing: 0.08em;
-            z-index: 1;
-        }
-
-        .template-info {
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
-
-        .template-info h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            color: var(--white);
-            letter-spacing: 0.04em;
-            transition: color 0.3s ease;
-        }
-
-        .template-card:hover .template-info h3 {
-            color: var(--industrial-red);
-        }
-
-        .template-info p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: var(--light-gray);
-            margin-bottom: 1.25rem;
-            flex: 1;
-        }
-
-        .template-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.25rem;
-        }
-
-        .template-tag {
-            background: var(--steel);
-            padding: 0.2rem 0.6rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--light-gray);
-            transition: all 0.3s ease;
-        }
-
-        .template-card:hover .template-tag {
-            background: rgba(230, 57, 70, 0.15);
-            color: var(--white);
-        }
-
-        .template-actions {
-            display: flex;
-            gap: 0.75rem;
-            margin-top: auto;
-        }
-
-        .btn-preview {
-            flex: 1;
-            padding: 0.7rem 1rem;
-            text-align: center;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.78rem;
-            letter-spacing: 0.1em;
-            border: 2px solid var(--steel);
-            color: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .btn-preview:hover {
-            border-color: var(--industrial-red);
-            background: var(--industrial-red);
-        }
-
-        .btn-download {
-            flex: 1;
-            padding: 0.7rem 1rem;
-            text-align: center;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.78rem;
-            letter-spacing: 0.1em;
-            background: var(--industrial-red);
-            color: var(--white);
-            border: 2px solid var(--industrial-red);
-            transition: all 0.3s ease;
-        }
-
-        .btn-download:hover {
-            background: transparent;
-            color: var(--industrial-red);
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, rgba(230,57,70,0.8) 0%, rgba(255,107,53,0.7) 100%);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.05) 49%, rgba(255,255,255,0.05) 51%, transparent 51%),
-                linear-gradient(-45deg, transparent 49%, rgba(255,255,255,0.05) 49%, rgba(255,255,255,0.05) 51%, transparent 51%);
-            background-size: 100px 100px;
-            pointer-events: none;
-        }
-
-        .cta::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.5) 100%);
-            pointer-events: none;
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta h2 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            color: var(--white);
-            margin-bottom: 1rem;
-        }
-
-        .cta p {
-            color: var(--white);
-            font-size: 1.15rem;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn-all-templates {
-            display: inline-block;
-            background: var(--white);
-            color: var(--industrial-red);
-            padding: 1rem 3rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            font-size: 0.9rem;
-            border: 2px solid var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .btn-all-templates:hover {
-            background: transparent;
-            color: var(--white);
-            transform: translateX(5px);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--black);
-            border-top: 1px solid var(--border);
-            padding: 3rem 0 2rem;
-        }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-credits {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .footer-credits p {
-            color: var(--light-gray);
-            font-size: 0.9rem;
-        }
-
-        .footer-credits a {
-            color: var(--industrial-red);
-            transition: color 0.3s ease;
-        }
-
-        .footer-credits a:hover {
-            color: var(--industrial-orange);
-        }
-
-        .footer-nav {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .footer-nav a {
-            color: var(--light-gray);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            transition: color 0.3s ease;
-        }
-
-        .footer-nav a:hover {
-            color: var(--industrial-red);
-        }
-
-        /* Loading Animation */
-        .loading-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--industrial-red);
-            transform: scaleX(0);
-            transform-origin: left;
-            animation: loading 2s ease-out forwards;
-            z-index: 10000;
-        }
-
-        @keyframes loading {
-            to { transform: scaleX(1); }
-        }
-
-        /* Scroll Reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .templates-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-
-            .hero-visual {
-                height: 280px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
-
-            .nav-links {
-                display: none;
-                position: fixed;
-                top: 70px;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: var(--black);
-                flex-direction: column;
-                padding: 8rem 0;
-				justify-content: center;
-                border-bottom: 2px solid var(--industrial-red);
-                z-index: 999;
-                overflow-y: auto;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links a {
-                padding: 1rem 2rem;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .nav-links a:hover {
-                background: var(--industrial-red);
-            }
-
-            .menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
-            }
-
-            .templates-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-about {
-                padding: 8rem 0 3rem;
-            }
-
-            .hero-stats {
-                gap: 1.5rem;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-
-            .footer-credits {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>JokiLegend — Joki & Top Up Mobile Legends #1</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#04060f;
+  --bg2:#080d1a;
+  --bg3:#0d1424;
+  --gold:#f5c518;
+  --gold2:#e6a800;
+  --cyan:#00e5ff;
+  --cyan2:#00b8cc;
+  --red:#ff2d55;
+  --green:#00ff88;
+  --border:#1a2540;
+  --border2:#253050;
+  --text:#e8eaf6;
+  --muted:#7986a8;
+  --white:#ffffff;
+  --card:#0a1020;
+  --shadow-gold:0 0 30px rgba(245,197,24,.15);
+  --shadow-cyan:0 0 30px rgba(0,229,255,.12);
+  --radius:4px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;cursor:default}
+
+/* CURSOR */
+body{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='3' fill='%2300e5ff' opacity='.8'/%3E%3C/svg%3E") 10 10, auto}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:99px}
+
+/* BACKGROUND EFFECTS */
+.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(0,229,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.03) 1px,transparent 1px);
+  background-size:60px 60px}
+.bg-orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
+.bg-orb1{width:600px;height:600px;background:rgba(245,197,24,.04);top:-200px;right:-100px}
+.bg-orb2{width:500px;height:500px;background:rgba(0,229,255,.05);bottom:-200px;left:-100px}
+.bg-orb3{width:300px;height:300px;background:rgba(255,45,85,.04);top:40%;left:50%;transform:translateX(-50%)}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(4,6,15,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1300px;margin:0 auto;padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:900;color:var(--gold);letter-spacing:.1em;text-decoration:none;display:flex;align-items:center;gap:.6rem}
+.logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--gold),var(--gold2));clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#000;font-weight:900}
+.nav-links{display:flex;list-style:none;gap:0}
+.nav-links a{color:var(--muted);text-decoration:none;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;padding:.6rem 1.2rem;transition:all .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--gold);transition:width .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover::after{width:70%}
+.nav-right{display:flex;gap:.6rem}
+.btn-nav{padding:.5rem 1.2rem;border-radius:var(--radius);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:none}
+.btn-login{background:transparent;border:1px solid var(--border2);color:var(--text)}
+.btn-login:hover{border-color:var(--gold);color:var(--gold)}
+.btn-register{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000}
+.btn-register:hover{transform:translateY(-2px);box-shadow:var(--shadow-gold)}
+.menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.menu-toggle span{width:22px;height:2px;background:var(--text);transition:all .3s}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(245,197,24,.06) 0%,transparent 70%)}
+.hero-content{position:relative;z-index:1;max-width:900px}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,197,24,.08);border:1px solid rgba(245,197,24,.25);padding:.4rem 1.2rem;border-radius:99px;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Rajdhani',sans-serif;font-weight:600;margin-bottom:2rem;animation:pulse 3s ease infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(245,197,24,.2)}50%{box-shadow:0 0 20px 4px rgba(245,197,24,.1)}}
+.hero h1{font-family:'Orbitron',monospace;font-size:clamp(2.2rem,6vw,4.5rem);font-weight:900;line-height:.95;margin-bottom:1.5rem;letter-spacing:-.01em}
+.hero h1 .line1{display:block;color:var(--text)}
+.hero h1 .line2{display:block;color:var(--gold);text-shadow:0 0 40px rgba(245,197,24,.4)}
+.hero h1 .line3{display:block;font-size:55%;color:var(--cyan);letter-spacing:.15em;margin-top:.4rem}
+.hero p{font-size:1.05rem;color:var(--muted);max-width:600px;margin:0 auto 2.5rem;line-height:1.8;font-weight:300}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{padding:.9rem 2.5rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Orbitron',monospace;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s;clip-path:polygon(8px 0%,100% 0%,100% calc(100% - 8px),calc(100% - 8px) 100%,0% 100%,0% 8px)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(245,197,24,.35)}
+.btn-secondary{padding:.9rem 2.5rem;background:transparent;color:var(--cyan);font-family:'Orbitron',monospace;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--cyan);border-radius:var(--radius);cursor:pointer;transition:all .3s;clip-path:polygon(8px 0%,100% 0%,100% calc(100% - 8px),calc(100% - 8px) 100%,0% 100%,0% 8px)}
+.btn-secondary:hover{background:rgba(0,229,255,.08);box-shadow:var(--shadow-cyan);transform:translateY(-3px)}
+.hero-stats{display:flex;gap:3rem;justify-content:center;margin-top:4rem;padding-top:2.5rem;border-top:1px solid var(--border);flex-wrap:wrap}
+.h-stat-num{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:var(--gold);display:block}
+.h-stat-lbl{font-size:.72rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-family:'Rajdhani',sans-serif;font-weight:600;margin-top:.2rem}
+
+/* SECTION */
+.section{padding:5rem 0;position:relative;z-index:1}
+.section-inner{max-width:1300px;margin:0 auto;padding:0 2rem}
+.sec-hd{text-align:center;margin-bottom:4rem}
+.sec-hd h2{font-family:'Orbitron',monospace;font-size:clamp(1.6rem,4vw,2.5rem);font-weight:900;margin-bottom:.5rem}
+.sec-hd h2 span{color:var(--gold)}
+.sec-hd p{color:var(--muted);font-size:.95rem;max-width:500px;margin:0 auto}
+.sec-divider{width:60px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);margin:.8rem auto 1.2rem}
+
+/* JOKI SECTION */
+.joki-bg{background:var(--bg2)}
+.joki-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem}
+.joki-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .3s;position:relative;cursor:pointer}
+.joki-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}
+.joki-card:hover{transform:translateY(-6px);border-color:rgba(245,197,24,.35);box-shadow:0 12px 40px rgba(245,197,24,.1)}
+.joki-card:hover::before{opacity:1}
+.joki-head{padding:1.5rem 1.5rem 1rem;position:relative}
+.joki-tier{font-family:'Orbitron',monospace;font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem}
+.tier-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.joki-name{font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;color:var(--white);line-height:1}
+.joki-sub{font-size:.8rem;color:var(--muted);margin-top:.3rem}
+.tier-badge{position:absolute;top:1.2rem;right:1.2rem;width:44px;height:44px;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.joki-body{padding:0 1.5rem 1.5rem}
+.joki-features{list-style:none;display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.2rem}
+.joki-features li{font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:.5rem}
+.joki-features li::before{content:'▸';color:var(--gold);font-size:.65rem;flex-shrink:0}
+.joki-price{display:flex;align-items:flex-end;gap:.3rem;margin-bottom:1rem}
+.price-from{font-size:.72rem;color:var(--muted);font-family:'Rajdhani',sans-serif;margin-bottom:.15rem}
+.price-num{font-family:'Orbitron',monospace;font-size:1.6rem;font-weight:900;color:var(--gold);line-height:1}
+.price-unit{font-size:.75rem;color:var(--muted);margin-bottom:.2rem;font-family:'Rajdhani',sans-serif}
+.btn-order{width:100%;padding:.7rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s}
+.btn-order:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,197,24,.3)}
+
+/* tier colors */
+.warrior{--tc:#8a9bb5;--tb:rgba(138,155,181,.15)}
+.elite{--tc:#4caf50;--tb:rgba(76,175,80,.15)}
+.master{--tc:#2196f3;--tb:rgba(33,150,243,.15)}
+.grandmaster{--tc:#9c27b0;--tb:rgba(156,39,176,.15)}
+.epic{--tc:#ff9800;--tb:rgba(255,152,0,.15)}
+.legend{--tc:#f5c518;--tb:rgba(245,197,24,.15)}
+.mythic{--tc:#f44336;--tb:rgba(244,67,54,.15)}
+.mythic-honor{--tc:#ff2d55;--tb:rgba(255,45,85,.18)}
+.immortal{--tc:#00e5ff;--tb:rgba(0,229,255,.15)}
+
+/* TOPUP SECTION */
+.topup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem}
+.topup-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1rem;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.topup-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(245,197,24,.04),transparent);opacity:0;transition:opacity .3s}
+.topup-card:hover{border-color:rgba(245,197,24,.4);transform:translateY(-4px);box-shadow:0 10px 30px rgba(245,197,24,.1)}
+.topup-card:hover::after{opacity:1}
+.topup-card.popular{border-color:rgba(245,197,24,.3);background:linear-gradient(135deg,rgba(245,197,24,.06),var(--card))}
+.popular-badge{position:absolute;top:.5rem;right:.5rem;background:var(--gold);color:#000;font-family:'Rajdhani',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .5rem;border-radius:2px}
+.topup-icon{font-size:1.8rem;margin-bottom:.5rem}
+.topup-amt{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:.2rem}
+.topup-price{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;color:var(--gold)}
+.topup-bonus{font-size:.7rem;color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:600;margin-top:.2rem}
+
+/* HOW IT WORKS */
+.how-bg{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;position:relative}
+.steps-grid::before{content:'';position:absolute;top:32px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);z-index:0}
+.step-card{text-align:center;position:relative;z-index:1}
+.step-num{width:64px;height:64px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;color:var(--gold);background:var(--bg);position:relative}
+.step-num::after{content:'';position:absolute;inset:4px;border-radius:50%;background:rgba(245,197,24,.05)}
+.step-icon{font-size:1.5rem;position:absolute}
+.step-title{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:.4rem;letter-spacing:.05em}
+.step-desc{font-size:.82rem;color:var(--muted);line-height:1.6}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+.testi-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem}
+.testi-head{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
+.testi-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.testi-name{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.95rem;color:var(--white)}
+.testi-tier{font-size:.7rem;color:var(--gold);font-family:'Rajdhani',sans-serif;font-weight:600}
+.testi-stars{color:var(--gold);font-size:.8rem;letter-spacing:.1em;margin-bottom:.6rem}
+.testi-text{font-size:.85rem;color:var(--muted);line-height:1.7;font-style:italic}
+
+/* AUTH MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(4,6,15,.92);z-index:500;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(8px)}
+.modal-overlay.active{display:flex}
+.modal-box{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;width:100%;max-width:420px;overflow:hidden;animation:modalIn .3s cubic-bezier(.34,1.56,.64,1)}
+@keyframes modalIn{from{opacity:0;transform:scale(.88) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-top{padding:2rem 2rem 1.5rem;text-align:center;position:relative;background:linear-gradient(180deg,rgba(245,197,24,.04),transparent)}
+.modal-top::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent)}
+.modal-logo{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:900;color:var(--gold);margin-bottom:.3rem}
+.modal-subtitle{font-size:.8rem;color:var(--muted);font-family:'Rajdhani',sans-serif}
+.modal-tabs{display:flex;padding:1.2rem 2rem 0}
+.modal-tab{flex:1;padding:.7rem;text-align:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;background:transparent;color:var(--muted);border-bottom:2px solid transparent;transition:all .2s}
+.modal-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.modal-form{padding:1.5rem 2rem 2rem;display:none}
+.modal-form.active{display:block}
+.form-group{margin-bottom:1rem}
+.form-label{display:block;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.form-input{width:100%;padding:.8rem 1rem;background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-family:'Exo 2',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s}
+.form-input:focus{border-color:var(--gold);background:rgba(245,197,24,.03)}
+.form-input::placeholder{color:var(--muted);opacity:.6}
+.form-msg{padding:.6rem 1rem;border-radius:var(--radius);font-size:.8rem;font-family:'Rajdhani',sans-serif;font-weight:600;margin-bottom:.8rem;display:none}
+.form-msg.error{background:rgba(255,45,85,.1);border:1px solid rgba(255,45,85,.3);color:var(--red);display:block}
+.form-msg.success{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:var(--green);display:block}
+.btn-auth{width:100%;padding:.85rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Orbitron',monospace;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s;margin-top:.3rem}
+.btn-auth:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(245,197,24,.3)}
+.modal-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--muted);width:28px;height:28px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:all .2s}
+.modal-close:hover{color:var(--red);border-color:var(--red)}
+.guest-link{text-align:center;margin-top:1rem;font-size:.78rem;color:var(--muted);font-family:'Rajdhani',sans-serif}
+.guest-link a{color:var(--gold);cursor:pointer}
+
+/* ORDER MODAL */
+.order-box{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;width:100%;max-width:500px;overflow:hidden;animation:modalIn .3s cubic-bezier(.34,1.56,.64,1)}
+.order-header{background:linear-gradient(135deg,rgba(245,197,24,.08),rgba(0,229,255,.04));padding:1.5rem 2rem;border-bottom:1px solid var(--border)}
+.order-header h3{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:var(--gold)}
+.order-header p{font-size:.82rem;color:var(--muted);margin-top:.2rem}
+.order-body{padding:1.5rem 2rem}
+.order-row{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.order-row:last-child{border:none;font-weight:700;color:var(--gold);font-size:1rem;padding-top:.8rem}
+.order-row span:first-child{color:var(--muted)}
+.order-footer{padding:0 2rem 2rem;display:flex;gap:.8rem}
+.btn-cancel{flex:1;padding:.8rem;background:transparent;border:1px solid var(--border2);color:var(--muted);font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;border-radius:var(--radius);cursor:pointer;transition:all .2s}
+.btn-cancel:hover{border-color:var(--red);color:var(--red)}
+.btn-confirm{flex:2;padding:.8rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Orbitron',monospace;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s}
+.btn-confirm:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,197,24,.3)}
+
+/* TOAST */
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--bg3);border:1px solid var(--gold);border-radius:var(--radius);padding:.9rem 1.4rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;color:var(--gold);z-index:1000;transform:translateY(100px);opacity:0;transition:all .3s;box-shadow:0 8px 30px rgba(245,197,24,.2)}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* USER BAR */
+.user-bar{display:none;align-items:center;gap:.6rem}
+.user-bar.visible{display:flex}
+.user-chip{background:rgba(245,197,24,.08);border:1px solid rgba(245,197,24,.2);border-radius:99px;padding:.4rem 1rem;font-family:'Rajdhani',sans-serif;font-size:.82rem;font-weight:600;color:var(--gold)}
+.btn-logout{background:transparent;border:1px solid var(--border2);color:var(--muted);border-radius:var(--radius);padding:.4rem .9rem;font-family:'Rajdhani',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-logout:hover{border-color:var(--red);color:var(--red)}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2rem;position:relative;z-index:1}
+.footer-inner{max-width:1300px;margin:0 auto;padding:0 2rem}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:2rem}
+.footer-brand .logo{font-size:1.1rem;margin-bottom:.8rem;display:inline-block}
+.footer-brand p{font-size:.82rem;color:var(--muted);line-height:1.7;max-width:280px}
+.footer-col h4{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white);margin-bottom:.8rem}
+.footer-col a{display:block;font-size:.82rem;color:var(--muted);text-decoration:none;margin-bottom:.4rem;transition:color .2s}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:.8rem;color:var(--muted)}
+.footer-bottom span{color:var(--gold)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .footer-top{grid-template-columns:1fr 1fr}
+  .footer-brand{grid-column:1/-1}
+  .hero-stats{gap:1.5rem}
+}
+@media(max-width:700px){
+  .nav-links{display:none;position:fixed;top:60px;left:0;right:0;bottom:0;background:rgba(4,6,15,.97);flex-direction:column;align-items:center;justify-content:center;gap:0;z-index:99}
+  .nav-links.active{display:flex}
+  .nav-links a{padding:1.2rem 2rem;border-bottom:1px solid var(--border);width:100%;text-align:center}
+  .menu-toggle{display:flex}
+  .nav-right{display:none}
+  .nav-right.mobile-visible{display:flex;position:fixed;bottom:0;left:0;right:0;padding:1rem 2rem;background:rgba(4,6,15,.97);border-top:1px solid var(--border);z-index:99}
+  .nav-right.mobile-visible .btn-nav{flex:1;text-align:center;padding:.7rem}
+  .footer-top{grid-template-columns:1fr}
+  .footer-brand{grid-column:1}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .steps-grid::before{display:none}
+  .menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+  .menu-toggle.active span:nth-child(2){opacity:0}
+  .menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
+}
+</style>
 </head>
 <body>
-    <div class="loading-bar"></div>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="https://www.tooplate.com" class="logo">
-                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 10 L5 30 L15 30 L15 20 L25 20 L25 30 L35 30 L35 10 L25 10 L25 15 L15 15 L15 10 Z" fill="#E63946"/>
-                    <rect x="18" y="5" width="4" height="30" fill="#FF6B35" opacity="0.8"/>
-                    <rect x="5" y="18" width="30" height="4" fill="#FF6B35" opacity="0.8"/>
-                </svg>
-                TOOPLATE
-            </a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#templates" class="active">Templates</a></li>
-                <li><a href="https://www.tooplate.com/free-templates">All Templates</a></li>
-            </ul>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+<div class="bg-grid"></div>
+<div class="bg-orb bg-orb1"></div>
+<div class="bg-orb bg-orb2"></div>
+<div class="bg-orb bg-orb3"></div>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal-box">
+    <div class="modal-top">
+      <button class="modal-close" onclick="closeModal('authModal')">✕</button>
+      <div class="modal-logo">⚡ JOKILEGEND</div>
+      <div class="modal-subtitle">Platform Joki & Top Up Mobile Legends #1</div>
+    </div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" onclick="switchAuthTab('login')">Masuk</button>
+      <button class="modal-tab" onclick="switchAuthTab('register')">Daftar</button>
+    </div>
+    <div class="modal-form active" id="form-login">
+      <div class="form-msg" id="l-msg"></div>
+      <div class="form-group"><label class="form-label">Username</label><input class="form-input" id="l-user" type="text" placeholder="Username kamu"/></div>
+      <div class="form-group"><label class="form-label">Password</label><input class="form-input" id="l-pass" type="password" placeholder="••••••••"/></div>
+      <button class="btn-auth" onclick="doLogin()">Masuk Sekarang →</button>
+      <div class="guest-link">Belum punya akun? <a onclick="switchAuthTab('register')">Daftar gratis</a></div>
+    </div>
+    <div class="modal-form" id="form-register">
+      <div class="form-msg" id="r-msg"></div>
+      <div class="form-group"><label class="form-label">Nama Lengkap</label><input class="form-input" id="r-name" type="text" placeholder="Nama kamu"/></div>
+      <div class="form-group"><label class="form-label">Username</label><input class="form-input" id="r-user" type="text" placeholder="Username unik"/></div>
+      <div class="form-group"><label class="form-label">No. HP / WhatsApp</label><input class="form-input" id="r-phone" type="text" placeholder="08xxxxxxxxxx"/></div>
+      <div class="form-group"><label class="form-label">Password</label><input class="form-input" id="r-pass" type="password" placeholder="Min. 6 karakter"/></div>
+      <button class="btn-auth" onclick="doRegister()">Buat Akun →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="order-box">
+    <div class="order-header">
+      <h3 id="orderTitle">Detail Pesanan</h3>
+      <p id="orderSub">Konfirmasi pesanan kamu</p>
+    </div>
+    <div class="order-body" id="orderBody"></div>
+    <div class="order-footer">
+      <button class="btn-cancel" onclick="closeModal('orderModal')">Batal</button>
+      <button class="btn-confirm" onclick="confirmOrder()">Konfirmasi via WhatsApp ⚡</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#"><div class="logo-icon">⚡</div>JOKILEGEND</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#joki">Joki Rank</a></li>
+      <li><a href="#topup">Top Up</a></li>
+      <li><a href="#cara">Cara Order</a></li>
+      <li><a href="#testi">Testimoni</a></li>
+    </ul>
+    <div class="nav-right" id="navRight">
+      <div class="user-bar" id="userBar">
+        <div class="user-chip" id="userChip">👤 Guest</div>
+        <button class="btn-logout" onclick="doLogout()">Keluar</button>
+      </div>
+      <div class="auth-btns" id="authBtns">
+        <button class="btn-nav btn-login" onclick="openModal('authModal')">Masuk</button>
+        <button class="btn-nav btn-register" onclick="openModal('authModal');switchAuthTab('register')">Daftar</button>
+      </div>
+    </div>
+    <button class="menu-toggle" id="menuToggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">⚡ #1 Joki & Top Up Mobile Legends Indonesia</div>
+    <h1>
+      <span class="line1">NAIK RANK</span>
+      <span class="line2">DIJAMIN AMAN</span>
+      <span class="line3">WARRIOR → IMMORTAL · FAST · TRUSTED · 24/7</span>
+    </h1>
+    <p>Joki rank profesional dengan win rate tinggi. Top up diamond murah & instan. Lebih dari 5.000 pelanggan puas. Proses cepat, harga transparan, garansi keamanan akun.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('joki').scrollIntoView({behavior:'smooth'})">Order Joki Sekarang ⚡</button>
+      <button class="btn-secondary" onclick="document.getElementById('topup').scrollIntoView({behavior:'smooth'})">Top Up Diamond 💎</button>
+    </div>
+    <div class="hero-stats">
+      <div class="h-stat"><span class="h-stat-num">5K+</span><span class="h-stat-lbl">Pelanggan Puas</span></div>
+      <div class="h-stat"><span class="h-stat-num">98%</span><span class="h-stat-lbl">Win Rate</span></div>
+      <div class="h-stat"><span class="h-stat-num">24/7</span><span class="h-stat-lbl">Layanan Aktif</span></div>
+      <div class="h-stat"><span class="h-stat-num">100%</span><span class="h-stat-lbl">Aman & Terpercaya</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- JOKI RANK -->
+<section class="section joki-bg" id="joki">
+  <div class="section-inner">
+    <div class="sec-hd reveal">
+      <h2>Joki <span>Rank</span></h2>
+      <div class="sec-divider"></div>
+      <p>Naik dari tier mana saja ke tier impianmu. Semua dikerjakan booster berpengalaman.</p>
+    </div>
+    <div class="joki-grid" id="jokiGrid"></div>
+  </div>
+</section>
+
+<!-- TOP UP DIAMOND -->
+<section class="section" id="topup">
+  <div class="section-inner">
+    <div class="sec-hd reveal">
+      <h2>Top Up <span>Diamond 💎</span></h2>
+      <div class="sec-divider"></div>
+      <p>Harga murah, proses instan. Diamond langsung masuk ke akunmu dalam hitungan menit.</p>
+    </div>
+    <div class="topup-grid reveal" id="topupGrid"></div>
+  </div>
+</section>
+
+<!-- CARA ORDER -->
+<section class="section how-bg" id="cara">
+  <div class="section-inner">
+    <div class="sec-hd reveal">
+      <h2>Cara <span>Order</span></h2>
+      <div class="sec-divider"></div>
+      <p>Proses mudah dan cepat, selesai dalam hitungan menit!</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-num">01 <span class="step-icon">📝</span></div>
+        <div class="step-title">Pilih Layanan</div>
+        <div class="step-desc">Pilih paket joki rank atau nominal top up diamond yang kamu inginkan.</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">02 <span class="step-icon">👤</span></div>
+        <div class="step-title">Daftar / Masuk</div>
+        <div class="step-desc">Buat akun gratis atau masuk untuk melanjutkan pemesanan dengan mudah.</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">03 <span class="step-icon">💬</span></div>
+        <div class="step-title">Konfirmasi WA</div>
+        <div class="step-desc">Kamu akan diarahkan ke WhatsApp admin untuk konfirmasi detail pesanan.</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">04 <span class="step-icon">💳</span></div>
+        <div class="step-title">Bayar</div>
+        <div class="step-desc">Lakukan pembayaran sesuai instruksi. Berbagai metode tersedia.</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">05 <span class="step-icon">🚀</span></div>
+        <div class="step-title">Proses & Selesai</div>
+        <div class="step-desc">Booster kami langsung bekerja. Notifikasi dikirim saat pesanan selesai.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONI -->
+<section class="section joki-bg" id="testi">
+  <div class="section-inner">
+    <div class="sec-hd reveal">
+      <h2>Apa Kata <span>Pelanggan</span></h2>
+      <div class="sec-divider"></div>
+      <p>Ribuan pelanggan telah mempercayakan rank mereka kepada kami.</p>
+    </div>
+    <div class="testi-grid" id="testiGrid"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="logo" href="#">⚡ JOKILEGEND</a>
+        <p>Platform joki rank dan top up diamond Mobile Legends terpercaya. Proses cepat, harga transparan, garansi keamanan akun 100%.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Layanan</h4>
+        <a href="#joki">Joki Warrior</a>
+        <a href="#joki">Joki Elite</a>
+        <a href="#joki">Joki Mythic</a>
+        <a href="#joki">Joki Immortal</a>
+        <a href="#topup">Top Up Diamond</a>
+      </div>
+      <div class="footer-col">
+        <h4>Bantuan</h4>
+        <a href="#">Cara Order</a>
+        <a href="#">Syarat & Ketentuan</a>
+        <a href="#">FAQ</a>
+        <a href="https://wa.me/6281328282930" target="_blank">Hubungi Admin</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 <span>JokiLegend</span>. Bukan afiliasi resmi Moonton.</p>
+      <p>Mobile Legends: Bang Bang™ adalah merek dagang <span>Moonton</span>.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ================================================
+   DATA
+================================================ */
+const jokiData = [
+  {tier:'warrior',name:'Warrior',sub:'Warrior I → Elite I',emoji:'⚔️',color:'#8a9bb5',
+   features:['Booster berpengalaman','Estimasi 1–2 hari','Garansi tidak turun rank','Update progress via WA'],
+   price:'Rp 25.000',priceNum:25000},
+  {tier:'elite',name:'Elite',sub:'Elite I → Master I',emoji:'🛡️',color:'#4caf50',
+   features:['Win rate 90%+','Estimasi 2–3 hari','Garansi tidak turun rank','Support 24/7'],
+   price:'Rp 45.000',priceNum:45000},
+  {tier:'master',name:'Master',sub:'Master I → GM I',emoji:'💫',color:'#2196f3',
+   features:['Booster tier Master+','Estimasi 3–4 hari','Garansi tidak turun rank','Laporan screenshot'],
+   price:'Rp 75.000',priceNum:75000},
+  {tier:'grandmaster',name:'Grandmaster',sub:'GM I → Epic I',emoji:'👑',color:'#9c27b0',
+   features:['Booster tier GM+','Estimasi 4–5 hari','Garansi tidak turun rank','Live update progres'],
+   price:'Rp 120.000',priceNum:120000},
+  {tier:'epic',name:'Epic',sub:'Epic I → Legend I',emoji:'🔥',color:'#ff9800',
+   features:['Booster tier Epic+','Estimasi 5–7 hari','Garansi rank','Report tiap match'],
+   price:'Rp 200.000',priceNum:200000},
+  {tier:'legend',name:'Legend',sub:'Legend I → Mythic',emoji:'🌟',color:'#f5c518',
+   features:['Booster tier Legend+','Estimasi 7–10 hari','Full garansi','Priority support'],
+   price:'Rp 350.000',priceNum:350000},
+  {tier:'mythic',name:'Mythic',sub:'Mythic → Mythic Honor',emoji:'💎',color:'#f44336',
+   features:['Booster Mythic glory','Estimasi 10–14 hari','Garansi penuh','Dedicated booster'],
+   price:'Rp 600.000',priceNum:600000},
+  {tier:'mythic-honor',name:'Mythic Honor',sub:'MH → Immortal 1-100',emoji:'🏆',color:'#ff2d55',
+   features:['Top booster kami','Estimasi custom','Rahasia terjaga','Full VIP service'],
+   price:'Rp 1.500.000',priceNum:1500000},
+  {tier:'immortal',name:'Immortal',sub:'Immortal TOP leaderboard',emoji:'⚡',color:'#00e5ff',
+   features:['Booster rank 1–100','Estimasi sangat terbatas','Eksklusif & private','Konsultasi dulu'],
+   price:'Nego',priceNum:0},
+];
+
+const topupData = [
+  {amt:'86 💎',bonus:'',price:'Rp 18.000',popular:false,wa:'86+Diamond'},
+  {amt:'172 💎',bonus:'',price:'Rp 36.000',popular:false,wa:'172+Diamond'},
+  {amt:'257 💎',bonus:'+Bonus Event',price:'Rp 54.000',popular:false,wa:'257+Diamond'},
+  {amt:'344 💎',bonus:'',price:'Rp 72.000',popular:false,wa:'344+Diamond'},
+  {amt:'514 💎',bonus:'+Bonus Event',price:'Rp 105.000',popular:true,wa:'514+Diamond'},
+  {amt:'706 💎',bonus:'',price:'Rp 145.000',popular:false,wa:'706+Diamond'},
+  {amt:'1.048 💎',bonus:'+Free Skin',price:'Rp 210.000',popular:true,wa:'1048+Diamond'},
+  {amt:'2.195 💎',bonus:'+Free Skin+Event',price:'Rp 430.000',popular:false,wa:'2195+Diamond'},
+  {amt:'3.688 💎',bonus:'Best Value!',price:'Rp 700.000',popular:true,wa:'3688+Diamond'},
+  {amt:'5.532 💎',bonus:'+Bundle Eksklusif',price:'Rp 1.050.000',popular:false,wa:'5532+Diamond'},
+];
+
+const testiData = [
+  {name:'Rizal_Gaming',tier:'Mythic Honor',emoji:'🎮',stars:'★★★★★',text:'"Dari Legend 3 ke Mythic Honor cuma 10 hari! Boosternya pro banget, win rate 95%. Recommended banget buat yang mau push rank cepet!"'},
+  {name:'Dewi_ML',tier:'Epic',emoji:'👸',stars:'★★★★★',text:'"Top up diamond-nya instan masuk, gak sampai 5 menit. Harganya lebih murah dari store resmi. Pasti order lagi!"'},
+  {name:'BangsatML',tier:'Immortal',emoji:'⚡',stars:'★★★★★',text:'"Pertama agak ragu, tapi ternyata legit. Akun aman, rank naik sesuai janji. CS-nya responsif banget even tengah malem."'},
+  {name:'ShadowKing',tier:'Mythic',emoji:'👑',stars:'★★★★☆',text:'"Joki Master ke Mythic selesai lebih cepat dari estimasi. Satu bintang dikurangi karena ada sedikit delay di awal, tapi overall bagus!"'},
+  {name:'Putri_1234',tier:'Grandmaster',emoji:'🌸',stars:'★★★★★',text:'"Ini kedua kalinya order di sini. Konsisten kualitasnya. Booster ramah, update terus via WA. Harga worth banget!"'},
+  {name:'NightWolf99',tier:'Legend',emoji:'🐺',stars:'★★★★★',text:'"Epic ke Legend done dalam 6 hari. Prosesnya smooth, admin fast response. Diamond top up juga murah. Full recommend!"'},
+];
+
+/* ================================================
+   RENDER
+================================================ */
+function renderJoki(){
+  document.getElementById('jokiGrid').innerHTML = jokiData.map((j,i) => `
+    <div class="joki-card ${j.tier} reveal" style="animation-delay:${i*.05}s">
+      <div class="joki-head">
+        <div class="joki-tier">
+          <span class="tier-dot" style="background:${j.color};box-shadow:0 0 8px ${j.color}60"></span>
+          <span style="color:${j.color}">${j.name}</span>
         </div>
-    </nav>
-
-    <!-- Hero / About Section -->
-    <section class="hero-about" id="about">
-        <div class="container">
-            <div class="hero-grid">
-                <div class="hero-text">
-                    <h1>Free HTML<br><span>Templates</span></h1>
-                    <p>Tooplate offers 80+ free, responsive HTML CSS website templates built for startups, portfolios, businesses, and creative projects. Every template is clean, mobile-ready, and easy to customize with any code editor.</p>
-                    <p>No login required. No hidden fees. Just download, edit, and launch your website. All templates are free for personal and commercial use.</p>
-                    <div class="hero-stats">
-                        <div class="hero-stat">
-                            <span class="hero-stat-number">80+</span>
-                            <span class="hero-stat-label">Templates</span>
-                        </div>
-                        <div class="hero-stat">
-                            <span class="hero-stat-number">Free</span>
-                            <span class="hero-stat-label">Download</span>
-                        </div>
-                        <div class="hero-stat">
-                            <span class="hero-stat-number">100%</span>
-                            <span class="hero-stat-label">Responsive</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="hero-code-block">
-                        <div class="code-header">
-                            <div class="code-dot"></div>
-                            <div class="code-dot"></div>
-                            <div class="code-dot"></div>
-                        </div>
-                        <div class="code-line"><span class="code-comment">&lt;!-- Free HTML Template --&gt;</span></div>
-                        <div class="code-line"><span class="code-tag">&lt;html</span> <span class="code-attr">lang</span>=<span class="code-val">"en"</span><span class="code-tag">&gt;</span></div>
-                        <div class="code-line">&nbsp;&nbsp;<span class="code-tag">&lt;head&gt;</span></div>
-                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-tag">&lt;link</span> <span class="code-attr">rel</span>=<span class="code-val">"stylesheet"</span></div>
-                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-attr">href</span>=<span class="code-val">"style.css"</span><span class="code-tag">&gt;</span></div>
-                        <div class="code-line">&nbsp;&nbsp;<span class="code-tag">&lt;/head&gt;</span></div>
-                        <div class="code-line">&nbsp;&nbsp;<span class="code-tag">&lt;body&gt;</span></div>
-                        <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-comment">&lt;!-- Your content --&gt;</span></div>
-                        <div class="code-line">&nbsp;&nbsp;<span class="code-tag">&lt;/body&gt;</span></div>
-                    </div>
-                </div>
-            </div>
+        <div class="joki-name">${j.name.toUpperCase()}</div>
+        <div class="joki-sub">${j.sub}</div>
+        <div class="tier-badge" style="background:${j.color}22;color:${j.color}">${j.emoji}</div>
+      </div>
+      <div class="joki-body">
+        <ul class="joki-features">${j.features.map(f=>`<li>${f}</li>`).join('')}</ul>
+        <div class="joki-price">
+          <span class="price-from">Mulai</span>
+          <span class="price-num">${j.price}</span>
+          <span class="price-unit">/tier</span>
         </div>
-    </section>
+        <button class="btn-order" onclick="orderJoki(${i})">Order Sekarang ⚡</button>
+      </div>
+    </div>`).join('');
+}
 
-    <!-- Templates Grid -->
-    <section class="templates-section" id="templates">
-        <div class="container">
-            <div class="section-header">
-                <h2>Latest <span>Templates</span></h2>
-                <p>Freshly designed HTML CSS templates ready for your next project.</p>
-            </div>
+function renderTopup(){
+  document.getElementById('topupGrid').innerHTML = topupData.map((t,i) => `
+    <div class="topup-card ${t.popular?'popular':''} reveal" onclick="orderTopup(${i})">
+      ${t.popular?'<div class="popular-badge">Popular</div>':''}
+      <div class="topup-icon">💎</div>
+      <div class="topup-amt">${t.amt}</div>
+      <div class="topup-price">${t.price}</div>
+      ${t.bonus?`<div class="topup-bonus">✦ ${t.bonus}</div>`:''}
+    </div>`).join('');
+}
 
-            <div class="templates-grid">
+function renderTesti(){
+  document.getElementById('testiGrid').innerHTML = testiData.map(t => `
+    <div class="testi-card reveal">
+      <div class="testi-head">
+        <div class="testi-avatar" style="background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.2)">${t.emoji}</div>
+        <div><div class="testi-name">${t.name}</div><div class="testi-tier">Tier: ${t.tier}</div></div>
+      </div>
+      <div class="testi-stars">${t.stars}</div>
+      <div class="testi-text">${t.text}</div>
+    </div>`).join('');
+}
 
-                <!-- Template 1: Poppy Studio -->
-                <div class="template-card reveal">
-                    <div class="template-thumb">
-                        <img src="https://www.tooplate.com/thumbnails/tooplate-2157-poppy-studio.jpg" alt="Poppy Studio HTML Template">
-                        <div class="template-thumb-overlay"></div>
-                        <span class="template-number">2157</span>
-                    </div>
-                    <div class="template-info">
-                        <h3>Poppy Studio</h3>
-                        <p>A mood board portfolio template designed for illustrators, brand designers, and creative professionals.</p>
-                        <div class="template-tags">
-                            <span class="template-tag">Portfolio</span>
-                            <span class="template-tag">Creative</span>
-                        </div>
-                        <div class="template-actions">
-                            <a href="https://www.tooplate.com/view/2157-poppy-studio" class="btn-preview" rel="nofollow">Preview</a>
-                            <a href="#tooplate-2157-poppy-studio" class="btn-download" rel="nofollow">Download</a>
-                        </div>
-                    </div>
-                </div>
+/* ================================================
+   ORDER
+================================================ */
+let currentOrder = null;
 
-                <!-- Template 2: Graphite Creative -->
-                <div class="template-card reveal">
-                    <div class="template-thumb">
-                        <img src="https://www.tooplate.com/thumbnails/tooplate-2156-graphite-creative.jpg" alt="Graphite Creative HTML Template">
-                        <div class="template-thumb-overlay"></div>
-                        <span class="template-number">2156</span>
-                    </div>
-                    <div class="template-info">
-                        <h3>Graphite Creative</h3>
-                        <p>A sleek, dark-themed template for creative agencies, design studios, and digital professionals.</p>
-                        <div class="template-tags">
-                            <span class="template-tag">Agency</span>
-                            <span class="template-tag">Dark</span>
-                        </div>
-                        <div class="template-actions">
-                            <a href="https://www.tooplate.com/view/2156-graphite-creative" class="btn-preview" rel="nofollow">Preview</a>
-                            <a href="#tooplate-2156-graphite-creative" class="btn-download" rel="nofollow">Download</a>
-                        </div>
-                    </div>
-                </div>
+function orderJoki(idx){
+  if(!isLoggedIn()){openModal('authModal');showToast('⚠️ Silakan login atau daftar dulu!');return;}
+  const j = jokiData[idx];
+  currentOrder = {type:'joki',data:j};
+  document.getElementById('orderTitle').textContent = `Joki Rank — ${j.name}`;
+  document.getElementById('orderSub').textContent = j.sub;
+  document.getElementById('orderBody').innerHTML = `
+    <div class="order-row"><span>Layanan</span><span>Joki Rank ${j.name}</span></div>
+    <div class="order-row"><span>Range Tier</span><span>${j.sub}</span></div>
+    <div class="order-row"><span>Estimasi</span><span>${j.features[1]}</span></div>
+    <div class="order-row"><span>Total Harga</span><span style="color:var(--gold);font-family:'Orbitron',monospace">${j.price}</span></div>`;
+  openModal('orderModal');
+}
 
-                <!-- Template 3: Modern Musician -->
-                <div class="template-card reveal">
-                    <div class="template-thumb">
-                        <img src="https://www.tooplate.com/thumbnails/tooplate-2155-modern-musician.jpg" alt="Modern Musician HTML Template">
-                        <div class="template-thumb-overlay"></div>
-                        <span class="template-number">2155</span>
-                    </div>
-                    <div class="template-info">
-                        <h3>Modern Musician</h3>
-                        <p>A clean, minimal template for music creators, educators, and freelance artists.</p>
-                        <div class="template-tags">
-                            <span class="template-tag">Music</span>
-                            <span class="template-tag">Minimal</span>
-                        </div>
-                        <div class="template-actions">
-                            <a href="https://www.tooplate.com/view/2155-modern-musician" class="btn-preview" rel="nofollow">Preview</a>
-                            <a href="#tooplate-2155-modern-musician" class="btn-download" rel="nofollow">Download</a>
-                        </div>
-                    </div>
-                </div>
+function orderTopup(idx){
+  if(!isLoggedIn()){openModal('authModal');showToast('⚠️ Silakan login atau daftar dulu!');return;}
+  const t = topupData[idx];
+  currentOrder = {type:'topup',data:t};
+  document.getElementById('orderTitle').textContent = `Top Up Diamond`;
+  document.getElementById('orderSub').textContent = t.amt;
+  document.getElementById('orderBody').innerHTML = `
+    <div class="order-row"><span>Nominal</span><span>${t.amt}</span></div>
+    ${t.bonus?`<div class="order-row"><span>Bonus</span><span style="color:var(--green)">${t.bonus}</span></div>`:''}
+    <div class="order-row"><span>Harga</span><span style="color:var(--gold);font-family:'Orbitron',monospace">${t.price}</span></div>`;
+  openModal('orderModal');
+}
 
-                <!-- Template 4: Split Screen Portfolio -->
-                <div class="template-card reveal">
-                    <div class="template-thumb">
-                        <img src="https://www.tooplate.com/thumbnails/tooplate-2154-split-portfolio.jpg" alt="Split Screen Portfolio HTML Template">
-                        <div class="template-thumb-overlay"></div>
-                        <span class="template-number">2154</span>
-                    </div>
-                    <div class="template-info">
-                        <h3>Split Screen Portfolio</h3>
-                        <p>A modern, fully responsive template that brings editorial magazine aesthetics to your online portfolio.</p>
-                        <div class="template-tags">
-                            <span class="template-tag">Portfolio</span>
-                            <span class="template-tag">Editorial</span>
-                        </div>
-                        <div class="template-actions">
-                            <a href="https://www.tooplate.com/view/2154-split-portfolio" class="btn-preview" rel="nofollow">Preview</a>
-                            <a href="#tooplate-2154-split-portfolio" class="btn-download" rel="nofollow">Download</a>
-                        </div>
-                    </div>
-                </div>
+function confirmOrder(){
+  if(!currentOrder) return;
+  const user = getUser();
+  let msg = '';
+  if(currentOrder.type === 'joki'){
+    const j = currentOrder.data;
+    msg = `Halo Admin JokiLegend!%0A%0ASaya ingin order:%0A*Joki Rank ${j.name}*%0ARange: ${j.sub}%0AHarga: ${j.price}%0A%0ANama: ${user.name}%0AUsername: ${user.username}%0A%0AMohon konfirmasi pesanan saya. Terima kasih!`;
+  } else {
+    const t = currentOrder.data;
+    msg = `Halo Admin JokiLegend!%0A%0ASaya ingin order:%0A*Top Up ${t.amt}*%0AHarga: ${t.price}%0A%0ANama: ${user.name}%0AUsername: ${user.username}%0A%0AMohon konfirmasi pesanan saya. Terima kasih!`;
+  }
+  closeModal('orderModal');
+  window.open(`https://wa.me/6281328282930?text=${msg}`, '_blank');
+  showToast('✅ Diarahkan ke WhatsApp admin!');
+}
 
-                <!-- Template 5: Fireworks Composer -->
-                <div class="template-card reveal">
-                    <div class="template-thumb">
-                        <img src="https://www.tooplate.com/thumbnails/tooplate-2153-fireworks-composer.jpg" alt="Fireworks Composer HTML Template">
-                        <div class="template-thumb-overlay"></div>
-                        <span class="template-number">2153</span>
-                    </div>
-                    <div class="template-info">
-                        <h3>Fireworks Composer</h3>
-                        <p>An interactive New Year celebration template with canvas-based particle fireworks and glassmorphism controls.</p>
-                        <div class="template-tags">
-                            <span class="template-tag">Interactive</span>
-                            <span class="template-tag">Canvas</span>
-                        </div>
-                        <div class="template-actions">
-                            <a href="https://www.tooplate.com/view/2153-fireworks-composer" class="btn-preview" rel="nofollow">Preview</a>
-                            <a href="#tooplate-2153-fireworks-composer" class="btn-download" rel="nofollow">Download</a>
-                        </div>
-                    </div>
-                </div>
+/* ================================================
+   AUTH
+================================================ */
+function doLogin(){
+  const user = document.getElementById('l-user').value.trim();
+  const pass = document.getElementById('l-pass').value.trim();
+  const msg = document.getElementById('l-msg');
+  if(!user||!pass){setMsg('l-msg','Username dan password wajib diisi!','error');return;}
+  const users = JSON.parse(localStorage.getItem('jlUsers')||'{}');
+  if(users[user] && users[user].pass === pass){
+    loginSuccess(users[user].name, user);
+  } else if((user==='admin'&&pass==='admin123')){
+    loginSuccess('Admin', user);
+  } else {
+    setMsg('l-msg','Username atau password salah!','error');
+  }
+}
 
-                <!-- Template 6: Event Invitation -->
-                <div class="template-card reveal">
-                    <div class="template-thumb">
-                        <img src="https://www.tooplate.com/thumbnails/tooplate-2152-event-invitation.jpg" alt="Event Invitation HTML Template">
-                        <div class="template-thumb-overlay"></div>
-                        <span class="template-number">2152</span>
-                    </div>
-                    <div class="template-info">
-                        <h3>Event Invitation</h3>
-                        <p>A modern, minimalist template for corporate events and professional gatherings with RSVP form and countdown timer.</p>
-                        <div class="template-tags">
-                            <span class="template-tag">Event</span>
-                            <span class="template-tag">RSVP</span>
-                        </div>
-                        <div class="template-actions">
-                            <a href="https://www.tooplate.com/view/2152-event-invitation" class="btn-preview" rel="nofollow">Preview</a>
-                            <a href="#tooplate-2152-event-invitation" class="btn-download" rel="nofollow">Download</a>
-                        </div>
-                    </div>
-                </div>
+function doRegister(){
+  const name = document.getElementById('r-name').value.trim();
+  const user = document.getElementById('r-user').value.trim();
+  const phone = document.getElementById('r-phone').value.trim();
+  const pass = document.getElementById('r-pass').value.trim();
+  if(!name||!user||!phone||!pass){setMsg('r-msg','Semua kolom wajib diisi!','error');return;}
+  if(pass.length < 6){setMsg('r-msg','Password minimal 6 karakter!','error');return;}
+  const users = JSON.parse(localStorage.getItem('jlUsers')||'{}');
+  if(users[user]){setMsg('r-msg','Username sudah digunakan!','error');return;}
+  users[user] = {name, pass, phone};
+  localStorage.setItem('jlUsers', JSON.stringify(users));
+  setMsg('r-msg','Akun berhasil dibuat! Silakan masuk 🎉','success');
+  setTimeout(()=>switchAuthTab('login'), 1500);
+}
 
-            </div>
-        </div>
-    </section>
+function loginSuccess(name, username){
+  localStorage.setItem('jlSession', JSON.stringify({name, username}));
+  updateAuthUI();
+  closeModal('authModal');
+  showToast(`⚡ Selamat datang, ${name}!`);
+}
 
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Explore All 80+ Templates</h2>
-                <p>Browse the complete collection of free, responsive HTML CSS templates for every type of website project.</p>
-                <a href="https://www.tooplate.com/free-templates" class="btn-all-templates" rel="nofollow">View All Templates</a>
-            </div>
-        </div>
-    </section>
+function doLogout(){
+  localStorage.removeItem('jlSession');
+  updateAuthUI();
+  showToast('👋 Sampai jumpa!');
+}
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-bottom">
-                <div class="footer-credits">
-                    <p>&copy; 2026 <a href="https://www.tooplate.com" rel="nofollow">Tooplate</a>. Free HTML CSS Templates.</p>
-                </div>
-                <div class="footer-nav">
-                    <a href="https://www.tooplate.com/free-templates" rel="nofollow">Templates</a>
-                    <a href="https://www.tooplate.com/about" rel="nofollow">About</a>
-                    <a href="https://www.tooplate.com/privacy" rel="nofollow">Privacy</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+function isLoggedIn(){return !!localStorage.getItem('jlSession')}
+function getUser(){return JSON.parse(localStorage.getItem('jlSession')||'{}')}
 
-    <script>
-        // Mobile menu toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
+function updateAuthUI(){
+  const loggedIn = isLoggedIn();
+  const user = getUser();
+  document.getElementById('userBar').classList.toggle('visible', loggedIn);
+  document.getElementById('authBtns').style.display = loggedIn ? 'none' : 'flex';
+  if(loggedIn) document.getElementById('userChip').textContent = `⚡ ${user.name}`;
+}
 
-        menuToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-            this.classList.toggle('active');
-        });
+function setMsg(id, msg, type){
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.className = 'form-msg ' + type;
+}
 
-        // Close mobile menu on link click
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
-            });
-        });
+function switchAuthTab(tab){
+  document.querySelectorAll('.modal-tab').forEach((t,i)=>{
+    t.classList.toggle('active',(i===0&&tab==='login')||(i===1&&tab==='register'));
+  });
+  document.getElementById('form-login').classList.toggle('active', tab==='login');
+  document.getElementById('form-register').classList.toggle('active', tab==='register');
+  document.getElementById('l-msg').className = 'form-msg';
+  document.getElementById('r-msg').className = 'form-msg';
+}
 
-        // Navigation background on scroll
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.background = 'rgba(10, 10, 10, 0.98)';
-            } else {
-                nav.style.background = 'linear-gradient(180deg, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.8) 100%)';
-            }
-        });
+/* ================================================
+   MODAL & UI
+================================================ */
+function openModal(id){document.getElementById(id).classList.add('active')}
+function closeModal(id){document.getElementById(id).classList.remove('active')}
 
-        // IntersectionObserver scroll reveal with setTimeout fallback
-        const revealElements = document.querySelectorAll('.reveal');
+document.querySelectorAll('.modal-overlay').forEach(m=>{
+  m.addEventListener('click',function(e){if(e.target===this)this.classList.remove('active')});
+});
 
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        setTimeout(() => {
-                            entry.target.classList.add('visible');
-                        }, index * 100);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3000);
+}
 
-            revealElements.forEach(el => observer.observe(el));
-        }
+/* MOBILE MENU */
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+const navRight = document.getElementById('navRight');
+menuToggle.addEventListener('click', function(){
+  this.classList.toggle('active');
+  navLinks.classList.toggle('active');
+  navRight.classList.toggle('mobile-visible');
+});
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    menuToggle.classList.remove('active');
+    navLinks.classList.remove('active');
+    navRight.classList.remove('mobile-visible');
+  });
+});
 
-        // Fallback: reveal all after 3 seconds (for iframe previews)
-        setTimeout(() => {
-            revealElements.forEach(el => el.classList.add('visible'));
-        }, 3000);
+/* SCROLL REVEAL */
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'), i*60);
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
 
-        // Remove loading bar
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                document.querySelector('.loading-bar').style.display = 'none';
-            }, 2000);
-        });
-    </script>
+function observeAll(){
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+}
+
+/* INIT */
+renderJoki();
+renderTopup();
+renderTesti();
+observeAll();
+updateAuthUI();
+
+setTimeout(()=>document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible')), 3500);
+</script>
 </body>
 </html>

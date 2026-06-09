@@ -1,24 +1,71 @@
-document.getElementById("registerForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
+/* ================================================
+   register.js — MABARLAH Register Page Logic
+================================================ */
 
-    const username = document.getElementById("username").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
+/* Redirect if already logged in */
+if (localStorage.getItem('mlSession')) {
+  window.location.href = 'index.html';
+}
 
-    const res = await fetch("https://herisusanta.my.id/javalogin/api/auth.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: `action=register&username=${encodeURIComponent(username)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
-    });
+function isValidGmail(email) {
+  return /^[^\s@]+@gmail\.com$/i.test(email);
+}
 
-    const data = await res.json();
+function doRegister() {
+  const name   = document.getElementById('regName').value.trim();
+  const user   = document.getElementById('regUser').value.trim();
+  const gmail  = document.getElementById('regGmail').value.trim();
+  const pass   = document.getElementById('regPass').value.trim();
 
-    if (data.status === "success") {
-        document.getElementById("message").innerText = "Registrasi berhasil, silakan login";
-        window.location.href = "index.html";
-    } else {
-        document.getElementById("message").innerText = data.message || "Gagal registrasi";
-    }
+  if (!name || !user || !gmail || !pass) {
+    setMsg('registerMsg', 'Semua kolom wajib diisi!', 'error');
+    return;
+  }
+  if (!isValidGmail(gmail)) {
+    setMsg('registerMsg', 'Masukkan alamat Gmail yang valid! (contoh@gmail.com)', 'error');
+    return;
+  }
+  if (pass.length < 6) {
+    setMsg('registerMsg', 'Password minimal 6 karakter!', 'error');
+    return;
+  }
+
+  const users = JSON.parse(localStorage.getItem('mlUsers') || '{}');
+
+  if (users[user]) {
+    setMsg('registerMsg', 'Username sudah digunakan, coba yang lain!', 'error');
+    return;
+  }
+
+  users[user] = { name, pass, gmail };
+  localStorage.setItem('mlUsers', JSON.stringify(users));
+
+  setMsg('registerMsg', 'Akun berhasil dibuat! Mengarahkan ke halaman masuk... 🎉', 'success');
+
+  setTimeout(() => {
+    window.location.href = 'login/index.html';
+  }, 1500);
+}
+
+function setMsg(id, msg, type) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.className = 'form-msg ' + type;
+}
+
+/* Allow Enter key to submit */
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') doRegister();
 });
+
+/* Mobile menu */
+const menuToggle = document.getElementById('menuToggle');
+const navLinks   = document.getElementById('navLinks');
+const navRight   = document.getElementById('navRight');
+if (menuToggle) {
+  menuToggle.addEventListener('click', function () {
+    this.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    navRight.classList.toggle('mobile-visible');
+  });
+}

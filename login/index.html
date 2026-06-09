@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Masuk — MABARLAH</title>
+<title>Daftar — MABARLAH</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 <style>
 :root{--bg:#04060f;--bg2:#080d1a;--bg3:#0d1424;--gold:#f5c518;--gold2:#e6a800;--cyan:#00e5ff;--red:#ff2d55;--green:#00ff88;--border:#1a2540;--border2:#253050;--text:#e8eaf6;--muted:#7986a8;--white:#ffffff;--card:#0a1020;--radius:4px}
@@ -17,7 +17,7 @@ body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);min-h
 .bg-orb1{width:500px;height:500px;background:rgba(245,197,24,.05);top:-150px;right:-100px}
 .bg-orb2{width:400px;height:400px;background:rgba(0,229,255,.05);bottom:-150px;left:-100px}
 
-.card{position:relative;z-index:1;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;width:100%;max-width:420px;overflow:hidden;animation:cardIn .4s cubic-bezier(.34,1.56,.64,1)}
+.card{position:relative;z-index:1;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;width:100%;max-width:440px;overflow:hidden;animation:cardIn .4s cubic-bezier(.34,1.56,.64,1)}
 @keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
 
 .card-top{background:linear-gradient(135deg,rgba(245,197,24,.08),rgba(0,229,255,.04));padding:2rem 2rem 1.5rem;text-align:center;border-bottom:1px solid var(--border)}
@@ -34,13 +34,12 @@ body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);min-h
 .field input::placeholder{color:var(--muted);font-size:.85rem}
 .field input.error{border-color:var(--red)}
 
+.field-hint{font-size:.75rem;color:var(--muted);margin-top:.35rem}
 .field-err{font-size:.75rem;color:var(--red);margin-top:.35rem;display:none}
 .field-err.show{display:block}
 
-.pass-wrap{position:relative}
-.pass-wrap input{padding-right:3rem}
-.pass-toggle{position:absolute;right:.8rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;padding:.2rem;transition:color .2s}
-.pass-toggle:hover{color:var(--gold)}
+.strength-bar{height:4px;background:var(--border);border-radius:99px;margin-top:.5rem;overflow:hidden}
+.strength-fill{height:100%;width:0;border-radius:99px;transition:all .3s}
 
 .btn-submit{width:100%;padding:.9rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Orbitron',monospace;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s;clip-path:polygon(6px 0%,100% 0%,100% calc(100% - 6px),calc(100% - 6px) 100%,0% 100%,0% 6px);margin-top:.5rem}
 .btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(245,197,24,.35)}
@@ -50,19 +49,18 @@ body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);min-h
 .divider span{font-size:.75rem;color:var(--muted);font-family:'Rajdhani',sans-serif;white-space:nowrap}
 .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
 
-.link-reg{display:block;text-align:center;font-size:.85rem;color:var(--muted)}
-.link-reg a{color:var(--gold);text-decoration:none;font-family:'Rajdhani',sans-serif;font-weight:700}.link-reg a:hover{text-decoration:underline}
-
-.alert-box{border-radius:var(--radius);padding:.8rem 1rem;font-size:.82rem;font-family:'Rajdhani',sans-serif;font-weight:600;margin-bottom:1rem;display:none}
-.alert-box.show{display:flex;align-items:center;gap:.5rem}
-.alert-box.err{background:rgba(255,45,85,.08);border:1px solid rgba(255,45,85,.3);color:var(--red)}
-.alert-box.ok{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.3);color:var(--green)}
-
-.spinner{display:none;width:18px;height:18px;border:2px solid rgba(0,0,0,.3);border-top-color:#000;border-radius:50%;animation:spin .6s linear infinite;margin:0 auto}
-@keyframes spin{to{transform:rotate(360deg)}}
+.link-login{display:block;text-align:center;font-size:.85rem;color:var(--muted)}
+.link-login a{color:var(--gold);text-decoration:none;font-family:'Rajdhani',sans-serif;font-weight:700}.link-login a:hover{text-decoration:underline}
 
 .toast{position:fixed;bottom:2rem;right:2rem;background:var(--bg3);border:1px solid var(--gold);border-radius:var(--radius);padding:.9rem 1.4rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;color:var(--gold);z-index:1000;transform:translateY(100px);opacity:0;transition:all .3s;box-shadow:0 8px 30px rgba(245,197,24,.2)}.toast.show{transform:translateY(0);opacity:1}
 .toast.success{border-color:var(--green);color:var(--green)}
+.toast.error-toast{border-color:var(--red);color:var(--red)}
+
+.terms{font-size:.75rem;color:var(--muted);line-height:1.6;margin-top:1rem;text-align:center}
+.terms a{color:var(--gold);text-decoration:none}.terms a:hover{text-decoration:underline}
+
+.spinner{display:none;width:18px;height:18px;border:2px solid rgba(0,0,0,.3);border-top-color:#000;border-radius:50%;animation:spin .6s linear infinite;margin:0 auto}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -76,108 +74,152 @@ body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);min-h
 <div class="card">
   <div class="card-top">
     <a class="logo" href="../index.html"><div class="logo-icon">⚡</div>MABARLAH</a>
-    <h2>Selamat Datang</h2>
-    <p>Masuk untuk melanjutkan order kamu</p>
+    <h2>Buat Akun Baru</h2>
+    <p>Daftar gratis dan mulai order sekarang</p>
   </div>
   <div class="card-body">
 
-    <div class="alert-box err" id="alertErr">⚠️ <span id="alertErrMsg">Username atau password salah.</span></div>
-    <div class="alert-box ok"  id="alertOk">✅ <span>Login berhasil! Mengalihkan...</span></div>
+    <div class="field">
+      <label>Username</label>
+      <input type="text" id="username" placeholder="Contoh: RizkyML123" maxlength="20" oninput="clearErr('username')"/>
+      <div class="field-err" id="err-username">Username minimal 3 karakter, tanpa spasi.</div>
+    </div>
 
     <div class="field">
-      <label>Username atau Email</label>
-      <input type="text" id="identifier" placeholder="Username / email kamu" oninput="clearAlert()"/>
-      <div class="field-err" id="err-identifier">Kolom ini wajib diisi.</div>
+      <label>Email</label>
+      <input type="email" id="email" placeholder="email@kamu.com" oninput="clearErr('email')"/>
+      <div class="field-err" id="err-email">Masukkan alamat email yang valid.</div>
+    </div>
+
+    <div class="field">
+      <label>No. WhatsApp</label>
+      <input type="tel" id="whatsapp" placeholder="08xxxxxxxxxx" maxlength="15" oninput="clearErr('whatsapp')"/>
+      <div class="field-hint">Dipakai admin untuk konfirmasi pesanan.</div>
+      <div class="field-err" id="err-whatsapp">Nomor WA tidak valid (min. 10 angka).</div>
     </div>
 
     <div class="field">
       <label>Password</label>
-      <div class="pass-wrap">
-        <input type="password" id="password" placeholder="Password kamu" oninput="clearAlert()"/>
-        <button class="pass-toggle" type="button" onclick="togglePass()" title="Tampilkan password">👁️</button>
-      </div>
-      <div class="field-err" id="err-password">Kolom ini wajib diisi.</div>
+      <input type="password" id="password" placeholder="Min. 6 karakter" oninput="checkStrength(); clearErr('password')"/>
+      <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+      <div class="field-hint" id="strengthLabel">Masukkan password</div>
+      <div class="field-err" id="err-password">Password minimal 6 karakter.</div>
     </div>
 
-    <button class="btn-submit" id="btnSubmit" onclick="doLogin()">
-      <span id="btnText">Masuk ⚡</span>
+    <div class="field">
+      <label>Konfirmasi Password</label>
+      <input type="password" id="password2" placeholder="Ulangi password" oninput="clearErr('password2')"/>
+      <div class="field-err" id="err-password2">Password tidak cocok.</div>
+    </div>
+
+    <button class="btn-submit" id="btnSubmit" onclick="doRegister()">
+      <span id="btnText">Daftar Sekarang ⚡</span>
       <div class="spinner" id="spinner"></div>
     </button>
 
-    <div class="divider"><span>Belum punya akun?</span></div>
-    <p class="link-reg"><a href="../register.html">Daftar gratis sekarang →</a></p>
+    <p class="terms">Dengan mendaftar kamu menyetujui <a href="#">Syarat & Ketentuan</a> dan <a href="#">Kebijakan Privasi</a> MABARLAH.</p>
+
+    <div class="divider"><span>Sudah punya akun?</span></div>
+    <p class="link-login"><a href="login/">Masuk di sini →</a></p>
 
   </div>
 </div>
 
 <script>
-// ─── TOGGLE PASSWORD VISIBILITY ───────────────────────────────────────────────
-function togglePass() {
-  const inp = document.getElementById('password');
-  inp.type = inp.type === 'password' ? 'text' : 'password';
+// ─── PASSWORD STRENGTH ────────────────────────────────────────────────────────
+function checkStrength() {
+  const val = document.getElementById('password').value;
+  const fill = document.getElementById('strengthFill');
+  const label = document.getElementById('strengthLabel');
+  if (!val) { fill.style.width='0'; label.textContent='Masukkan password'; fill.style.background=''; return; }
+  let score = 0;
+  if (val.length >= 6) score++;
+  if (val.length >= 10) score++;
+  if (/[A-Z]/.test(val)) score++;
+  if (/[0-9]/.test(val)) score++;
+  if (/[^A-Za-z0-9]/.test(val)) score++;
+  const levels = [
+    {pct:'20%', color:'var(--red)',   text:'Sangat Lemah'},
+    {pct:'40%', color:'#ff8c00',      text:'Lemah'},
+    {pct:'60%', color:'var(--gold)',  text:'Cukup'},
+    {pct:'80%', color:'#8bc34a',      text:'Kuat'},
+    {pct:'100%',color:'var(--green)', text:'Sangat Kuat'},
+  ];
+  const l = levels[score - 1] || levels[0];
+  fill.style.width = l.pct;
+  fill.style.background = l.color;
+  label.textContent = 'Kekuatan: ' + l.text;
+  label.style.color = l.color;
 }
 
-// ─── CLEAR ALERTS ─────────────────────────────────────────────────────────────
-function clearAlert() {
-  document.getElementById('alertErr').classList.remove('show');
-  document.getElementById('alertOk').classList.remove('show');
-  document.getElementById('err-identifier').classList.remove('show');
-  document.getElementById('err-password').classList.remove('show');
-  document.getElementById('identifier').classList.remove('error');
-  document.getElementById('password').classList.remove('error');
+// ─── VALIDATION ───────────────────────────────────────────────────────────────
+function showErr(id, msg) {
+  const inp = document.getElementById(id);
+  const err = document.getElementById('err-' + id);
+  inp.classList.add('error');
+  if (msg) err.textContent = msg;
+  err.classList.add('show');
+}
+function clearErr(id) {
+  document.getElementById(id)?.classList.remove('error');
+  document.getElementById('err-' + id)?.classList.remove('show');
 }
 
-function showErr(id) {
-  document.getElementById(id).classList.add('error');
-  document.getElementById('err-' + id).classList.add('show');
-}
-
-// ─── LOGIN ────────────────────────────────────────────────────────────────────
-function doLogin() {
-  clearAlert();
-  const identifier = document.getElementById('identifier').value.trim();
-  const pass       = document.getElementById('password').value;
+function validate() {
   let ok = true;
+  const username = document.getElementById('username').value.trim();
+  const email    = document.getElementById('email').value.trim();
+  const wa       = document.getElementById('whatsapp').value.trim();
+  const pass     = document.getElementById('password').value;
+  const pass2    = document.getElementById('password2').value;
 
-  if (!identifier) { showErr('identifier'); ok = false; }
-  if (!pass)        { showErr('password');   ok = false; }
-  if (!ok) return;
+  if (username.length < 3 || /\s/.test(username)) { showErr('username'); ok = false; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))  { showErr('email');    ok = false; }
+  if (!/^\d{10,15}$/.test(wa.replace(/[-+ ]/g,''))) { showErr('whatsapp'); ok = false; }
+  if (pass.length < 6)    { showErr('password');  ok = false; }
+  if (pass !== pass2)     { showErr('password2'); ok = false; }
+  return ok;
+}
 
-  // Loading
+// ─── REGISTER ─────────────────────────────────────────────────────────────────
+function doRegister() {
+  if (!validate()) return;
+
+  const username = document.getElementById('username').value.trim();
+  const email    = document.getElementById('email').value.trim();
+  const wa       = document.getElementById('whatsapp').value.trim();
+  const pass     = document.getElementById('password').value;
+
+  // Loading state
   const btn = document.getElementById('btnSubmit');
   document.getElementById('btnText').style.display = 'none';
   document.getElementById('spinner').style.display = 'block';
   btn.disabled = true;
 
   setTimeout(() => {
+    // Cek apakah username/email sudah terdaftar
     const users = JSON.parse(localStorage.getItem('mabarlah_users') || '[]');
+    const exists = users.find(u => u.username === username || u.email === email);
 
-    // Cari user berdasarkan username ATAU email
-    const user = users.find(u =>
-      (u.username === identifier || u.email === identifier) && u.pass === pass
-    );
-
-    if (!user) {
-      // Reset button
+    if (exists) {
       document.getElementById('btnText').style.display = 'block';
       document.getElementById('spinner').style.display = 'none';
       btn.disabled = false;
-
-      document.getElementById('alertErr').classList.add('show');
-      document.getElementById('identifier').classList.add('error');
-      document.getElementById('password').classList.add('error');
+      if (exists.username === username) showErr('username', 'Username sudah dipakai, coba yang lain.');
+      else showErr('email', 'Email sudah terdaftar.');
       return;
     }
 
-    // Berhasil login — simpan sesi
-    localStorage.setItem('mabarlah_user', user.username);
+    // Simpan user baru
+    users.push({ username, email, wa, pass });
+    localStorage.setItem('mabarlah_users', JSON.stringify(users));
 
-    // Tampilkan sukses
-    document.getElementById('alertOk').classList.add('show');
-    showToast('Selamat datang kembali, ' + user.username + '! 🎉', 'success');
+    // Auto login
+    localStorage.setItem('mabarlah_user', username);
 
-    setTimeout(() => { window.location.href = '../index.html'; }, 1200);
-  }, 1000);
+    showToast('Pendaftaran berhasil! Selamat datang, ' + username + ' 🎉', 'success');
+    setTimeout(() => { window.location.href = '../index.html'; }, 1500);
+  }, 1200);
 }
 
 // ─── TOAST ────────────────────────────────────────────────────────────────────
@@ -189,7 +231,7 @@ function showToast(msg, type) {
 }
 
 // ─── ENTER KEY ────────────────────────────────────────────────────────────────
-document.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+document.addEventListener('keydown', e => { if (e.key === 'Enter') doRegister(); });
 
 // ─── REDIRECT IF ALREADY LOGGED IN ───────────────────────────────────────────
 if (localStorage.getItem('mabarlah_user')) {

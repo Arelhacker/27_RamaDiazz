@@ -1,36 +1,65 @@
-document.getElementById("loginForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
+/* ================================================
+   login.js — MABARLAH Login Page Logic
+================================================ */
 
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
+/* Redirect if already logged in */
+if (localStorage.getItem('mlSession')) {
+  const params = new URLSearchParams(window.location.search);
+  const redirect = params.get('redirect') || '../index.html';
+  window.location.href = redirect;
+}
 
-    const res = await fetch("https://herisusanta.my.id/javalogin/api/auth.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: `action=login&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
-    });
+function doLogin() {
+  const user = document.getElementById('loginUser').value.trim();
+  const pass = document.getElementById('loginPass').value.trim();
 
-    const data = await res.json();
+  if (!user || !pass) {
+    setMsg('loginMsg', 'Username dan password wajib diisi!', 'error');
+    return;
+  }
 
-    if (data.status === "success") {
-        // simpan username
-            localStorage.setItem("username", data.username);
-            window.location.href = "../index.html";
-         
-    // } else {
-    //     document.getElementById("message").innerText = "Username / Password salah";alert("Login gagal");
-    // }
-    
-    } else {
-    const alertBox = document.getElementById("alertBox");
-    alertBox.innerText = "Username atau Password salah, silahkan coba lagi";
-    alertBox.style.display = "block";
+  const users = JSON.parse(localStorage.getItem('mlUsers') || '{}');
 
-    setTimeout(() => {
-        alertBox.style.display = "none";
-    }, 3000);
-} 
-   
+  if ((users[user] && users[user].pass === pass) || (user === 'admin' && pass === 'admin123')) {
+    const name = (user === 'admin') ? 'Admin' : users[user].name;
+    loginSuccess(name, user);
+  } else {
+    setMsg('loginMsg', 'Username atau password salah!', 'error');
+  }
+}
+
+function loginSuccess(name, username) {
+  localStorage.setItem('mlSession', JSON.stringify({ name, username }));
+  sessionStorage.setItem('justLoggedIn', '1');
+  setMsg('loginMsg', `Berhasil masuk! Mengarahkan... ⚡`, 'success');
+
+  const params = new URLSearchParams(window.location.search);
+  const redirect = params.get('redirect') || '../index.html';
+
+  setTimeout(() => {
+    window.location.href = redirect;
+  }, 900);
+}
+
+function setMsg(id, msg, type) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.className = 'form-msg ' + type;
+}
+
+/* Allow Enter key to submit */
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') doLogin();
 });
+
+/* Mobile menu */
+const menuToggle = document.getElementById('menuToggle');
+const navLinks   = document.getElementById('navLinks');
+const navRight   = document.getElementById('navRight');
+if (menuToggle) {
+  menuToggle.addEventListener('click', function () {
+    this.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    navRight.classList.toggle('mobile-visible');
+  });
+}

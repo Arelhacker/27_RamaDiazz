@@ -6,42 +6,14 @@
 <title>MABARLAH — Joki & Top Up Mobile Legends #1</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 <style>
-:root{
-  --bg:#04060f;
-  --bg2:#080d1a;
-  --bg3:#0d1424;
-  --gold:#f5c518;
-  --gold2:#e6a800;
-  --cyan:#00e5ff;
-  --cyan2:#00b8cc;
-  --red:#ff2d55;
-  --green:#00ff88;
-  --border:#1a2540;
-  --border2:#253050;
-  --text:#e8eaf6;
-  --muted:#7986a8;
-  --white:#ffffff;
-  --card:#0a1020;
-  --shadow-gold:0 0 30px rgba(245,197,24,.15);
-  --shadow-cyan:0 0 30px rgba(0,229,255,.12);
-  --radius:4px;
-}
+:root{--bg:#04060f;--bg2:#080d1a;--bg3:#0d1424;--gold:#f5c518;--gold2:#e6a800;--cyan:#00e5ff;--cyan2:#00b8cc;--red:#ff2d55;--green:#00ff88;--border:#1a2540;--border2:#253050;--text:#e8eaf6;--muted:#7986a8;--white:#ffffff;--card:#0a1020;--shadow-gold:0 0 30px rgba(245,197,24,.15);--shadow-cyan:0 0 30px rgba(0,229,255,.12);--radius:4px}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;cursor:default}
+body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:99px}
 
-/* CURSOR */
-body{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='3' fill='%2300e5ff' opacity='.8'/%3E%3C/svg%3E") 10 10, auto}
-
-/* SCROLLBAR */
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--gold);border-radius:99px}
-
-/* BACKGROUND EFFECTS */
-.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:linear-gradient(rgba(0,229,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.03) 1px,transparent 1px);
-  background-size:60px 60px}
+/* BG */
+.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(0,229,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.03) 1px,transparent 1px);background-size:60px 60px}
 .bg-orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
 .bg-orb1{width:600px;height:600px;background:rgba(245,197,24,.04);top:-200px;right:-100px}
 .bg-orb2{width:500px;height:500px;background:rgba(0,229,255,.05);bottom:-200px;left:-100px}
@@ -55,16 +27,32 @@ nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(4,6,15,.85);back
 .nav-links{display:flex;list-style:none;gap:0}
 .nav-links a{color:var(--muted);text-decoration:none;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;padding:.6rem 1.2rem;transition:all .2s;position:relative}
 .nav-links a::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--gold);transition:width .3s}
-.nav-links a:hover{color:var(--gold)}
-.nav-links a:hover::after{width:70%}
-.nav-right{display:flex;gap:.6rem}
-.btn-nav{padding:.5rem 1.2rem;border-radius:var(--radius);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:none}
-.btn-login{background:transparent;border:1px solid var(--border2);color:var(--text)}
-.btn-login:hover{border-color:var(--gold);color:var(--gold)}
-.btn-register{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000}
-.btn-register:hover{transform:translateY(-2px);box-shadow:var(--shadow-gold)}
+.nav-links a:hover{color:var(--gold)}.nav-links a:hover::after{width:70%}
+.nav-right{display:flex!important;gap:.6rem;align-items:center}
+.btn-nav{padding:.5rem 1.2rem;border-radius:var(--radius);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:none;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-login{background:transparent;border:1px solid var(--border2)!important;color:var(--text)}.btn-login:hover{border-color:var(--gold)!important;color:var(--gold)}
+.btn-register{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000}.btn-register:hover{transform:translateY(-2px);box-shadow:var(--shadow-gold)}
 .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
 .menu-toggle span{width:22px;height:2px;background:var(--text);transition:all .3s}
+.user-bar{display:none;align-items:center;gap:.6rem}.user-bar.visible{display:flex!important}
+.user-chip{background:rgba(245,197,24,.08);border:1px solid rgba(245,197,24,.2);border-radius:99px;padding:.4rem 1rem;font-family:'Rajdhani',sans-serif;font-size:.82rem;font-weight:600;color:var(--gold)}
+.btn-logout{background:transparent;border:1px solid var(--border2);color:var(--muted);border-radius:var(--radius);padding:.4rem .9rem;font-family:'Rajdhani',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s}.btn-logout:hover{border-color:var(--red);color:var(--red)}
+.auth-btns{display:flex;gap:.6rem}
+.hidden{display:none!important}
+
+/* TOAST */
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--bg3);border:1px solid var(--gold);border-radius:var(--radius);padding:.9rem 1.4rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;color:var(--gold);z-index:1000;transform:translateY(100px);opacity:0;transition:all .3s;box-shadow:0 8px 30px rgba(245,197,24,.2)}.toast.show{transform:translateY(0);opacity:1}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* SECTIONS */
+.section{padding:5rem 0;position:relative;z-index:1}
+.section-inner{max-width:1300px;margin:0 auto;padding:0 2rem}
+.sec-hd{text-align:center;margin-bottom:4rem}
+.sec-hd h2{font-family:'Orbitron',monospace;font-size:clamp(1.6rem,4vw,2.5rem);font-weight:900;margin-bottom:.5rem}
+.sec-hd h2 span{color:var(--gold)}.sec-hd p{color:var(--muted);font-size:.95rem;max-width:500px;margin:0 auto}
+.sec-divider{width:60px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);margin:.8rem auto 1.2rem}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden}
@@ -73,8 +61,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(4,6,15,.85);back
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,197,24,.08);border:1px solid rgba(245,197,24,.25);padding:.4rem 1.2rem;border-radius:99px;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Rajdhani',sans-serif;font-weight:600;margin-bottom:2rem;animation:pulse 3s ease infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(245,197,24,.2)}50%{box-shadow:0 0 20px 4px rgba(245,197,24,.1)}}
 .hero h1{font-family:'Orbitron',monospace;font-size:clamp(2.2rem,6vw,4.5rem);font-weight:900;line-height:.95;margin-bottom:1.5rem;letter-spacing:-.01em}
-.hero h1 .line1{display:block;color:var(--text)}
-.hero h1 .line2{display:block;color:var(--gold);text-shadow:0 0 40px rgba(245,197,24,.4)}
+.hero h1 .line1{display:block;color:var(--text)}.hero h1 .line2{display:block;color:var(--gold);text-shadow:0 0 40px rgba(245,197,24,.4)}
 .hero h1 .line3{display:block;font-size:55%;color:var(--cyan);letter-spacing:.15em;margin-top:.4rem}
 .hero p{font-size:1.05rem;color:var(--muted);max-width:600px;margin:0 auto 2.5rem;line-height:1.8;font-weight:300}
 .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
@@ -86,22 +73,12 @@ nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(4,6,15,.85);back
 .h-stat-num{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:var(--gold);display:block}
 .h-stat-lbl{font-size:.72rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-family:'Rajdhani',sans-serif;font-weight:600;margin-top:.2rem}
 
-/* SECTION */
-.section{padding:5rem 0;position:relative;z-index:1}
-.section-inner{max-width:1300px;margin:0 auto;padding:0 2rem}
-.sec-hd{text-align:center;margin-bottom:4rem}
-.sec-hd h2{font-family:'Orbitron',monospace;font-size:clamp(1.6rem,4vw,2.5rem);font-weight:900;margin-bottom:.5rem}
-.sec-hd h2 span{color:var(--gold)}
-.sec-hd p{color:var(--muted);font-size:.95rem;max-width:500px;margin:0 auto}
-.sec-divider{width:60px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);margin:.8rem auto 1.2rem}
-
 /* JOKI SECTION */
 .joki-bg{background:var(--bg2)}
 .joki-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem}
 .joki-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .3s;position:relative;cursor:pointer}
 .joki-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}
-.joki-card:hover{transform:translateY(-6px);border-color:rgba(245,197,24,.35);box-shadow:0 12px 40px rgba(245,197,24,.1)}
-.joki-card:hover::before{opacity:1}
+.joki-card:hover{transform:translateY(-6px);border-color:rgba(245,197,24,.35);box-shadow:0 12px 40px rgba(245,197,24,.1)}.joki-card:hover::before{opacity:1}
 .joki-head{padding:1.5rem 1.5rem 1rem;position:relative}
 .joki-tier{font-family:'Orbitron',monospace;font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem}
 .tier-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
@@ -118,24 +95,13 @@ nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(4,6,15,.85);back
 .price-unit{font-size:.75rem;color:var(--muted);margin-bottom:.2rem;font-family:'Rajdhani',sans-serif}
 .btn-order{width:100%;padding:.7rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s}
 .btn-order:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,197,24,.3)}
+.joki-ribbon{position:absolute;top:12px;left:-28px;background:var(--red);color:#fff;font-family:'Rajdhani',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem 2rem;transform:rotate(-45deg);width:110px;text-align:center}
 
-/* tier colors */
-.warrior{--tc:#8a9bb5;--tb:rgba(138,155,181,.15)}
-.elite{--tc:#4caf50;--tb:rgba(76,175,80,.15)}
-.master{--tc:#2196f3;--tb:rgba(33,150,243,.15)}
-.grandmaster{--tc:#9c27b0;--tb:rgba(156,39,176,.15)}
-.epic{--tc:#ff9800;--tb:rgba(255,152,0,.15)}
-.legend{--tc:#f5c518;--tb:rgba(245,197,24,.15)}
-.mythic{--tc:#f44336;--tb:rgba(244,67,54,.15)}
-.mythic-honor{--tc:#ff2d55;--tb:rgba(255,45,85,.18)}
-.immortal{--tc:#00e5ff;--tb:rgba(0,229,255,.15)}
-
-/* TOPUP SECTION */
+/* TOP UP */
 .topup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem}
 .topup-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1rem;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
 .topup-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(245,197,24,.04),transparent);opacity:0;transition:opacity .3s}
-.topup-card:hover{border-color:rgba(245,197,24,.4);transform:translateY(-4px);box-shadow:0 10px 30px rgba(245,197,24,.1)}
-.topup-card:hover::after{opacity:1}
+.topup-card:hover{border-color:rgba(245,197,24,.4);transform:translateY(-4px);box-shadow:0 10px 30px rgba(245,197,24,.1)}.topup-card:hover::after{opacity:1}
 .topup-card.popular{border-color:rgba(245,197,24,.3);background:linear-gradient(135deg,rgba(245,197,24,.06),var(--card))}
 .popular-badge{position:absolute;top:.5rem;right:.5rem;background:var(--gold);color:#000;font-family:'Rajdhani',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .5rem;border-radius:2px}
 .topup-icon{font-size:1.8rem;margin-bottom:.5rem}
@@ -143,58 +109,46 @@ nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(4,6,15,.85);back
 .topup-price{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;color:var(--gold)}
 .topup-bonus{font-size:.7rem;color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:600;margin-top:.2rem}
 
-/* HOW IT WORKS */
+/* HOW */
 .how-bg{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;position:relative}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;position:relative}
 .steps-grid::before{content:'';position:absolute;top:32px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);z-index:0}
 .step-card{text-align:center;position:relative;z-index:1}
 .step-num{width:64px;height:64px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;color:var(--gold);background:var(--bg);position:relative}
 .step-num::after{content:'';position:absolute;inset:4px;border-radius:50%;background:rgba(245,197,24,.05)}
-.step-icon{font-size:1.5rem;position:absolute}
+.step-icon{font-size:1.4rem;line-height:1}
 .step-title{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:.4rem;letter-spacing:.05em}
 .step-desc{font-size:.82rem;color:var(--muted);line-height:1.6}
 
-/* TESTIMONIALS */
+/* TESTIMONI */
 .testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
-.testi-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem}
+.testi-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:border-color .3s}
+.testi-card:hover{border-color:rgba(245,197,24,.25)}
 .testi-head{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
 .testi-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
 .testi-name{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.95rem;color:var(--white)}
 .testi-tier{font-size:.7rem;color:var(--gold);font-family:'Rajdhani',sans-serif;font-weight:600}
-.testi-stars{color:var(--gold);font-size:.8rem;letter-spacing:.1em;margin-bottom:.6rem}
+.testi-stars{color:var(--gold);font-size:.85rem;letter-spacing:.1em;margin-bottom:.6rem}
 .testi-text{font-size:.85rem;color:var(--muted);line-height:1.7;font-style:italic}
 
-/* AUTH MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(4,6,15,.92);z-index:500;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(8px)}
-.modal-overlay.active{display:flex}
-.modal-box{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;width:100%;max-width:420px;overflow:hidden;animation:modalIn .3s cubic-bezier(.34,1.56,.64,1)}
-@keyframes modalIn{from{opacity:0;transform:scale(.88) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.modal-top{padding:2rem 2rem 1.5rem;text-align:center;position:relative;background:linear-gradient(180deg,rgba(245,197,24,.04),transparent)}
-.modal-top::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent)}
-.modal-logo{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:900;color:var(--gold);margin-bottom:.3rem}
-.modal-subtitle{font-size:.8rem;color:var(--muted);font-family:'Rajdhani',sans-serif}
-.modal-tabs{display:flex;padding:1.2rem 2rem 0}
-.modal-tab{flex:1;padding:.7rem;text-align:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;background:transparent;color:var(--muted);border-bottom:2px solid transparent;transition:all .2s}
-.modal-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
-.modal-form{padding:1.5rem 2rem 2rem;display:none}
-.modal-form.active{display:block}
-.form-group{margin-bottom:1rem}
-.form-label{display:block;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
-.form-input{width:100%;padding:.8rem 1rem;background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-family:'Exo 2',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s}
-.form-input:focus{border-color:var(--gold);background:rgba(245,197,24,.03)}
-.form-input::placeholder{color:var(--muted);opacity:.6}
-.form-msg{padding:.6rem 1rem;border-radius:var(--radius);font-size:.8rem;font-family:'Rajdhani',sans-serif;font-weight:600;margin-bottom:.8rem;display:none}
-.form-msg.error{background:rgba(255,45,85,.1);border:1px solid rgba(255,45,85,.3);color:var(--red);display:block}
-.form-msg.success{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:var(--green);display:block}
-.btn-auth{width:100%;padding:.85rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Orbitron',monospace;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s;margin-top:.3rem}
-.btn-auth:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(245,197,24,.3)}
-.modal-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--muted);width:28px;height:28px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:all .2s}
-.modal-close:hover{color:var(--red);border-color:var(--red)}
-.guest-link{text-align:center;margin-top:1rem;font-size:.78rem;color:var(--muted);font-family:'Rajdhani',sans-serif}
-.guest-link a{color:var(--gold);cursor:pointer}
+/* WHY US */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem}
+.why-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.8rem 1.4rem;text-align:center;transition:all .3s}
+.why-card:hover{border-color:rgba(0,229,255,.3);transform:translateY(-4px);box-shadow:var(--shadow-cyan)}
+.why-icon{font-size:2.2rem;margin-bottom:.8rem}
+.why-title{font-family:'Rajdhani',sans-serif;font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:.4rem}
+.why-desc{font-size:.82rem;color:var(--muted);line-height:1.6}
 
-/* ORDER MODAL */
+/* CTA BANNER */
+.cta-banner{background:linear-gradient(135deg,rgba(245,197,24,.08),rgba(0,229,255,.05));border:1px solid rgba(245,197,24,.2);border-radius:8px;padding:3rem 2rem;text-align:center;margin-top:4rem}
+.cta-banner h3{font-family:'Orbitron',monospace;font-size:clamp(1.2rem,3vw,1.8rem);font-weight:900;color:var(--gold);margin-bottom:.8rem}
+.cta-banner p{color:var(--muted);font-size:.9rem;margin-bottom:1.8rem;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(4,6,15,.92);z-index:500;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(8px)}.modal-overlay.active{display:flex}
 .order-box{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;width:100%;max-width:500px;overflow:hidden;animation:modalIn .3s cubic-bezier(.34,1.56,.64,1)}
+@keyframes modalIn{from{opacity:0;transform:scale(.88) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
 .order-header{background:linear-gradient(135deg,rgba(245,197,24,.08),rgba(0,229,255,.04));padding:1.5rem 2rem;border-bottom:1px solid var(--border)}
 .order-header h3{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:var(--gold)}
 .order-header p{font-size:.82rem;color:var(--muted);margin-top:.2rem}
@@ -203,21 +157,8 @@ nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(4,6,15,.85);back
 .order-row:last-child{border:none;font-weight:700;color:var(--gold);font-size:1rem;padding-top:.8rem}
 .order-row span:first-child{color:var(--muted)}
 .order-footer{padding:0 2rem 2rem;display:flex;gap:.8rem}
-.btn-cancel{flex:1;padding:.8rem;background:transparent;border:1px solid var(--border2);color:var(--muted);font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;border-radius:var(--radius);cursor:pointer;transition:all .2s}
-.btn-cancel:hover{border-color:var(--red);color:var(--red)}
-.btn-confirm{flex:2;padding:.8rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Orbitron',monospace;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s}
-.btn-confirm:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,197,24,.3)}
-
-/* TOAST */
-.toast{position:fixed;bottom:2rem;right:2rem;background:var(--bg3);border:1px solid var(--gold);border-radius:var(--radius);padding:.9rem 1.4rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;color:var(--gold);z-index:1000;transform:translateY(100px);opacity:0;transition:all .3s;box-shadow:0 8px 30px rgba(245,197,24,.2)}
-.toast.show{transform:translateY(0);opacity:1}
-
-/* USER BAR */
-.user-bar{display:none;align-items:center;gap:.6rem}
-.user-bar.visible{display:flex}
-.user-chip{background:rgba(245,197,24,.08);border:1px solid rgba(245,197,24,.2);border-radius:99px;padding:.4rem 1rem;font-family:'Rajdhani',sans-serif;font-size:.82rem;font-weight:600;color:var(--gold)}
-.btn-logout{background:transparent;border:1px solid var(--border2);color:var(--muted);border-radius:var(--radius);padding:.4rem .9rem;font-family:'Rajdhani',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s}
-.btn-logout:hover{border-color:var(--red);color:var(--red)}
+.btn-cancel{flex:1;padding:.8rem;background:transparent;border:1px solid var(--border2);color:var(--muted);font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;border-radius:var(--radius);cursor:pointer;transition:all .2s}.btn-cancel:hover{border-color:var(--red);color:var(--red)}
+.btn-confirm{flex:2;padding:.8rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Orbitron',monospace;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s}.btn-confirm:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,197,24,.3)}
 
 /* FOOTER */
 footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2rem;position:relative;z-index:1}
@@ -226,37 +167,28 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2r
 .footer-brand .logo{font-size:1.1rem;margin-bottom:.8rem;display:inline-block}
 .footer-brand p{font-size:.82rem;color:var(--muted);line-height:1.7;max-width:280px}
 .footer-col h4{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white);margin-bottom:.8rem}
-.footer-col a{display:block;font-size:.82rem;color:var(--muted);text-decoration:none;margin-bottom:.4rem;transition:color .2s}
-.footer-col a:hover{color:var(--gold)}
+.footer-col a{display:block;font-size:.82rem;color:var(--muted);text-decoration:none;margin-bottom:.4rem;transition:color .2s}.footer-col a:hover{color:var(--gold)}
 .footer-bottom{border-top:1px solid var(--border);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.footer-bottom p{font-size:.8rem;color:var(--muted)}
-.footer-bottom span{color:var(--gold)}
-
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
-.reveal.visible{opacity:1;transform:translateY(0)}
+.footer-bottom p{font-size:.8rem;color:var(--muted)}.footer-bottom span{color:var(--gold)}
+.wa-float{position:fixed;bottom:2rem;left:2rem;z-index:200;background:#25d366;color:#fff;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:all .3s;animation:waPulse 2.5s ease infinite}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,.5)}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,.7)}}
 
 /* RESPONSIVE */
-@media(max-width:900px){
-  .footer-top{grid-template-columns:1fr 1fr}
-  .footer-brand{grid-column:1/-1}
-  .hero-stats{gap:1.5rem}
-}
+@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.hero-stats{gap:1.5rem}}
 @media(max-width:700px){
   .nav-links{display:none;position:fixed;top:60px;left:0;right:0;bottom:0;background:rgba(4,6,15,.97);flex-direction:column;align-items:center;justify-content:center;gap:0;z-index:99}
-  .nav-links.active{display:flex}
-  .nav-links a{padding:1.2rem 2rem;border-bottom:1px solid var(--border);width:100%;text-align:center}
-  .menu-toggle{display:flex}
-  .nav-right{display:none}
-  .nav-right.mobile-visible{display:flex;position:fixed;bottom:0;left:0;right:0;padding:1rem 2rem;background:rgba(4,6,15,.97);border-top:1px solid var(--border);z-index:99}
+  .nav-links.active{display:flex}.nav-links a{padding:1.2rem 2rem;border-bottom:1px solid var(--border);width:100%;text-align:center}
+  .menu-toggle{display:flex}.nav-right{display:none!important}
+  .nav-right.mobile-visible{display:flex!important;position:fixed;bottom:0;left:0;right:0;padding:1rem 2rem;background:rgba(4,6,15,.97);border-top:1px solid var(--border);z-index:99}
   .nav-right.mobile-visible .btn-nav{flex:1;text-align:center;padding:.7rem}
-  .footer-top{grid-template-columns:1fr}
-  .footer-brand{grid-column:1}
-  .footer-bottom{flex-direction:column;text-align:center}
+  .footer-top{grid-template-columns:1fr}.footer-brand{grid-column:1}.footer-bottom{flex-direction:column;text-align:center}
   .steps-grid::before{display:none}
   .menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
   .menu-toggle.active span:nth-child(2){opacity:0}
   .menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
+  .order-body,.order-header,.order-footer{padding-left:1.2rem;padding-right:1.2rem}
+  .wa-float{bottom:5.5rem}
 }
 </style>
 </head>
@@ -267,46 +199,19 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2r
 <div class="bg-orb bg-orb2"></div>
 <div class="bg-orb bg-orb3"></div>
 
-<!-- AUTH MODAL -->
-<div class="modal-overlay" id="authModal">
-  <div class="modal-box">
-    <div class="modal-top">
-      <button class="modal-close" onclick="closeModal('authModal')">✕</button>
-      <div class="modal-logo">⚡ MABARLAH</div>
-      <div class="modal-subtitle">Platform Joki & Top Up Mobile Legends #1</div>
-    </div>
-    <div class="modal-tabs">
-      <button class="modal-tab active" onclick="switchAuthTab('login')">Masuk</button>
-      <button class="modal-tab" onclick="switchAuthTab('register')">Daftar</button>
-    </div>
-    <div class="modal-form active" id="form-login">
-      <div class="form-msg" id="l-msg"></div>
-      <div class="form-group"><label class="form-label">Username</label><input class="form-input" id="l-user" type="text" placeholder="Username kamu"/></div>
-      <div class="form-group"><label class="form-label">Password</label><input class="form-input" id="l-pass" type="password" placeholder="••••••••"/></div>
-      <button class="btn-auth" onclick="doLogin()">Masuk Sekarang →</button>
-      <div class="guest-link">Belum punya akun? <a onclick="switchAuthTab('register')">Daftar gratis</a></div>
-    </div>
-    <div class="modal-form" id="form-register">
-      <div class="form-msg" id="r-msg"></div>
-      <div class="form-group"><label class="form-label">Nama Lengkap</label><input class="form-input" id="r-name" type="text" placeholder="Nama kamu"/></div>
-      <div class="form-group"><label class="form-label">Username</label><input class="form-input" id="r-user" type="text" placeholder="Username unik"/></div>
-      <div class="form-group"><label class="form-label">Gmail</label><input class="form-input" id="r-gmail" type="email" placeholder="contoh@gmail.com"/></div>
-      <div class="form-group"><label class="form-label">Password</label><input class="form-input" id="r-pass" type="password" placeholder="Min. 6 karakter"/></div>
-      <button class="btn-auth" onclick="doRegister()">Buat Akun →</button>
-    </div>
-  </div>
-</div>
+<!-- WA FLOAT -->
+<a class="wa-float" href="https://wa.me/6281328282930" target="_blank" title="Chat Admin WA">💬</a>
 
 <!-- ORDER MODAL -->
 <div class="modal-overlay" id="orderModal">
   <div class="order-box">
     <div class="order-header">
       <h3 id="orderTitle">Detail Pesanan</h3>
-      <p id="orderSub">Konfirmasi pesanan kamu</p>
+      <p id="orderSub">Konfirmasi pesananmu sebelum lanjut ke WhatsApp</p>
     </div>
     <div class="order-body" id="orderBody"></div>
     <div class="order-footer">
-      <button class="btn-cancel" onclick="closeModal('orderModal')">Batal</button>
+      <button class="btn-cancel" onclick="closeOrderModal()">Batal</button>
       <button class="btn-confirm" onclick="confirmOrder()">Konfirmasi via WhatsApp ⚡</button>
     </div>
   </div>
@@ -323,6 +228,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2r
       <li><a href="#joki">Joki Rank</a></li>
       <li><a href="#topup">Top Up</a></li>
       <li><a href="#cara">Cara Order</a></li>
+      <li><a href="#kenapa">Kenapa Kami</a></li>
       <li><a href="#testi">Testimoni</a></li>
     </ul>
     <div class="nav-right" id="navRight">
@@ -331,11 +237,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2r
         <button class="btn-logout" onclick="doLogout()">Keluar</button>
       </div>
       <div class="auth-btns" id="authBtns">
-        <button class="btn-nav btn-login" onclick="openModal('authModal')">Masuk</button>
-        <button class="btn-nav btn-register" onclick="openModal('authModal');switchAuthTab('register')">Daftar</button>
+        <a class="btn-nav btn-login" href="login/index.html">Masuk</a>
+        <a class="btn-nav btn-register" href="register.html">Daftar</a>
       </div>
     </div>
-    <button class="menu-toggle" id="menuToggle">
+    <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -352,12 +258,12 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2r
     </h1>
     <p>Joki rank profesional dengan win rate tinggi. Top up diamond murah & instan. Lebih dari 5.000 pelanggan puas. Proses cepat, harga transparan, garansi keamanan akun.</p>
     <div class="hero-btns">
-      <button class="btn-primary" onclick="document.getElementById('joki').scrollIntoView({behavior:'smooth'})">Order Joki Sekarang ⚡</button>
-      <button class="btn-secondary" onclick="document.getElementById('topup').scrollIntoView({behavior:'smooth'})">Top Up Diamond 💎</button>
+      <button class="btn-primary" onclick="scrollTo('joki')">Order Joki Sekarang ⚡</button>
+      <button class="btn-secondary" onclick="scrollTo('topup')">Top Up Diamond 💎</button>
     </div>
     <div class="hero-stats">
-      <div class="h-stat"><span class="h-stat-num">5K+</span><span class="h-stat-lbl">Pelanggan Puas</span></div>
-      <div class="h-stat"><span class="h-stat-num">98%</span><span class="h-stat-lbl">Win Rate</span></div>
+      <div class="h-stat"><span class="h-stat-num" id="statCust">0</span><span class="h-stat-lbl">Pelanggan Puas</span></div>
+      <div class="h-stat"><span class="h-stat-num" id="statWin">0</span><span class="h-stat-lbl">Win Rate</span></div>
       <div class="h-stat"><span class="h-stat-num">24/7</span><span class="h-stat-lbl">Layanan Aktif</span></div>
       <div class="h-stat"><span class="h-stat-num">100%</span><span class="h-stat-lbl">Aman & Terpercaya</span></div>
     </div>
@@ -372,11 +278,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2r
       <div class="sec-divider"></div>
       <p>Naik dari tier mana saja ke tier impianmu. Semua dikerjakan booster berpengalaman.</p>
     </div>
-    <div class="joki-grid" id="jokiGrid"></div>
+    <div class="joki-grid reveal" id="jokiGrid"></div>
   </div>
 </section>
 
-<!-- TOP UP DIAMOND -->
+<!-- TOP UP -->
 <section class="section" id="topup">
   <div class="section-inner">
     <div class="sec-hd reveal">
@@ -396,33 +302,19 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2r
       <div class="sec-divider"></div>
       <p>Proses mudah dan cepat, selesai dalam hitungan menit!</p>
     </div>
-    <div class="steps-grid">
-      <div class="step-card reveal">
-        <div class="step-num">01 <span class="step-icon">📝</span></div>
-        <div class="step-title">Pilih Layanan</div>
-        <div class="step-desc">Pilih paket joki rank atau nominal top up diamond yang kamu inginkan.</div>
-      </div>
-      <div class="step-card reveal">
-        <div class="step-num">02 <span class="step-icon">👤</span></div>
-        <div class="step-title">Daftar / Masuk</div>
-        <div class="step-desc">Buat akun gratis atau masuk untuk melanjutkan pemesanan dengan mudah.</div>
-      </div>
-      <div class="step-card reveal">
-        <div class="step-num">03 <span class="step-icon">💬</span></div>
-        <div class="step-title">Konfirmasi WA</div>
-        <div class="step-desc">Kamu akan diarahkan ke WhatsApp admin untuk konfirmasi detail pesanan.</div>
-      </div>
-      <div class="step-card reveal">
-        <div class="step-num">04 <span class="step-icon">💳</span></div>
-        <div class="step-title">Bayar</div>
-        <div class="step-desc">Lakukan pembayaran sesuai instruksi. Berbagai metode tersedia.</div>
-      </div>
-      <div class="step-card reveal">
-        <div class="step-num">05 <span class="step-icon">🚀</span></div>
-        <div class="step-title">Proses & Selesai</div>
-        <div class="step-desc">Booster kami langsung bekerja. Notifikasi dikirim saat pesanan selesai.</div>
-      </div>
+    <div class="steps-grid" id="stepsGrid"></div>
+  </div>
+</section>
+
+<!-- KENAPA KAMI -->
+<section class="section" id="kenapa">
+  <div class="section-inner">
+    <div class="sec-hd reveal">
+      <h2>Kenapa Pilih <span>MABARLAH?</span></h2>
+      <div class="sec-divider"></div>
+      <p>Bukan sekadar janji — kami buktikan dengan hasil nyata setiap hari.</p>
     </div>
+    <div class="why-grid" id="whyGrid"></div>
   </div>
 </section>
 
@@ -435,6 +327,16 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2r
       <p>Ribuan pelanggan telah mempercayakan rank mereka kepada kami.</p>
     </div>
     <div class="testi-grid" id="testiGrid"></div>
+
+    <!-- CTA BANNER -->
+    <div class="cta-banner reveal">
+      <h3>Siap Naik Rank Hari Ini? 🚀</h3>
+      <p>Bergabunglah dengan 5.000+ gamer yang sudah merasakan manfaatnya. Order sekarang, proses dalam 30 menit!</p>
+      <div class="cta-btns">
+        <button class="btn-primary" onclick="scrollTo('joki')">Order Joki ⚡</button>
+        <a class="btn-secondary" href="https://wa.me/6281328282930" target="_blank" style="display:inline-flex;align-items:center;padding:.9rem 2.5rem;text-decoration:none">Tanya Admin 💬</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -456,7 +358,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2r
       </div>
       <div class="footer-col">
         <h4>Bantuan</h4>
-        <a href="#">Cara Order</a>
+        <a href="#cara">Cara Order</a>
         <a href="#">Syarat & Ketentuan</a>
         <a href="#">FAQ</a>
         <a href="https://wa.me/6281328282930" target="_blank">Hubungi Admin</a>
@@ -470,292 +372,334 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2r
 </footer>
 
 <script>
-/* ================================================
-   DATA
-================================================ */
-const jokiData = [
-  {tier:'warrior',name:'Warrior',sub:'Warrior I → Elite I',emoji:'⚔️',color:'#8a9bb5',
-   features:['Booster berpengalaman','Estimasi 1–2 hari','Garansi tidak turun rank','Update progress via WA'],
-   price:'Rp 25.000',priceNum:25000},
-  {tier:'elite',name:'Elite',sub:'Elite I → Master I',emoji:'🛡️',color:'#4caf50',
-   features:['Win rate 90%+','Estimasi 2–3 hari','Garansi tidak turun rank','Support 24/7'],
-   price:'Rp 45.000',priceNum:45000},
-  {tier:'master',name:'Master',sub:'Master I → GM I',emoji:'💫',color:'#2196f3',
-   features:['Booster tier Master+','Estimasi 3–4 hari','Garansi tidak turun rank','Laporan screenshot'],
-   price:'Rp 75.000',priceNum:75000},
-  {tier:'grandmaster',name:'Grandmaster',sub:'GM I → Epic I',emoji:'👑',color:'#9c27b0',
-   features:['Booster tier GM+','Estimasi 4–5 hari','Garansi tidak turun rank','Live update progres'],
-   price:'Rp 120.000',priceNum:120000},
-  {tier:'epic',name:'Epic',sub:'Epic I → Legend I',emoji:'🔥',color:'#ff9800',
-   features:['Booster tier Epic+','Estimasi 5–7 hari','Garansi rank','Report tiap match'],
-   price:'Rp 200.000',priceNum:200000},
-  {tier:'legend',name:'Legend',sub:'Legend I → Mythic',emoji:'🌟',color:'#f5c518',
-   features:['Booster tier Legend+','Estimasi 7–10 hari','Full garansi','Priority support'],
-   price:'Rp 350.000',priceNum:350000},
-  {tier:'mythic',name:'Mythic',sub:'Mythic → Mythic Honor',emoji:'💎',color:'#f44336',
-   features:['Booster Mythic glory','Estimasi 10–14 hari','Garansi penuh','Dedicated booster'],
-   price:'Rp 600.000',priceNum:600000},
-  {tier:'mythic-honor',name:'Mythic Honor',sub:'MH → Immortal 1-100',emoji:'🏆',color:'#ff2d55',
-   features:['Top booster kami','Estimasi custom','Rahasia terjaga','Full VIP service'],
-   price:'Rp 1.500.000',priceNum:1500000},
-  {tier:'immortal',name:'Immortal',sub:'Immortal TOP leaderboard',emoji:'⚡',color:'#00e5ff',
-   features:['Booster rank 1–100','Estimasi sangat terbatas','Eksklusif & private','Konsultasi dulu'],
-   price:'Nego',priceNum:0},
+// ─── DATA ─────────────────────────────────────────────────────────────────────
+const JOKI_DATA = [
+  {
+    tier:'Warrior',color:'#78909c',bg:'rgba(120,144,156,.12)',icon:'🗡️',
+    name:'Warrior',sub:'Warrior I → Elite III',
+    features:['Booster manual berpengalaman','Mode privat tersedia','Estimasi 1–2 hari','Chat 24 jam dengan booster'],
+    price:'15.000',unit:'/ tier',hot:false
+  },
+  {
+    tier:'Elite',color:'#66bb6a',bg:'rgba(102,187,106,.12)',icon:'🛡️',
+    name:'Elite',sub:'Elite I → Master III',
+    features:['Win rate >85%','Akun tetap aman','Estimasi 1–3 hari','Laporan progress harian'],
+    price:'25.000',unit:'/ tier',hot:false
+  },
+  {
+    tier:'Master',color:'#42a5f5',bg:'rgba(66,165,245,.12)',icon:'⚔️',
+    name:'Master',sub:'Master I → Grandmaster',
+    features:['Booster spesialis ML','Offline mode opsional','Estimasi 2–4 hari','Garansi naik tier'],
+    price:'40.000',unit:'/ tier',hot:false
+  },
+  {
+    tier:'Grandmaster',color:'#ab47bc',bg:'rgba(171,71,188,.12)',icon:'💜',
+    name:'Grandmaster',sub:'GM I → Epic III',
+    features:['Booster rank tinggi','Shield akun aktif','Estimasi 2–5 hari','Notifikasi WhatsApp'],
+    price:'60.000',unit:'/ tier',hot:false
+  },
+  {
+    tier:'Epic',color:'#ef5350',bg:'rgba(239,83,80,.12)',icon:'🔴',
+    name:'Epic',sub:'Epic I → Legend III',
+    features:['Booster top 500 server','Mode stealth tersedia','Estimasi 3–6 hari','Jaminan uang kembali'],
+    price:'90.000',unit:'/ tier',hot:true
+  },
+  {
+    tier:'Legend',color:'#ffa726',bg:'rgba(255,167,38,.12)',icon:'🏆',
+    name:'Legend',sub:'Legend I → Mythic',
+    features:['Booster Mythic Glory','Full privacy mode','Estimasi 4–7 hari','Priority support 24/7'],
+    price:'150.000',unit:'/ tier',hot:false
+  },
+  {
+    tier:'Mythic',color:'#f5c518',bg:'rgba(245,197,24,.12)',icon:'👑',
+    name:'Mythic',sub:'Mythic → Mythic Honor',
+    features:['Booster Immortal server top','Akun 100% terlindungi','Estimasi 5–10 hari','Laporan real-time'],
+    price:'250.000',unit:'/ paket',hot:false
+  },
+  {
+    tier:'Immortal',color:'#00e5ff',bg:'rgba(0,229,255,.12)',icon:'⚡',
+    name:'Immortal',sub:'Mythic Honor → Immortal',
+    features:['Tim booster elite','Prioritas tertinggi','Waktu fleksibel','Layanan VIP eksklusif'],
+    price:'500.000',unit:'/ paket',hot:false
+  },
 ];
 
-const topupData = [
-  {amt:'86 💎',bonus:'',price:'Rp 18.000',popular:false,wa:'86+Diamond'},
-  {amt:'172 💎',bonus:'',price:'Rp 36.000',popular:false,wa:'172+Diamond'},
-  {amt:'257 💎',bonus:'+Bonus Event',price:'Rp 54.000',popular:false,wa:'257+Diamond'},
-  {amt:'344 💎',bonus:'',price:'Rp 72.000',popular:false,wa:'344+Diamond'},
-  {amt:'514 💎',bonus:'+Bonus Event',price:'Rp 105.000',popular:true,wa:'514+Diamond'},
-  {amt:'706 💎',bonus:'',price:'Rp 145.000',popular:false,wa:'706+Diamond'},
-  {amt:'1.048 💎',bonus:'+Free Skin',price:'Rp 210.000',popular:true,wa:'1048+Diamond'},
-  {amt:'2.195 💎',bonus:'+Free Skin+Event',price:'Rp 430.000',popular:false,wa:'2195+Diamond'},
-  {amt:'3.688 💎',bonus:'Best Value!',price:'Rp 700.000',popular:true,wa:'3688+Diamond'},
-  {amt:'5.532 💎',bonus:'+Bundle Eksklusif',price:'Rp 1.050.000',popular:false,wa:'5532+Diamond'},
+const TOPUP_DATA = [
+  {icon:'💎',amt:'11 Diamond',price:'Rp 2.500',bonus:'',popular:false},
+  {icon:'💎',amt:'22 Diamond',price:'Rp 4.900',bonus:'',popular:false},
+  {icon:'💎',amt:'56 Diamond',price:'Rp 11.900',bonus:'+2 bonus',popular:false},
+  {icon:'💎',amt:'112 Diamond',price:'Rp 23.500',bonus:'+4 bonus',popular:false},
+  {icon:'💎',amt:'172 Diamond',price:'Rp 35.900',bonus:'+6 bonus',popular:true},
+  {icon:'💎',amt:'257 Diamond',price:'Rp 53.900',bonus:'+10 bonus',popular:false},
+  {icon:'💎',amt:'344 Diamond',price:'Rp 71.500',bonus:'+14 bonus',popular:false},
+  {icon:'💎',amt:'514 Diamond',price:'Rp 107.500',bonus:'+20 bonus',popular:false},
+  {icon:'💎',amt:'706 Diamond',price:'Rp 148.000',bonus:'+28 bonus',popular:false},
+  {icon:'💎',amt:'878 Diamond',price:'Rp 184.000',bonus:'+32 bonus',popular:false},
+  {icon:'💎',amt:'1144 Diamond',price:'Rp 239.000',bonus:'+44 bonus',popular:false},
+  {icon:'💎',amt:'2195 Diamond',price:'Rp 459.000',bonus:'+88 bonus',popular:false},
 ];
 
-const testiData = [
-  {name:'Rizal_Gaming',tier:'Mythic Honor',emoji:'🎮',stars:'★★★★★',text:'"Dari Legend 3 ke Mythic Honor cuma 10 hari! Boosternya pro banget, win rate 95%. Recommended banget buat yang mau push rank cepet!"'},
-  {name:'Dewi_ML',tier:'Epic',emoji:'👸',stars:'★★★★★',text:'"Top up diamond-nya instan masuk, gak sampai 5 menit. Harganya lebih murah dari store resmi. Pasti order lagi!"'},
-  {name:'BangsatML',tier:'Immortal',emoji:'⚡',stars:'★★★★★',text:'"Pertama agak ragu, tapi ternyata legit. Akun aman, rank naik sesuai janji. CS-nya responsif banget even tengah malem."'},
-  {name:'ShadowKing',tier:'Mythic',emoji:'👑',stars:'★★★★☆',text:'"Joki Master ke Mythic selesai lebih cepat dari estimasi. Satu bintang dikurangi karena ada sedikit delay di awal, tapi overall bagus!"'},
-  {name:'Putri_1234',tier:'Grandmaster',emoji:'🌸',stars:'★★★★★',text:'"Ini kedua kalinya order di sini. Konsisten kualitasnya. Booster ramah, update terus via WA. Harga worth banget!"'},
-  {name:'NightWolf99',tier:'Legend',emoji:'🐺',stars:'★★★★★',text:'"Epic ke Legend done dalam 6 hari. Prosesnya smooth, admin fast response. Diamond top up juga murah. Full recommend!"'},
+const STEPS_DATA = [
+  {icon:'🎯',title:'Pilih Layanan',desc:'Pilih paket joki rank atau nominal top up diamond yang kamu inginkan.'},
+  {icon:'👤',title:'Daftar / Masuk',desc:'Buat akun gratis atau masuk untuk melanjutkan pemesanan dengan mudah.'},
+  {icon:'💬',title:'Konfirmasi WA',desc:'Kamu akan diarahkan ke WhatsApp admin untuk konfirmasi detail pesanan.'},
+  {icon:'💳',title:'Bayar',desc:'Lakukan pembayaran sesuai instruksi. Transfer bank, e-wallet, QRIS tersedia.'},
+  {icon:'🚀',title:'Proses & Selesai',desc:'Booster kami langsung bekerja. Notifikasi dikirim saat pesanan selesai.'},
 ];
 
-/* ================================================
-   RENDER
-================================================ */
-function renderJoki(){
-  document.getElementById('jokiGrid').innerHTML = jokiData.map((j,i) => `
-    <div class="joki-card ${j.tier} reveal" style="animation-delay:${i*.05}s">
-      <div class="joki-head">
-        <div class="joki-tier">
-          <span class="tier-dot" style="background:${j.color};box-shadow:0 0 8px ${j.color}60"></span>
-          <span style="color:${j.color}">${j.name}</span>
-        </div>
-        <div class="joki-name">${j.name.toUpperCase()}</div>
-        <div class="joki-sub">${j.sub}</div>
-        <div class="tier-badge" style="background:${j.color}22;color:${j.color}">${j.emoji}</div>
-      </div>
-      <div class="joki-body">
-        <ul class="joki-features">${j.features.map(f=>`<li>${f}</li>`).join('')}</ul>
-        <div class="joki-price">
-          <span class="price-from">Mulai</span>
-          <span class="price-num">${j.price}</span>
-          <span class="price-unit">/tier</span>
-        </div>
-        <button class="btn-order" onclick="orderJoki(${i})">Order Sekarang ⚡</button>
-      </div>
-    </div>`).join('');
-}
+const WHY_DATA = [
+  {icon:'🔒',title:'100% Aman',desc:'Sistem keamanan akun terenkripsi. Tidak pernah ada kasus ban atau suspend.'},
+  {icon:'⚡',title:'Proses Cepat',desc:'Order diproses dalam 30 menit. Top up diamond masuk dalam hitungan detik.'},
+  {icon:'💰',title:'Harga Terjangkau',desc:'Harga transparan tanpa biaya tersembunyi. Garansi harga terbaik di Indonesia.'},
+  {icon:'🏅',title:'Booster Pro',desc:'Tim booster berpengalaman, rata-rata rank Mythic Glory ke atas.'},
+  {icon:'📞',title:'Support 24/7',desc:'Admin siap membantu kapan saja. Respon rata-rata di bawah 5 menit.'},
+  {icon:'🔁',title:'Garansi Refund',desc:'Jika terjadi masalah yang tidak bisa diselesaikan, uang kembali 100%.'},
+];
 
-function renderTopup(){
-  document.getElementById('topupGrid').innerHTML = topupData.map((t,i) => `
-    <div class="topup-card ${t.popular?'popular':''} reveal" onclick="orderTopup(${i})">
-      ${t.popular?'<div class="popular-badge">Popular</div>':''}
-      <div class="topup-icon">💎</div>
-      <div class="topup-amt">${t.amt}</div>
-      <div class="topup-price">${t.price}</div>
-      ${t.bonus?`<div class="topup-bonus">✦ ${t.bonus}</div>`:''}
-    </div>`).join('');
-}
+const TESTI_DATA = [
+  {name:'Rizky_ML',tier:'Sekarang: Mythic',avatar:'🎮',bg:'rgba(245,197,24,.1)',stars:5,text:'Mantap banget! Dari Epic naik ke Mythic dalam 3 hari. Boosternya pro banget, akun aman dan responsif. Pasti repeat order!'},
+  {name:'SandyGaming',tier:'Sekarang: Legend',avatar:'⚔️',bg:'rgba(0,229,255,.1)',stars:5,text:'Top up diamond-nya cepet banget, hitungan detik udah masuk. Harganya juga murah dibanding tempat lain. Recommended!'},
+  {name:'FitriaML',tier:'Sekarang: Grandmaster',avatar:'👸',bg:'rgba(171,71,188,.1)',stars:5,text:'Awalnya ragu, tapi ternyata legit! Akun aman, booster ramah dan update terus progresnya. Udah order 3x di sini.'},
+  {name:'RayanBeast',tier:'Sekarang: Immortal',avatar:'🏆',bg:'rgba(255,167,38,.1)',stars:5,text:'Joki Immortal selesai lebih cepat dari estimasi. Pelayanan VIP-nya worth it banget. Admin fast respon 24 jam.'},
+  {name:'NabilaGame',tier:'Sekarang: Epic',avatar:'🌟',bg:'rgba(102,187,106,.1)',stars:5,text:'Pertama kali joki dan langsung puas. Prosesnya gampang banget, tinggal WA admin dan beres. Makasih MABARLAH!'},
+  {name:'DzakiPro',tier:'Sekarang: Legend',avatar:'🔥',bg:'rgba(239,83,80,.1)',stars:5,text:'Harga paling murah se-Indonesia dengan kualitas terbaik. Udah coba tempat lain, balik lagi ke MABARLAH terus.'},
+];
 
-function renderTesti(){
-  document.getElementById('testiGrid').innerHTML = testiData.map(t => `
-    <div class="testi-card reveal">
-      <div class="testi-head">
-        <div class="testi-avatar" style="background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.2)">${t.emoji}</div>
-        <div><div class="testi-name">${t.name}</div><div class="testi-tier">Tier: ${t.tier}</div></div>
-      </div>
-      <div class="testi-stars">${t.stars}</div>
-      <div class="testi-text">${t.text}</div>
-    </div>`).join('');
-}
-
-/* ================================================
-   ORDER
-================================================ */
+// ─── CURRENT ORDER STATE ───────────────────────────────────────────────────────
 let currentOrder = null;
 
-function orderJoki(idx){
-  if(!isLoggedIn()){openModal('authModal');showToast('⚠️ Silakan login atau daftar dulu!');return;}
-  const j = jokiData[idx];
-  currentOrder = {type:'joki',data:j};
-  document.getElementById('orderTitle').textContent = `Joki Rank — ${j.name}`;
-  document.getElementById('orderSub').textContent = j.sub;
-  document.getElementById('orderBody').innerHTML = `
-    <div class="order-row"><span>Layanan</span><span>Joki Rank ${j.name}</span></div>
-    <div class="order-row"><span>Range Tier</span><span>${j.sub}</span></div>
-    <div class="order-row"><span>Estimasi</span><span>${j.features[1]}</span></div>
-    <div class="order-row"><span>Total Harga</span><span style="color:var(--gold);font-family:'Orbitron',monospace">${j.price}</span></div>`;
-  openModal('orderModal');
+// ─── RENDER JOKI CARDS ────────────────────────────────────────────────────────
+function renderJoki() {
+  const grid = document.getElementById('jokiGrid');
+  grid.innerHTML = JOKI_DATA.map((j,i) => `
+    <div class="joki-card reveal" style="animation-delay:${i*0.07}s" onclick="openJokiOrder(${i})">
+      ${j.hot ? '<div class="joki-ribbon">HOT 🔥</div>' : ''}
+      <div class="joki-head">
+        <div class="joki-tier">
+          <span class="tier-dot" style="background:${j.color}"></span>
+          <span style="color:${j.color}">${j.tier}</span>
+        </div>
+        <div class="joki-name">${j.name}</div>
+        <div class="joki-sub">${j.sub}</div>
+        <div class="tier-badge" style="background:${j.bg}">${j.icon}</div>
+      </div>
+      <div class="joki-body">
+        <ul class="joki-features">
+          ${j.features.map(f=>`<li>${f}</li>`).join('')}
+        </ul>
+        <div class="joki-price">
+          <span class="price-from">Mulai</span>&nbsp;
+          <span class="price-num">Rp ${j.price}</span>&nbsp;
+          <span class="price-unit">${j.unit}</span>
+        </div>
+        <button class="btn-order">Order Sekarang ⚡</button>
+      </div>
+    </div>
+  `).join('');
 }
 
-function orderTopup(idx){
-  if(!isLoggedIn()){openModal('authModal');showToast('⚠️ Silakan login atau daftar dulu!');return;}
-  const t = topupData[idx];
-  currentOrder = {type:'topup',data:t};
-  document.getElementById('orderTitle').textContent = `Top Up Diamond`;
-  document.getElementById('orderSub').textContent = t.amt;
-  document.getElementById('orderBody').innerHTML = `
-    <div class="order-row"><span>Nominal</span><span>${t.amt}</span></div>
-    ${t.bonus?`<div class="order-row"><span>Bonus</span><span style="color:var(--green)">${t.bonus}</span></div>`:''}
-    <div class="order-row"><span>Harga</span><span style="color:var(--gold);font-family:'Orbitron',monospace">${t.price}</span></div>`;
-  openModal('orderModal');
+// ─── RENDER TOPUP CARDS ───────────────────────────────────────────────────────
+function renderTopup() {
+  const grid = document.getElementById('topupGrid');
+  grid.innerHTML = TOPUP_DATA.map((t,i) => `
+    <div class="topup-card${t.popular?' popular':''} reveal" onclick="openTopupOrder(${i})">
+      ${t.popular ? '<div class="popular-badge">TERLARIS</div>' : ''}
+      <div class="topup-icon">${t.icon}</div>
+      <div class="topup-amt">${t.amt}</div>
+      <div class="topup-price">${t.price}</div>
+      ${t.bonus ? `<div class="topup-bonus">${t.bonus}</div>` : ''}
+    </div>
+  `).join('');
 }
 
-function confirmOrder(){
-  if(!currentOrder) return;
-  const user = getUser();
+// ─── RENDER STEPS ─────────────────────────────────────────────────────────────
+function renderSteps() {
+  const grid = document.getElementById('stepsGrid');
+  grid.innerHTML = STEPS_DATA.map((s,i) => `
+    <div class="step-card reveal">
+      <div class="step-num"><span class="step-icon">${s.icon}</span></div>
+      <div class="step-title">${s.title}</div>
+      <div class="step-desc">${s.desc}</div>
+    </div>
+  `).join('');
+}
+
+// ─── RENDER WHY ───────────────────────────────────────────────────────────────
+function renderWhy() {
+  const grid = document.getElementById('whyGrid');
+  grid.innerHTML = WHY_DATA.map((w,i) => `
+    <div class="why-card reveal">
+      <div class="why-icon">${w.icon}</div>
+      <div class="why-title">${w.title}</div>
+      <div class="why-desc">${w.desc}</div>
+    </div>
+  `).join('');
+}
+
+// ─── RENDER TESTIMONI ─────────────────────────────────────────────────────────
+function renderTesti() {
+  const grid = document.getElementById('testiGrid');
+  grid.innerHTML = TESTI_DATA.map(t => `
+    <div class="testi-card reveal">
+      <div class="testi-head">
+        <div class="testi-avatar" style="background:${t.bg}">${t.avatar}</div>
+        <div>
+          <div class="testi-name">${t.name}</div>
+          <div class="testi-tier">${t.tier}</div>
+        </div>
+      </div>
+      <div class="testi-stars">${'★'.repeat(t.stars)}</div>
+      <div class="testi-text">"${t.text}"</div>
+    </div>
+  `).join('');
+}
+
+// ─── ORDER MODALS ─────────────────────────────────────────────────────────────
+function openJokiOrder(i) {
+  const j = JOKI_DATA[i];
+  currentOrder = {type:'joki', data:j};
+  document.getElementById('orderTitle').textContent = 'Order Joki Rank';
+  document.getElementById('orderSub').textContent = 'Pastikan detail sudah benar sebelum konfirmasi';
+  document.getElementById('orderBody').innerHTML = `
+    <div class="order-row"><span>Layanan</span><span>Joki Rank</span></div>
+    <div class="order-row"><span>Tier</span><span>${j.name}</span></div>
+    <div class="order-row"><span>Range</span><span>${j.sub}</span></div>
+    <div class="order-row"><span>Estimasi</span><span>${j.features[2]}</span></div>
+    <div class="order-row"><span>Harga Mulai</span><span>Rp ${j.price} ${j.unit}</span></div>
+  `;
+  document.getElementById('orderModal').classList.add('active');
+}
+
+function openTopupOrder(i) {
+  const t = TOPUP_DATA[i];
+  currentOrder = {type:'topup', data:t};
+  document.getElementById('orderTitle').textContent = 'Order Top Up Diamond';
+  document.getElementById('orderSub').textContent = 'Pastikan ID game kamu sudah benar';
+  document.getElementById('orderBody').innerHTML = `
+    <div class="order-row"><span>Layanan</span><span>Top Up Diamond</span></div>
+    <div class="order-row"><span>Jumlah</span><span>${t.amt}</span></div>
+    ${t.bonus ? `<div class="order-row"><span>Bonus</span><span style="color:var(--green)">${t.bonus}</span></div>` : ''}
+    <div class="order-row"><span>Harga</span><span>${t.price}</span></div>
+    <div class="order-row"><span>Proses</span><span>⚡ Instan</span></div>
+  `;
+  document.getElementById('orderModal').classList.add('active');
+}
+
+function closeOrderModal() {
+  document.getElementById('orderModal').classList.remove('active');
+  currentOrder = null;
+}
+
+function confirmOrder() {
+  if (!currentOrder) return;
+  const o = currentOrder;
   let msg = '';
-  if(currentOrder.type === 'joki'){
-    const j = currentOrder.data;
-    msg = `Halo Admin MABARLAH!%0A%0ASaya ingin order:%0A*Joki Rank ${j.name}*%0ARange: ${j.sub}%0AHarga: ${j.price}%0A%0ANama: ${user.name}%0AUsername: ${user.username}%0A%0AMohon konfirmasi pesanan saya. Terima kasih!`;
+  if (o.type === 'joki') {
+    msg = `Halo MABARLAH! Saya mau order Joki Rank %0ATier: ${o.data.name}%0ARange: ${o.data.sub}%0AHarga: Rp ${o.data.price} ${o.data.unit}%0A%0AMohon info lebih lanjut, terima kasih!`;
   } else {
-    const t = currentOrder.data;
-    msg = `Halo Admin MABARLAH!%0A%0ASaya ingin order:%0A*Top Up ${t.amt}*%0AHarga: ${t.price}%0A%0ANama: ${user.name}%0AUsername: ${user.username}%0A%0AMohon konfirmasi pesanan saya. Terima kasih!`;
+    msg = `Halo MABARLAH! Saya mau Top Up Diamond%0AJumlah: ${o.data.amt}%0AHarga: ${o.data.price}%0A%0AMohon info ID game dan metode pembayaran, terima kasih!`;
   }
-  closeModal('orderModal');
-  window.open(`https://wa.me/6281328282930?text=${msg}`, '_blank');
-  showToast('✅ Diarahkan ke WhatsApp admin!');
+  closeOrderModal();
+  showToast('Mengarahkan ke WhatsApp Admin... ⚡');
+  setTimeout(() => {
+    window.open(`https://wa.me/6281328282930?text=${msg}`, '_blank');
+  }, 600);
 }
 
-/* ================================================
-   AUTH
-================================================ */
-function isValidGmail(email){
-  return /^[^\s@]+@gmail\.com$/i.test(email);
-}
-
-function doLogin(){
-  const user = document.getElementById('l-user').value.trim();
-  const pass = document.getElementById('l-pass').value.trim();
-  if(!user||!pass){setMsg('l-msg','Username dan password wajib diisi!','error');return;}
-  const users = JSON.parse(localStorage.getItem('mlUsers')||'{}');
-  if(users[user] && users[user].pass === pass){
-    loginSuccess(users[user].name, user);
-  } else if((user==='admin'&&pass==='admin123')){
-    loginSuccess('Admin', user);
+// ─── AUTH CHECK ───────────────────────────────────────────────────────────────
+function checkAuth() {
+  const user = localStorage.getItem('mabarlah_user');
+  const userBar = document.getElementById('userBar');
+  const authBtns = document.getElementById('authBtns');
+  const userChip = document.getElementById('userChip');
+  if (user) {
+    userBar.classList.add('visible');
+    authBtns.classList.add('hidden');
+    userChip.textContent = '👤 ' + user;
   } else {
-    setMsg('l-msg','Username atau password salah!','error');
+    userBar.classList.remove('visible');
+    authBtns.classList.remove('hidden');
   }
 }
 
-function doRegister(){
-  const name = document.getElementById('r-name').value.trim();
-  const user = document.getElementById('r-user').value.trim();
-  const gmail = document.getElementById('r-gmail').value.trim();
-  const pass = document.getElementById('r-pass').value.trim();
-  if(!name||!user||!gmail||!pass){setMsg('r-msg','Semua kolom wajib diisi!','error');return;}
-  if(!isValidGmail(gmail)){setMsg('r-msg','Masukkan alamat Gmail yang valid! (contoh@gmail.com)','error');return;}
-  if(pass.length < 6){setMsg('r-msg','Password minimal 6 karakter!','error');return;}
-  const users = JSON.parse(localStorage.getItem('mlUsers')||'{}');
-  if(users[user]){setMsg('r-msg','Username sudah digunakan!','error');return;}
-  users[user] = {name, pass, gmail};
-  localStorage.setItem('mlUsers', JSON.stringify(users));
-  setMsg('r-msg','Akun berhasil dibuat! Silakan masuk 🎉','success');
-  setTimeout(()=>switchAuthTab('login'), 1500);
+function doLogout() {
+  localStorage.removeItem('mabarlah_user');
+  checkAuth();
+  showToast('Berhasil keluar. Sampai jumpa! 👋');
 }
 
-function loginSuccess(name, username){
-  localStorage.setItem('mlSession', JSON.stringify({name, username}));
-  updateAuthUI();
-  closeModal('authModal');
-  showToast(`⚡ Selamat datang, ${name}!`);
-}
-
-function doLogout(){
-  localStorage.removeItem('mlSession');
-  updateAuthUI();
-  showToast('👋 Sampai jumpa!');
-}
-
-function isLoggedIn(){return !!localStorage.getItem('mlSession')}
-function getUser(){return JSON.parse(localStorage.getItem('mlSession')||'{}')}
-
-function updateAuthUI(){
-  const loggedIn = isLoggedIn();
-  const user = getUser();
-  document.getElementById('userBar').classList.toggle('visible', loggedIn);
-  document.getElementById('authBtns').style.display = loggedIn ? 'none' : 'flex';
-  if(loggedIn) document.getElementById('userChip').textContent = `⚡ ${user.name}`;
-}
-
-function setMsg(id, msg, type){
-  const el = document.getElementById(id);
-  el.textContent = msg;
-  el.className = 'form-msg ' + type;
-}
-
-function switchAuthTab(tab){
-  document.querySelectorAll('.modal-tab').forEach((t,i)=>{
-    t.classList.toggle('active',(i===0&&tab==='login')||(i===1&&tab==='register'));
-  });
-  document.getElementById('form-login').classList.toggle('active', tab==='login');
-  document.getElementById('form-register').classList.toggle('active', tab==='register');
-  document.getElementById('l-msg').className = 'form-msg';
-  document.getElementById('r-msg').className = 'form-msg';
-}
-
-/* ================================================
-   MODAL & UI
-================================================ */
-function openModal(id){document.getElementById(id).classList.add('active')}
-function closeModal(id){document.getElementById(id).classList.remove('active')}
-
-document.querySelectorAll('.modal-overlay').forEach(m=>{
-  m.addEventListener('click',function(e){if(e.target===this)this.classList.remove('active')});
-});
-
-function showToast(msg){
+// ─── TOAST ────────────────────────────────────────────────────────────────────
+function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 3000);
+  setTimeout(() => t.classList.remove('show'), 3000);
 }
 
-/* MOBILE MENU */
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
-const navRight = document.getElementById('navRight');
-menuToggle.addEventListener('click', function(){
-  this.classList.toggle('active');
-  navLinks.classList.toggle('active');
-  navRight.classList.toggle('mobile-visible');
-});
-document.querySelectorAll('.nav-links a').forEach(a=>{
-  a.addEventListener('click',()=>{
-    menuToggle.classList.remove('active');
-    navLinks.classList.remove('active');
-    navRight.classList.remove('mobile-visible');
-  });
+// ─── SCROLL HELPER ────────────────────────────────────────────────────────────
+function scrollTo(id) {
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+}
+
+// ─── NAV TOGGLE ───────────────────────────────────────────────────────────────
+function toggleMenu() {
+  const nav = document.getElementById('navLinks');
+  const btn = document.getElementById('menuToggle');
+  const right = document.getElementById('navRight');
+  nav.classList.toggle('active');
+  btn.classList.toggle('active');
+  right.classList.toggle('mobile-visible');
+}
+
+// ─── SCROLL REVEAL ────────────────────────────────────────────────────────────
+function initReveal() {
+  const els = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, {threshold:0.1});
+  els.forEach(el => observer.observe(el));
+}
+
+// ─── COUNTER ANIMATION ────────────────────────────────────────────────────────
+function animateCounter(el, target, suffix, duration) {
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start = Math.min(start + step, target);
+    el.textContent = Math.floor(start).toLocaleString('id-ID') + suffix;
+    if (start >= target) clearInterval(timer);
+  }, 16);
+}
+
+// ─── CLOSE MODAL ON OVERLAY CLICK ─────────────────────────────────────────────
+document.getElementById('orderModal').addEventListener('click', function(e) {
+  if (e.target === this) closeOrderModal();
 });
 
-/* SCROLL REVEAL */
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach((e,i)=>{
-    if(e.isIntersecting){
-      setTimeout(()=>e.target.classList.add('visible'), i*60);
-      observer.unobserve(e.target);
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  renderJoki();
+  renderTopup();
+  renderSteps();
+  renderWhy();
+  renderTesti();
+  checkAuth();
+  setTimeout(initReveal, 100);
+
+  // counter animation on scroll
+  const statCust = document.getElementById('statCust');
+  const statWin  = document.getElementById('statWin');
+  const heroObserver = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      animateCounter(statCust, 5000, '+', 1500);
+      animateCounter(statWin, 98, '%', 1200);
+      heroObserver.disconnect();
     }
-  });
-},{threshold:0.1});
-
-function observeAll(){
-  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-}
-
-/* INIT */
-renderJoki();
-renderTopup();
-renderTesti();
-observeAll();
-updateAuthUI();
-
-setTimeout(()=>document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible')), 3500);
+  }, {threshold:0.5});
+  heroObserver.observe(document.querySelector('.hero-stats'));
+});
 </script>
 </body>
 </html>

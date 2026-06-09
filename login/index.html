@@ -4,42 +4,65 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Masuk — MABARLAH</title>
-<link rel="stylesheet" href="../shared.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 <style>
-.auth-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 1rem 4rem;position:relative;z-index:1}
-.auth-page::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(245,197,24,.05) 0%,transparent 70%);pointer-events:none}
+:root{--bg:#04060f;--bg2:#080d1a;--bg3:#0d1424;--gold:#f5c518;--gold2:#e6a800;--cyan:#00e5ff;--red:#ff2d55;--green:#00ff88;--border:#1a2540;--border2:#253050;--text:#e8eaf6;--muted:#7986a8;--white:#ffffff;--card:#0a1020;--radius:4px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:99px}
 
-.auth-card{width:100%;max-width:440px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;overflow:hidden;animation:cardIn .4s cubic-bezier(.34,1.56,.64,1)}
+.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(0,229,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.03) 1px,transparent 1px);background-size:60px 60px}
+.bg-orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
+.bg-orb1{width:500px;height:500px;background:rgba(245,197,24,.05);top:-150px;right:-100px}
+.bg-orb2{width:400px;height:400px;background:rgba(0,229,255,.05);bottom:-150px;left:-100px}
+
+.card{position:relative;z-index:1;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;width:100%;max-width:420px;overflow:hidden;animation:cardIn .4s cubic-bezier(.34,1.56,.64,1)}
 @keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
 
-.auth-top{padding:2.5rem 2.5rem 1.5rem;text-align:center;background:linear-gradient(180deg,rgba(245,197,24,.05),transparent);border-bottom:1px solid var(--border)}
-.auth-logo{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:900;color:var(--gold);display:flex;align-items:center;justify-content:center;gap:.5rem;text-decoration:none;margin-bottom:.8rem}
-.auth-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--gold2));clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#000;font-weight:900}
-.auth-title{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
-.auth-subtitle{font-size:.82rem;color:var(--muted);font-family:'Rajdhani',sans-serif;letter-spacing:.04em}
+.card-top{background:linear-gradient(135deg,rgba(245,197,24,.08),rgba(0,229,255,.04));padding:2rem 2rem 1.5rem;text-align:center;border-bottom:1px solid var(--border)}
+.logo{font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;color:var(--gold);letter-spacing:.1em;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;margin-bottom:1.2rem}
+.logo-icon{width:28px;height:28px;background:linear-gradient(135deg,var(--gold),var(--gold2));clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#000;font-weight:900}
+.card-top h2{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:.3rem}
+.card-top p{font-size:.82rem;color:var(--muted)}
 
-.auth-body{padding:2rem 2.5rem 2.5rem}
+.card-body{padding:2rem}
+.field{margin-bottom:1.2rem}
+.field label{display:block;font-family:'Rajdhani',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.field input{width:100%;background:rgba(255,255,255,.03);border:1px solid var(--border2);border-radius:var(--radius);padding:.75rem 1rem;font-family:'Exo 2',sans-serif;font-size:.9rem;color:var(--text);outline:none;transition:all .2s}
+.field input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,197,24,.08)}
+.field input::placeholder{color:var(--muted);font-size:.85rem}
+.field input.error{border-color:var(--red)}
 
-.form-msg{padding:.65rem 1rem;border-radius:var(--radius);font-size:.82rem;font-family:'Rajdhani',sans-serif;font-weight:600;margin-bottom:1rem;display:none}
-.form-msg.error{background:rgba(255,45,85,.1);border:1px solid rgba(255,45,85,.3);color:var(--red);display:block}
-.form-msg.success{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:var(--green);display:block}
+.field-err{font-size:.75rem;color:var(--red);margin-top:.35rem;display:none}
+.field-err.show{display:block}
 
-.form-group{margin-bottom:1.1rem}
-.form-label{display:block;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.45rem}
-.form-input{width:100%;padding:.85rem 1rem;background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-family:'Exo 2',sans-serif;font-size:.95rem;outline:none;transition:border-color .2s,background .2s}
-.form-input:focus{border-color:var(--gold);background:rgba(245,197,24,.03)}
-.form-input::placeholder{color:var(--muted);opacity:.6}
+.pass-wrap{position:relative}
+.pass-wrap input{padding-right:3rem}
+.pass-toggle{position:absolute;right:.8rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;padding:.2rem;transition:color .2s}
+.pass-toggle:hover{color:var(--gold)}
 
-.btn-auth{width:100%;padding:.9rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Orbitron',monospace;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s;margin-top:.3rem}
-.btn-auth:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,197,24,.3)}
-.btn-auth:active{transform:translateY(0)}
+.btn-submit{width:100%;padding:.9rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Orbitron',monospace;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s;clip-path:polygon(6px 0%,100% 0%,100% calc(100% - 6px),calc(100% - 6px) 100%,0% 100%,0% 6px);margin-top:.5rem}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(245,197,24,.35)}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
 
-.auth-footer{text-align:center;margin-top:1.4rem;font-size:.82rem;color:var(--muted);font-family:'Rajdhani',sans-serif;line-height:1.9}
-.auth-footer a{color:var(--gold);text-decoration:none;font-weight:600}
-.auth-footer a:hover{text-decoration:underline}
-
-.divider{display:flex;align-items:center;gap:1rem;margin:1.2rem 0;color:var(--muted);font-size:.75rem;font-family:'Rajdhani',sans-serif;letter-spacing:.1em}
+.divider{display:flex;align-items:center;gap:.8rem;margin:1.2rem 0}
+.divider span{font-size:.75rem;color:var(--muted);font-family:'Rajdhani',sans-serif;white-space:nowrap}
 .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.link-reg{display:block;text-align:center;font-size:.85rem;color:var(--muted)}
+.link-reg a{color:var(--gold);text-decoration:none;font-family:'Rajdhani',sans-serif;font-weight:700}.link-reg a:hover{text-decoration:underline}
+
+.alert-box{border-radius:var(--radius);padding:.8rem 1rem;font-size:.82rem;font-family:'Rajdhani',sans-serif;font-weight:600;margin-bottom:1rem;display:none}
+.alert-box.show{display:flex;align-items:center;gap:.5rem}
+.alert-box.err{background:rgba(255,45,85,.08);border:1px solid rgba(255,45,85,.3);color:var(--red)}
+.alert-box.ok{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.3);color:var(--green)}
+
+.spinner{display:none;width:18px;height:18px;border:2px solid rgba(0,0,0,.3);border-top-color:#000;border-radius:50%;animation:spin .6s linear infinite;margin:0 auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--bg3);border:1px solid var(--gold);border-radius:var(--radius);padding:.9rem 1.4rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;color:var(--gold);z-index:1000;transform:translateY(100px);opacity:0;transition:all .3s;box-shadow:0 8px 30px rgba(245,197,24,.2)}.toast.show{transform:translateY(0);opacity:1}
+.toast.success{border-color:var(--green);color:var(--green)}
 </style>
 </head>
 <body>
@@ -47,62 +70,131 @@
 <div class="bg-grid"></div>
 <div class="bg-orb bg-orb1"></div>
 <div class="bg-orb bg-orb2"></div>
-<div class="bg-orb bg-orb3"></div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
+<div class="card">
+  <div class="card-top">
     <a class="logo" href="../index.html"><div class="logo-icon">⚡</div>MABARLAH</a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="../index.html#joki">Joki Rank</a></li>
-      <li><a href="../index.html#topup">Top Up</a></li>
-      <li><a href="../index.html#cara">Cara Order</a></li>
-      <li><a href="../index.html#testi">Testimoni</a></li>
-    </ul>
-    <div class="nav-right" id="navRight">
-      <a class="btn-nav btn-login" href="index.html">Masuk</a>
-      <a class="btn-nav btn-register" href="../register.html">Daftar</a>
+    <h2>Selamat Datang</h2>
+    <p>Masuk untuk melanjutkan order kamu</p>
+  </div>
+  <div class="card-body">
+
+    <div class="alert-box err" id="alertErr">⚠️ <span id="alertErrMsg">Username atau password salah.</span></div>
+    <div class="alert-box ok"  id="alertOk">✅ <span>Login berhasil! Mengalihkan...</span></div>
+
+    <div class="field">
+      <label>Username atau Email</label>
+      <input type="text" id="identifier" placeholder="Username / email kamu" oninput="clearAlert()"/>
+      <div class="field-err" id="err-identifier">Kolom ini wajib diisi.</div>
     </div>
-    <button class="menu-toggle" id="menuToggle">
-      <span></span><span></span><span></span>
+
+    <div class="field">
+      <label>Password</label>
+      <div class="pass-wrap">
+        <input type="password" id="password" placeholder="Password kamu" oninput="clearAlert()"/>
+        <button class="pass-toggle" type="button" onclick="togglePass()" title="Tampilkan password">👁️</button>
+      </div>
+      <div class="field-err" id="err-password">Kolom ini wajib diisi.</div>
+    </div>
+
+    <button class="btn-submit" id="btnSubmit" onclick="doLogin()">
+      <span id="btnText">Masuk ⚡</span>
+      <div class="spinner" id="spinner"></div>
     </button>
-  </div>
-</nav>
 
-<!-- LOGIN PAGE -->
-<main class="auth-page">
-  <div class="auth-card">
-    <div class="auth-top">
-      <a class="auth-logo" href="../index.html">
-        <div class="auth-logo-icon">⚡</div>
-        MABARLAH
-      </a>
-      <div class="auth-title">Selamat Datang Kembali</div>
-      <div class="auth-subtitle">Masuk untuk melanjutkan pesanan kamu</div>
-    </div>
-    <div class="auth-body">
-      <div class="form-msg" id="loginMsg"></div>
-      <div class="form-group">
-        <label class="form-label" for="loginUser">Username</label>
-        <input class="form-input" id="loginUser" type="text" placeholder="Username kamu" autocomplete="username"/>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="loginPass">Password</label>
-        <input class="form-input" id="loginPass" type="password" placeholder="••••••••" autocomplete="current-password"/>
-      </div>
-      <button class="btn-auth" onclick="doLogin()">Masuk Sekarang →</button>
-      <div class="divider">atau</div>
-      <div class="auth-footer">
-        Belum punya akun? <a href="../register.html">Daftar gratis sekarang</a><br>
-        <a href="../index.html">← Kembali ke Beranda</a>
-      </div>
-    </div>
-  </div>
-</main>
+    <div class="divider"><span>Belum punya akun?</span></div>
+    <p class="link-reg"><a href="../register.html">Daftar gratis sekarang →</a></p>
 
-<script src="login.js"></script>
+  </div>
+</div>
+
+<script>
+// ─── TOGGLE PASSWORD VISIBILITY ───────────────────────────────────────────────
+function togglePass() {
+  const inp = document.getElementById('password');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+// ─── CLEAR ALERTS ─────────────────────────────────────────────────────────────
+function clearAlert() {
+  document.getElementById('alertErr').classList.remove('show');
+  document.getElementById('alertOk').classList.remove('show');
+  document.getElementById('err-identifier').classList.remove('show');
+  document.getElementById('err-password').classList.remove('show');
+  document.getElementById('identifier').classList.remove('error');
+  document.getElementById('password').classList.remove('error');
+}
+
+function showErr(id) {
+  document.getElementById(id).classList.add('error');
+  document.getElementById('err-' + id).classList.add('show');
+}
+
+// ─── LOGIN ────────────────────────────────────────────────────────────────────
+function doLogin() {
+  clearAlert();
+  const identifier = document.getElementById('identifier').value.trim();
+  const pass       = document.getElementById('password').value;
+  let ok = true;
+
+  if (!identifier) { showErr('identifier'); ok = false; }
+  if (!pass)        { showErr('password');   ok = false; }
+  if (!ok) return;
+
+  // Loading
+  const btn = document.getElementById('btnSubmit');
+  document.getElementById('btnText').style.display = 'none';
+  document.getElementById('spinner').style.display = 'block';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    const users = JSON.parse(localStorage.getItem('mabarlah_users') || '[]');
+
+    // Cari user berdasarkan username ATAU email
+    const user = users.find(u =>
+      (u.username === identifier || u.email === identifier) && u.pass === pass
+    );
+
+    if (!user) {
+      // Reset button
+      document.getElementById('btnText').style.display = 'block';
+      document.getElementById('spinner').style.display = 'none';
+      btn.disabled = false;
+
+      document.getElementById('alertErr').classList.add('show');
+      document.getElementById('identifier').classList.add('error');
+      document.getElementById('password').classList.add('error');
+      return;
+    }
+
+    // Berhasil login — simpan sesi
+    localStorage.setItem('mabarlah_user', user.username);
+
+    // Tampilkan sukses
+    document.getElementById('alertOk').classList.add('show');
+    showToast('Selamat datang kembali, ' + user.username + '! 🎉', 'success');
+
+    setTimeout(() => { window.location.href = '../index.html'; }, 1200);
+  }, 1000);
+}
+
+// ─── TOAST ────────────────────────────────────────────────────────────────────
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type ? ' ' + type : '');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ─── ENTER KEY ────────────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+// ─── REDIRECT IF ALREADY LOGGED IN ───────────────────────────────────────────
+if (localStorage.getItem('mabarlah_user')) {
+  window.location.href = '../index.html';
+}
+</script>
 </body>
 </html>

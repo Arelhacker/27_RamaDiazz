@@ -3,193 +3,47 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>MABARLAH — Joki & Top Up Mobile Legends #1</title>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<title>Daftar — MABARLAH</title>
+<link rel="stylesheet" href="shared.css"/>
 <style>
-:root{--bg:#04060f;--bg2:#080d1a;--bg3:#0d1424;--gold:#f5c518;--gold2:#e6a800;--cyan:#00e5ff;--cyan2:#00b8cc;--red:#ff2d55;--green:#00ff88;--border:#1a2540;--border2:#253050;--text:#e8eaf6;--muted:#7986a8;--white:#ffffff;--card:#0a1020;--shadow-gold:0 0 30px rgba(245,197,24,.15);--shadow-cyan:0 0 30px rgba(0,229,255,.12);--radius:4px}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:99px}
+.auth-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 1rem 4rem;position:relative;z-index:1}
+.auth-page::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(0,229,255,.04) 0%,transparent 70%);pointer-events:none}
 
-/* BG */
-.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(0,229,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.03) 1px,transparent 1px);background-size:60px 60px}
-.bg-orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
-.bg-orb1{width:600px;height:600px;background:rgba(245,197,24,.04);top:-200px;right:-100px}
-.bg-orb2{width:500px;height:500px;background:rgba(0,229,255,.05);bottom:-200px;left:-100px}
-.bg-orb3{width:300px;height:300px;background:rgba(255,45,85,.04);top:40%;left:50%;transform:translateX(-50%)}
+.auth-card{width:100%;max-width:460px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;overflow:hidden;animation:cardIn .4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
 
-/* NAV */
-nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(4,6,15,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.nav-inner{max-width:1300px;margin:0 auto;padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:900;color:var(--gold);letter-spacing:.1em;text-decoration:none;display:flex;align-items:center;gap:.6rem}
-.logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--gold),var(--gold2));clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#000;font-weight:900}
-.nav-links{display:flex;list-style:none;gap:0}
-.nav-links a{color:var(--muted);text-decoration:none;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;padding:.6rem 1.2rem;transition:all .2s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--gold);transition:width .3s}
-.nav-links a:hover{color:var(--gold)}.nav-links a:hover::after{width:70%}
-.nav-right{display:flex!important;gap:.6rem;align-items:center}
-.btn-nav{padding:.5rem 1.2rem;border-radius:var(--radius);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;border:none;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
-.btn-login{background:transparent;border:1px solid var(--border2)!important;color:var(--text)}.btn-login:hover{border-color:var(--gold)!important;color:var(--gold)}
-.btn-register{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000}.btn-register:hover{transform:translateY(-2px);box-shadow:var(--shadow-gold)}
-.menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
-.menu-toggle span{width:22px;height:2px;background:var(--text);transition:all .3s}
-.user-bar{display:none;align-items:center;gap:.6rem}.user-bar.visible{display:flex!important}
-.user-chip{background:rgba(245,197,24,.08);border:1px solid rgba(245,197,24,.2);border-radius:99px;padding:.4rem 1rem;font-family:'Rajdhani',sans-serif;font-size:.82rem;font-weight:600;color:var(--gold)}
-.btn-logout{background:transparent;border:1px solid var(--border2);color:var(--muted);border-radius:var(--radius);padding:.4rem .9rem;font-family:'Rajdhani',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s}.btn-logout:hover{border-color:var(--red);color:var(--red)}
-.auth-btns{display:flex;gap:.6rem}
-.hidden{display:none!important}
+.auth-top{padding:2.5rem 2.5rem 1.5rem;text-align:center;background:linear-gradient(180deg,rgba(0,229,255,.04),transparent);border-bottom:1px solid var(--border)}
+.auth-logo{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:900;color:var(--gold);display:flex;align-items:center;justify-content:center;gap:.5rem;text-decoration:none;margin-bottom:.8rem}
+.auth-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--gold2));clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#000;font-weight:900}
+.auth-title{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
+.auth-subtitle{font-size:.82rem;color:var(--muted);font-family:'Rajdhani',sans-serif;letter-spacing:.04em}
 
-/* TOAST */
-.toast{position:fixed;bottom:2rem;right:2rem;background:var(--bg3);border:1px solid var(--gold);border-radius:var(--radius);padding:.9rem 1.4rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;color:var(--gold);z-index:1000;transform:translateY(100px);opacity:0;transition:all .3s;box-shadow:0 8px 30px rgba(245,197,24,.2)}.toast.show{transform:translateY(0);opacity:1}
+.auth-body{padding:2rem 2.5rem 2.5rem}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+.form-msg{padding:.65rem 1rem;border-radius:var(--radius);font-size:.82rem;font-family:'Rajdhani',sans-serif;font-weight:600;margin-bottom:1rem;display:none}
+.form-msg.error{background:rgba(255,45,85,.1);border:1px solid rgba(255,45,85,.3);color:var(--red);display:block}
+.form-msg.success{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:var(--green);display:block}
 
-/* SECTIONS */
-.section{padding:5rem 0;position:relative;z-index:1}
-.section-inner{max-width:1300px;margin:0 auto;padding:0 2rem}
-.sec-hd{text-align:center;margin-bottom:4rem}
-.sec-hd h2{font-family:'Orbitron',monospace;font-size:clamp(1.6rem,4vw,2.5rem);font-weight:900;margin-bottom:.5rem}
-.sec-hd h2 span{color:var(--gold)}.sec-hd p{color:var(--muted);font-size:.95rem;max-width:500px;margin:0 auto}
-.sec-divider{width:60px;height:3px;background:linear-gradient(90deg,var(--gold),transparent);margin:.8rem auto 1.2rem}
+.form-group{margin-bottom:1.1rem}
+.form-label{display:block;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.45rem}
+.form-input{width:100%;padding:.85rem 1rem;background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-family:'Exo 2',sans-serif;font-size:.95rem;outline:none;transition:border-color .2s,background .2s}
+.form-input:focus{border-color:var(--cyan);background:rgba(0,229,255,.02)}
+.form-input::placeholder{color:var(--muted);opacity:.6}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(245,197,24,.06) 0%,transparent 70%)}
-.hero-content{position:relative;z-index:1;max-width:900px}
-.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,197,24,.08);border:1px solid rgba(245,197,24,.25);padding:.4rem 1.2rem;border-radius:99px;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'Rajdhani',sans-serif;font-weight:600;margin-bottom:2rem;animation:pulse 3s ease infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(245,197,24,.2)}50%{box-shadow:0 0 20px 4px rgba(245,197,24,.1)}}
-.hero h1{font-family:'Orbitron',monospace;font-size:clamp(2.2rem,6vw,4.5rem);font-weight:900;line-height:.95;margin-bottom:1.5rem;letter-spacing:-.01em}
-.hero h1 .line1{display:block;color:var(--text)}.hero h1 .line2{display:block;color:var(--gold);text-shadow:0 0 40px rgba(245,197,24,.4)}
-.hero h1 .line3{display:block;font-size:55%;color:var(--cyan);letter-spacing:.15em;margin-top:.4rem}
-.hero p{font-size:1.05rem;color:var(--muted);max-width:600px;margin:0 auto 2.5rem;line-height:1.8;font-weight:300}
-.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.btn-primary{padding:.9rem 2.5rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Orbitron',monospace;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s;clip-path:polygon(8px 0%,100% 0%,100% calc(100% - 8px),calc(100% - 8px) 100%,0% 100%,0% 8px)}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(245,197,24,.35)}
-.btn-secondary{padding:.9rem 2.5rem;background:transparent;color:var(--cyan);font-family:'Orbitron',monospace;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--cyan);border-radius:var(--radius);cursor:pointer;transition:all .3s;clip-path:polygon(8px 0%,100% 0%,100% calc(100% - 8px),calc(100% - 8px) 100%,0% 100%,0% 8px)}
-.btn-secondary:hover{background:rgba(0,229,255,.08);box-shadow:var(--shadow-cyan);transform:translateY(-3px)}
-.hero-stats{display:flex;gap:3rem;justify-content:center;margin-top:4rem;padding-top:2.5rem;border-top:1px solid var(--border);flex-wrap:wrap}
-.h-stat-num{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:var(--gold);display:block}
-.h-stat-lbl{font-size:.72rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-family:'Rajdhani',sans-serif;font-weight:600;margin-top:.2rem}
+.btn-auth{width:100%;padding:.9rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Orbitron',monospace;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s;margin-top:.3rem}
+.btn-auth:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,197,24,.3)}
+.btn-auth:active{transform:translateY(0)}
 
-/* JOKI SECTION */
-.joki-bg{background:var(--bg2)}
-.joki-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem}
-.joki-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .3s;position:relative;cursor:pointer}
-.joki-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}
-.joki-card:hover{transform:translateY(-6px);border-color:rgba(245,197,24,.35);box-shadow:0 12px 40px rgba(245,197,24,.1)}.joki-card:hover::before{opacity:1}
-.joki-head{padding:1.5rem 1.5rem 1rem;position:relative}
-.joki-tier{font-family:'Orbitron',monospace;font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem}
-.tier-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.joki-name{font-family:'Rajdhani',sans-serif;font-size:1.5rem;font-weight:700;color:var(--white);line-height:1}
-.joki-sub{font-size:.8rem;color:var(--muted);margin-top:.3rem}
-.tier-badge{position:absolute;top:1.2rem;right:1.2rem;width:44px;height:44px;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
-.joki-body{padding:0 1.5rem 1.5rem}
-.joki-features{list-style:none;display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.2rem}
-.joki-features li{font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:.5rem}
-.joki-features li::before{content:'▸';color:var(--gold);font-size:.65rem;flex-shrink:0}
-.joki-price{display:flex;align-items:flex-end;gap:.3rem;margin-bottom:1rem}
-.price-from{font-size:.72rem;color:var(--muted);font-family:'Rajdhani',sans-serif;margin-bottom:.15rem}
-.price-num{font-family:'Orbitron',monospace;font-size:1.6rem;font-weight:900;color:var(--gold);line-height:1}
-.price-unit{font-size:.75rem;color:var(--muted);margin-bottom:.2rem;font-family:'Rajdhani',sans-serif}
-.btn-order{width:100%;padding:.7rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s}
-.btn-order:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,197,24,.3)}
-.joki-ribbon{position:absolute;top:12px;left:-28px;background:var(--red);color:#fff;font-family:'Rajdhani',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem 2rem;transform:rotate(-45deg);width:110px;text-align:center}
+.auth-footer{text-align:center;margin-top:1.4rem;font-size:.82rem;color:var(--muted);font-family:'Rajdhani',sans-serif;line-height:1.9}
+.auth-footer a{color:var(--gold);text-decoration:none;font-weight:600}
+.auth-footer a:hover{text-decoration:underline}
 
-/* TOP UP */
-.topup-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem}
-.topup-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1rem;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
-.topup-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(245,197,24,.04),transparent);opacity:0;transition:opacity .3s}
-.topup-card:hover{border-color:rgba(245,197,24,.4);transform:translateY(-4px);box-shadow:0 10px 30px rgba(245,197,24,.1)}.topup-card:hover::after{opacity:1}
-.topup-card.popular{border-color:rgba(245,197,24,.3);background:linear-gradient(135deg,rgba(245,197,24,.06),var(--card))}
-.popular-badge{position:absolute;top:.5rem;right:.5rem;background:var(--gold);color:#000;font-family:'Rajdhani',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.15rem .5rem;border-radius:2px}
-.topup-icon{font-size:1.8rem;margin-bottom:.5rem}
-.topup-amt{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:.2rem}
-.topup-price{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;color:var(--gold)}
-.topup-bonus{font-size:.7rem;color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:600;margin-top:.2rem}
+.divider{display:flex;align-items:center;gap:1rem;margin:1.2rem 0;color:var(--muted);font-size:.75rem;font-family:'Rajdhani',sans-serif;letter-spacing:.1em}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
 
-/* HOW */
-.how-bg{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;position:relative}
-.steps-grid::before{content:'';position:absolute;top:32px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);z-index:0}
-.step-card{text-align:center;position:relative;z-index:1}
-.step-num{width:64px;height:64px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;color:var(--gold);background:var(--bg);position:relative}
-.step-num::after{content:'';position:absolute;inset:4px;border-radius:50%;background:rgba(245,197,24,.05)}
-.step-icon{font-size:1.4rem;line-height:1}
-.step-title{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:.4rem;letter-spacing:.05em}
-.step-desc{font-size:.82rem;color:var(--muted);line-height:1.6}
-
-/* TESTIMONI */
-.testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
-.testi-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:border-color .3s}
-.testi-card:hover{border-color:rgba(245,197,24,.25)}
-.testi-head{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
-.testi-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
-.testi-name{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.95rem;color:var(--white)}
-.testi-tier{font-size:.7rem;color:var(--gold);font-family:'Rajdhani',sans-serif;font-weight:600}
-.testi-stars{color:var(--gold);font-size:.85rem;letter-spacing:.1em;margin-bottom:.6rem}
-.testi-text{font-size:.85rem;color:var(--muted);line-height:1.7;font-style:italic}
-
-/* WHY US */
-.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem}
-.why-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.8rem 1.4rem;text-align:center;transition:all .3s}
-.why-card:hover{border-color:rgba(0,229,255,.3);transform:translateY(-4px);box-shadow:var(--shadow-cyan)}
-.why-icon{font-size:2.2rem;margin-bottom:.8rem}
-.why-title{font-family:'Rajdhani',sans-serif;font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:.4rem}
-.why-desc{font-size:.82rem;color:var(--muted);line-height:1.6}
-
-/* CTA BANNER */
-.cta-banner{background:linear-gradient(135deg,rgba(245,197,24,.08),rgba(0,229,255,.05));border:1px solid rgba(245,197,24,.2);border-radius:8px;padding:3rem 2rem;text-align:center;margin-top:4rem}
-.cta-banner h3{font-family:'Orbitron',monospace;font-size:clamp(1.2rem,3vw,1.8rem);font-weight:900;color:var(--gold);margin-bottom:.8rem}
-.cta-banner p{color:var(--muted);font-size:.9rem;margin-bottom:1.8rem;max-width:500px;margin-left:auto;margin-right:auto}
-.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-
-/* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(4,6,15,.92);z-index:500;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(8px)}.modal-overlay.active{display:flex}
-.order-box{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;width:100%;max-width:500px;overflow:hidden;animation:modalIn .3s cubic-bezier(.34,1.56,.64,1)}
-@keyframes modalIn{from{opacity:0;transform:scale(.88) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.order-header{background:linear-gradient(135deg,rgba(245,197,24,.08),rgba(0,229,255,.04));padding:1.5rem 2rem;border-bottom:1px solid var(--border)}
-.order-header h3{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:var(--gold)}
-.order-header p{font-size:.82rem;color:var(--muted);margin-top:.2rem}
-.order-body{padding:1.5rem 2rem}
-.order-row{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid var(--border);font-size:.85rem}
-.order-row:last-child{border:none;font-weight:700;color:var(--gold);font-size:1rem;padding-top:.8rem}
-.order-row span:first-child{color:var(--muted)}
-.order-footer{padding:0 2rem 2rem;display:flex;gap:.8rem}
-.btn-cancel{flex:1;padding:.8rem;background:transparent;border:1px solid var(--border2);color:var(--muted);font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;border-radius:var(--radius);cursor:pointer;transition:all .2s}.btn-cancel:hover{border-color:var(--red);color:var(--red)}
-.btn-confirm{flex:2;padding:.8rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Orbitron',monospace;font-weight:700;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s}.btn-confirm:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,197,24,.3)}
-
-/* FOOTER */
-footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2rem;position:relative;z-index:1}
-.footer-inner{max-width:1300px;margin:0 auto;padding:0 2rem}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:2rem}
-.footer-brand .logo{font-size:1.1rem;margin-bottom:.8rem;display:inline-block}
-.footer-brand p{font-size:.82rem;color:var(--muted);line-height:1.7;max-width:280px}
-.footer-col h4{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;color:var(--white);margin-bottom:.8rem}
-.footer-col a{display:block;font-size:.82rem;color:var(--muted);text-decoration:none;margin-bottom:.4rem;transition:color .2s}.footer-col a:hover{color:var(--gold)}
-.footer-bottom{border-top:1px solid var(--border);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.footer-bottom p{font-size:.8rem;color:var(--muted)}.footer-bottom span{color:var(--gold)}
-.wa-float{position:fixed;bottom:2rem;left:2rem;z-index:200;background:#25d366;color:#fff;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:all .3s;animation:waPulse 2.5s ease infinite}
-.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,.5)}
-@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,.7)}}
-
-/* RESPONSIVE */
-@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.hero-stats{gap:1.5rem}}
-@media(max-width:700px){
-  .nav-links{display:none;position:fixed;top:60px;left:0;right:0;bottom:0;background:rgba(4,6,15,.97);flex-direction:column;align-items:center;justify-content:center;gap:0;z-index:99}
-  .nav-links.active{display:flex}.nav-links a{padding:1.2rem 2rem;border-bottom:1px solid var(--border);width:100%;text-align:center}
-  .menu-toggle{display:flex}.nav-right{display:none!important}
-  .nav-right.mobile-visible{display:flex!important;position:fixed;bottom:0;left:0;right:0;padding:1rem 2rem;background:rgba(4,6,15,.97);border-top:1px solid var(--border);z-index:99}
-  .nav-right.mobile-visible .btn-nav{flex:1;text-align:center;padding:.7rem}
-  .footer-top{grid-template-columns:1fr}.footer-brand{grid-column:1}.footer-bottom{flex-direction:column;text-align:center}
-  .steps-grid::before{display:none}
-  .menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-  .menu-toggle.active span:nth-child(2){opacity:0}
-  .menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px)}
-  .order-body,.order-header,.order-footer{padding-left:1.2rem;padding-right:1.2rem}
-  .wa-float{bottom:5.5rem}
-}
+.perks{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem}
+.perk{display:flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--muted);font-family:'Rajdhani',sans-serif}
+.perk::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -199,507 +53,74 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0 2r
 <div class="bg-orb bg-orb2"></div>
 <div class="bg-orb bg-orb3"></div>
 
-<!-- WA FLOAT -->
-<a class="wa-float" href="https://wa.me/6281328282930" target="_blank" title="Chat Admin WA">💬</a>
-
-<!-- ORDER MODAL -->
-<div class="modal-overlay" id="orderModal">
-  <div class="order-box">
-    <div class="order-header">
-      <h3 id="orderTitle">Detail Pesanan</h3>
-      <p id="orderSub">Konfirmasi pesananmu sebelum lanjut ke WhatsApp</p>
-    </div>
-    <div class="order-body" id="orderBody"></div>
-    <div class="order-footer">
-      <button class="btn-cancel" onclick="closeOrderModal()">Batal</button>
-      <button class="btn-confirm" onclick="confirmOrder()">Konfirmasi via WhatsApp ⚡</button>
-    </div>
-  </div>
-</div>
-
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a class="logo" href="#"><div class="logo-icon">⚡</div>MABARLAH</a>
+    <a class="logo" href="index.html"><div class="logo-icon">⚡</div>MABARLAH</a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#joki">Joki Rank</a></li>
-      <li><a href="#topup">Top Up</a></li>
-      <li><a href="#cara">Cara Order</a></li>
-      <li><a href="#kenapa">Kenapa Kami</a></li>
-      <li><a href="#testi">Testimoni</a></li>
+      <li><a href="index.html#joki">Joki Rank</a></li>
+      <li><a href="index.html#topup">Top Up</a></li>
+      <li><a href="index.html#cara">Cara Order</a></li>
+      <li><a href="index.html#testi">Testimoni</a></li>
     </ul>
     <div class="nav-right" id="navRight">
-      <div class="user-bar" id="userBar">
-        <div class="user-chip" id="userChip">👤 Guest</div>
-        <button class="btn-logout" onclick="doLogout()">Keluar</button>
-      </div>
-      <div class="auth-btns" id="authBtns">
-        <a class="btn-nav btn-login" href="login/index.html">Masuk</a>
-        <a class="btn-nav btn-register" href="login/register.html">Daftar</a>
-      </div>
+      <a class="btn-nav btn-login" href="login/index.html">Masuk</a>
+      <a class="btn-nav btn-register" href="register.html">Daftar</a>
     </div>
-    <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+    <button class="menu-toggle" id="menuToggle">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">⚡ #1 Joki & Top Up Mobile Legends Indonesia</div>
-    <h1>
-      <span class="line1">NAIK RANK</span>
-      <span class="line2">DIJAMIN AMAN</span>
-      <span class="line3">WARRIOR → IMMORTAL · FAST · TRUSTED · 24/7</span>
-    </h1>
-    <p>Joki rank profesional dengan win rate tinggi. Top up diamond murah & instan. Lebih dari 5.000 pelanggan puas. Proses cepat, harga transparan, garansi keamanan akun.</p>
-    <div class="hero-btns">
-      <button class="btn-primary" onclick="scrollTo('joki')">Order Joki Sekarang ⚡</button>
-      <button class="btn-secondary" onclick="scrollTo('topup')">Top Up Diamond 💎</button>
+<!-- REGISTER PAGE -->
+<main class="auth-page">
+  <div class="auth-card">
+    <div class="auth-top">
+      <a class="auth-logo" href="index.html">
+        <div class="auth-logo-icon">⚡</div>
+        MABARLAH
+      </a>
+      <div class="auth-title">Buat Akun Gratis</div>
+      <div class="auth-subtitle">Bergabung & mulai order joki atau top up sekarang</div>
     </div>
-    <div class="hero-stats">
-      <div class="h-stat"><span class="h-stat-num" id="statCust">0</span><span class="h-stat-lbl">Pelanggan Puas</span></div>
-      <div class="h-stat"><span class="h-stat-num" id="statWin">0</span><span class="h-stat-lbl">Win Rate</span></div>
-      <div class="h-stat"><span class="h-stat-num">24/7</span><span class="h-stat-lbl">Layanan Aktif</span></div>
-      <div class="h-stat"><span class="h-stat-num">100%</span><span class="h-stat-lbl">Aman & Terpercaya</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- JOKI RANK -->
-<section class="section joki-bg" id="joki">
-  <div class="section-inner">
-    <div class="sec-hd reveal">
-      <h2>Joki <span>Rank</span></h2>
-      <div class="sec-divider"></div>
-      <p>Naik dari tier mana saja ke tier impianmu. Semua dikerjakan booster berpengalaman.</p>
-    </div>
-    <div class="joki-grid reveal" id="jokiGrid"></div>
-  </div>
-</section>
-
-<!-- TOP UP -->
-<section class="section" id="topup">
-  <div class="section-inner">
-    <div class="sec-hd reveal">
-      <h2>Top Up <span>Diamond 💎</span></h2>
-      <div class="sec-divider"></div>
-      <p>Harga murah, proses instan. Diamond langsung masuk ke akunmu dalam hitungan menit.</p>
-    </div>
-    <div class="topup-grid reveal" id="topupGrid"></div>
-  </div>
-</section>
-
-<!-- CARA ORDER -->
-<section class="section how-bg" id="cara">
-  <div class="section-inner">
-    <div class="sec-hd reveal">
-      <h2>Cara <span>Order</span></h2>
-      <div class="sec-divider"></div>
-      <p>Proses mudah dan cepat, selesai dalam hitungan menit!</p>
-    </div>
-    <div class="steps-grid" id="stepsGrid"></div>
-  </div>
-</section>
-
-<!-- KENAPA KAMI -->
-<section class="section" id="kenapa">
-  <div class="section-inner">
-    <div class="sec-hd reveal">
-      <h2>Kenapa Pilih <span>MABARLAH?</span></h2>
-      <div class="sec-divider"></div>
-      <p>Bukan sekadar janji — kami buktikan dengan hasil nyata setiap hari.</p>
-    </div>
-    <div class="why-grid" id="whyGrid"></div>
-  </div>
-</section>
-
-<!-- TESTIMONI -->
-<section class="section joki-bg" id="testi">
-  <div class="section-inner">
-    <div class="sec-hd reveal">
-      <h2>Apa Kata <span>Pelanggan</span></h2>
-      <div class="sec-divider"></div>
-      <p>Ribuan pelanggan telah mempercayakan rank mereka kepada kami.</p>
-    </div>
-    <div class="testi-grid" id="testiGrid"></div>
-
-    <!-- CTA BANNER -->
-    <div class="cta-banner reveal">
-      <h3>Siap Naik Rank Hari Ini? 🚀</h3>
-      <p>Bergabunglah dengan 5.000+ gamer yang sudah merasakan manfaatnya. Order sekarang, proses dalam 30 menit!</p>
-      <div class="cta-btns">
-        <button class="btn-primary" onclick="scrollTo('joki')">Order Joki ⚡</button>
-        <a class="btn-secondary" href="https://wa.me/6281328282930" target="_blank" style="display:inline-flex;align-items:center;padding:.9rem 2.5rem;text-decoration:none">Tanya Admin 💬</a>
+    <div class="auth-body">
+      <div class="perks">
+        <div class="perk">Daftar gratis</div>
+        <div class="perk">Order langsung</div>
+        <div class="perk">Riwayat pesanan</div>
+        <div class="perk">Support 24/7</div>
+      </div>
+      <div class="form-msg" id="registerMsg"></div>
+      <div class="form-group">
+        <label class="form-label" for="regName">Nama Lengkap</label>
+        <input class="form-input" id="regName" type="text" placeholder="Nama kamu" autocomplete="name"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="regUser">Username</label>
+        <input class="form-input" id="regUser" type="text" placeholder="Username unik" autocomplete="username"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="regGmail">Gmail</label>
+        <input class="form-input" id="regGmail" type="email" placeholder="contoh@gmail.com" autocomplete="email"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="regPass">Password</label>
+        <input class="form-input" id="regPass" type="password" placeholder="Min. 6 karakter" autocomplete="new-password"/>
+      </div>
+      <button class="btn-auth" onclick="doRegister()">Buat Akun →</button>
+      <div class="divider">sudah punya akun?</div>
+      <div class="auth-footer">
+        <a href="login/index.html">Masuk sekarang</a><br>
+        <a href="index.html">← Kembali ke Beranda</a>
       </div>
     </div>
   </div>
-</section>
+</main>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a class="logo" href="#">⚡ MABARLAH</a>
-        <p>Platform joki rank dan top up diamond Mobile Legends terpercaya. Proses cepat, harga transparan, garansi keamanan akun 100%.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Layanan</h4>
-        <a href="#joki">Joki Warrior</a>
-        <a href="#joki">Joki Elite</a>
-        <a href="#joki">Joki Mythic</a>
-        <a href="#joki">Joki Immortal</a>
-        <a href="#topup">Top Up Diamond</a>
-      </div>
-      <div class="footer-col">
-        <h4>Bantuan</h4>
-        <a href="#cara">Cara Order</a>
-        <a href="#">Syarat & Ketentuan</a>
-        <a href="#">FAQ</a>
-        <a href="https://wa.me/6281328282930" target="_blank">Hubungi Admin</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 <span>MABARLAH</span>. Bukan afiliasi resmi Moonton.</p>
-      <p>Mobile Legends: Bang Bang™ adalah merek dagang <span>Moonton</span>.</p>
-    </div>
-  </div>
-</footer>
-
-<script>
-// ─── DATA ─────────────────────────────────────────────────────────────────────
-const JOKI_DATA = [
-  {
-    tier:'Warrior',color:'#78909c',bg:'rgba(120,144,156,.12)',icon:'🗡️',
-    name:'Warrior',sub:'Warrior I → Elite III',
-    features:['Booster manual berpengalaman','Mode privat tersedia','Estimasi 1–2 hari','Chat 24 jam dengan booster'],
-    price:'15.000',unit:'/ tier',hot:false
-  },
-  {
-    tier:'Elite',color:'#66bb6a',bg:'rgba(102,187,106,.12)',icon:'🛡️',
-    name:'Elite',sub:'Elite I → Master III',
-    features:['Win rate >85%','Akun tetap aman','Estimasi 1–3 hari','Laporan progress harian'],
-    price:'25.000',unit:'/ tier',hot:false
-  },
-  {
-    tier:'Master',color:'#42a5f5',bg:'rgba(66,165,245,.12)',icon:'⚔️',
-    name:'Master',sub:'Master I → Grandmaster',
-    features:['Booster spesialis ML','Offline mode opsional','Estimasi 2–4 hari','Garansi naik tier'],
-    price:'40.000',unit:'/ tier',hot:false
-  },
-  {
-    tier:'Grandmaster',color:'#ab47bc',bg:'rgba(171,71,188,.12)',icon:'💜',
-    name:'Grandmaster',sub:'GM I → Epic III',
-    features:['Booster rank tinggi','Shield akun aktif','Estimasi 2–5 hari','Notifikasi WhatsApp'],
-    price:'60.000',unit:'/ tier',hot:false
-  },
-  {
-    tier:'Epic',color:'#ef5350',bg:'rgba(239,83,80,.12)',icon:'🔴',
-    name:'Epic',sub:'Epic I → Legend III',
-    features:['Booster top 500 server','Mode stealth tersedia','Estimasi 3–6 hari','Jaminan uang kembali'],
-    price:'90.000',unit:'/ tier',hot:true
-  },
-  {
-    tier:'Legend',color:'#ffa726',bg:'rgba(255,167,38,.12)',icon:'🏆',
-    name:'Legend',sub:'Legend I → Mythic',
-    features:['Booster Mythic Glory','Full privacy mode','Estimasi 4–7 hari','Priority support 24/7'],
-    price:'150.000',unit:'/ tier',hot:false
-  },
-  {
-    tier:'Mythic',color:'#f5c518',bg:'rgba(245,197,24,.12)',icon:'👑',
-    name:'Mythic',sub:'Mythic → Mythic Honor',
-    features:['Booster Immortal server top','Akun 100% terlindungi','Estimasi 5–10 hari','Laporan real-time'],
-    price:'250.000',unit:'/ paket',hot:false
-  },
-  {
-    tier:'Immortal',color:'#00e5ff',bg:'rgba(0,229,255,.12)',icon:'⚡',
-    name:'Immortal',sub:'Mythic Honor → Immortal',
-    features:['Tim booster elite','Prioritas tertinggi','Waktu fleksibel','Layanan VIP eksklusif'],
-    price:'500.000',unit:'/ paket',hot:false
-  },
-];
-
-const TOPUP_DATA = [
-  {icon:'💎',amt:'11 Diamond',price:'Rp 2.500',bonus:'',popular:false},
-  {icon:'💎',amt:'22 Diamond',price:'Rp 4.900',bonus:'',popular:false},
-  {icon:'💎',amt:'56 Diamond',price:'Rp 11.900',bonus:'+2 bonus',popular:false},
-  {icon:'💎',amt:'112 Diamond',price:'Rp 23.500',bonus:'+4 bonus',popular:false},
-  {icon:'💎',amt:'172 Diamond',price:'Rp 35.900',bonus:'+6 bonus',popular:true},
-  {icon:'💎',amt:'257 Diamond',price:'Rp 53.900',bonus:'+10 bonus',popular:false},
-  {icon:'💎',amt:'344 Diamond',price:'Rp 71.500',bonus:'+14 bonus',popular:false},
-  {icon:'💎',amt:'514 Diamond',price:'Rp 107.500',bonus:'+20 bonus',popular:false},
-  {icon:'💎',amt:'706 Diamond',price:'Rp 148.000',bonus:'+28 bonus',popular:false},
-  {icon:'💎',amt:'878 Diamond',price:'Rp 184.000',bonus:'+32 bonus',popular:false},
-  {icon:'💎',amt:'1144 Diamond',price:'Rp 239.000',bonus:'+44 bonus',popular:false},
-  {icon:'💎',amt:'2195 Diamond',price:'Rp 459.000',bonus:'+88 bonus',popular:false},
-];
-
-const STEPS_DATA = [
-  {icon:'🎯',title:'Pilih Layanan',desc:'Pilih paket joki rank atau nominal top up diamond yang kamu inginkan.'},
-  {icon:'👤',title:'Daftar / Masuk',desc:'Buat akun gratis atau masuk untuk melanjutkan pemesanan dengan mudah.'},
-  {icon:'💬',title:'Konfirmasi WA',desc:'Kamu akan diarahkan ke WhatsApp admin untuk konfirmasi detail pesanan.'},
-  {icon:'💳',title:'Bayar',desc:'Lakukan pembayaran sesuai instruksi. Transfer bank, e-wallet, QRIS tersedia.'},
-  {icon:'🚀',title:'Proses & Selesai',desc:'Booster kami langsung bekerja. Notifikasi dikirim saat pesanan selesai.'},
-];
-
-const WHY_DATA = [
-  {icon:'🔒',title:'100% Aman',desc:'Sistem keamanan akun terenkripsi. Tidak pernah ada kasus ban atau suspend.'},
-  {icon:'⚡',title:'Proses Cepat',desc:'Order diproses dalam 30 menit. Top up diamond masuk dalam hitungan detik.'},
-  {icon:'💰',title:'Harga Terjangkau',desc:'Harga transparan tanpa biaya tersembunyi. Garansi harga terbaik di Indonesia.'},
-  {icon:'🏅',title:'Booster Pro',desc:'Tim booster berpengalaman, rata-rata rank Mythic Glory ke atas.'},
-  {icon:'📞',title:'Support 24/7',desc:'Admin siap membantu kapan saja. Respon rata-rata di bawah 5 menit.'},
-  {icon:'🔁',title:'Garansi Refund',desc:'Jika terjadi masalah yang tidak bisa diselesaikan, uang kembali 100%.'},
-];
-
-const TESTI_DATA = [
-  {name:'Rizky_ML',tier:'Sekarang: Mythic',avatar:'🎮',bg:'rgba(245,197,24,.1)',stars:5,text:'Mantap banget! Dari Epic naik ke Mythic dalam 3 hari. Boosternya pro banget, akun aman dan responsif. Pasti repeat order!'},
-  {name:'SandyGaming',tier:'Sekarang: Legend',avatar:'⚔️',bg:'rgba(0,229,255,.1)',stars:5,text:'Top up diamond-nya cepet banget, hitungan detik udah masuk. Harganya juga murah dibanding tempat lain. Recommended!'},
-  {name:'FitriaML',tier:'Sekarang: Grandmaster',avatar:'👸',bg:'rgba(171,71,188,.1)',stars:5,text:'Awalnya ragu, tapi ternyata legit! Akun aman, booster ramah dan update terus progresnya. Udah order 3x di sini.'},
-  {name:'RayanBeast',tier:'Sekarang: Immortal',avatar:'🏆',bg:'rgba(255,167,38,.1)',stars:5,text:'Joki Immortal selesai lebih cepat dari estimasi. Pelayanan VIP-nya worth it banget. Admin fast respon 24 jam.'},
-  {name:'NabilaGame',tier:'Sekarang: Epic',avatar:'🌟',bg:'rgba(102,187,106,.1)',stars:5,text:'Pertama kali joki dan langsung puas. Prosesnya gampang banget, tinggal WA admin dan beres. Makasih MABARLAH!'},
-  {name:'DzakiPro',tier:'Sekarang: Legend',avatar:'🔥',bg:'rgba(239,83,80,.1)',stars:5,text:'Harga paling murah se-Indonesia dengan kualitas terbaik. Udah coba tempat lain, balik lagi ke MABARLAH terus.'},
-];
-
-// ─── CURRENT ORDER STATE ───────────────────────────────────────────────────────
-let currentOrder = null;
-
-// ─── RENDER JOKI CARDS ────────────────────────────────────────────────────────
-function renderJoki() {
-  const grid = document.getElementById('jokiGrid');
-  grid.innerHTML = JOKI_DATA.map((j,i) => `
-    <div class="joki-card reveal" style="animation-delay:${i*0.07}s" onclick="openJokiOrder(${i})">
-      ${j.hot ? '<div class="joki-ribbon">HOT 🔥</div>' : ''}
-      <div class="joki-head">
-        <div class="joki-tier">
-          <span class="tier-dot" style="background:${j.color}"></span>
-          <span style="color:${j.color}">${j.tier}</span>
-        </div>
-        <div class="joki-name">${j.name}</div>
-        <div class="joki-sub">${j.sub}</div>
-        <div class="tier-badge" style="background:${j.bg}">${j.icon}</div>
-      </div>
-      <div class="joki-body">
-        <ul class="joki-features">
-          ${j.features.map(f=>`<li>${f}</li>`).join('')}
-        </ul>
-        <div class="joki-price">
-          <span class="price-from">Mulai</span>&nbsp;
-          <span class="price-num">Rp ${j.price}</span>&nbsp;
-          <span class="price-unit">${j.unit}</span>
-        </div>
-        <button class="btn-order">Order Sekarang ⚡</button>
-      </div>
-    </div>
-  `).join('');
-}
-
-// ─── RENDER TOPUP CARDS ───────────────────────────────────────────────────────
-function renderTopup() {
-  const grid = document.getElementById('topupGrid');
-  grid.innerHTML = TOPUP_DATA.map((t,i) => `
-    <div class="topup-card${t.popular?' popular':''} reveal" onclick="openTopupOrder(${i})">
-      ${t.popular ? '<div class="popular-badge">TERLARIS</div>' : ''}
-      <div class="topup-icon">${t.icon}</div>
-      <div class="topup-amt">${t.amt}</div>
-      <div class="topup-price">${t.price}</div>
-      ${t.bonus ? `<div class="topup-bonus">${t.bonus}</div>` : ''}
-    </div>
-  `).join('');
-}
-
-// ─── RENDER STEPS ─────────────────────────────────────────────────────────────
-function renderSteps() {
-  const grid = document.getElementById('stepsGrid');
-  grid.innerHTML = STEPS_DATA.map((s,i) => `
-    <div class="step-card reveal">
-      <div class="step-num"><span class="step-icon">${s.icon}</span></div>
-      <div class="step-title">${s.title}</div>
-      <div class="step-desc">${s.desc}</div>
-    </div>
-  `).join('');
-}
-
-// ─── RENDER WHY ───────────────────────────────────────────────────────────────
-function renderWhy() {
-  const grid = document.getElementById('whyGrid');
-  grid.innerHTML = WHY_DATA.map((w,i) => `
-    <div class="why-card reveal">
-      <div class="why-icon">${w.icon}</div>
-      <div class="why-title">${w.title}</div>
-      <div class="why-desc">${w.desc}</div>
-    </div>
-  `).join('');
-}
-
-// ─── RENDER TESTIMONI ─────────────────────────────────────────────────────────
-function renderTesti() {
-  const grid = document.getElementById('testiGrid');
-  grid.innerHTML = TESTI_DATA.map(t => `
-    <div class="testi-card reveal">
-      <div class="testi-head">
-        <div class="testi-avatar" style="background:${t.bg}">${t.avatar}</div>
-        <div>
-          <div class="testi-name">${t.name}</div>
-          <div class="testi-tier">${t.tier}</div>
-        </div>
-      </div>
-      <div class="testi-stars">${'★'.repeat(t.stars)}</div>
-      <div class="testi-text">"${t.text}"</div>
-    </div>
-  `).join('');
-}
-
-// ─── ORDER MODALS ─────────────────────────────────────────────────────────────
-function openJokiOrder(i) {
-  const j = JOKI_DATA[i];
-  currentOrder = {type:'joki', data:j};
-  document.getElementById('orderTitle').textContent = 'Order Joki Rank';
-  document.getElementById('orderSub').textContent = 'Pastikan detail sudah benar sebelum konfirmasi';
-  document.getElementById('orderBody').innerHTML = `
-    <div class="order-row"><span>Layanan</span><span>Joki Rank</span></div>
-    <div class="order-row"><span>Tier</span><span>${j.name}</span></div>
-    <div class="order-row"><span>Range</span><span>${j.sub}</span></div>
-    <div class="order-row"><span>Estimasi</span><span>${j.features[2]}</span></div>
-    <div class="order-row"><span>Harga Mulai</span><span>Rp ${j.price} ${j.unit}</span></div>
-  `;
-  document.getElementById('orderModal').classList.add('active');
-}
-
-function openTopupOrder(i) {
-  const t = TOPUP_DATA[i];
-  currentOrder = {type:'topup', data:t};
-  document.getElementById('orderTitle').textContent = 'Order Top Up Diamond';
-  document.getElementById('orderSub').textContent = 'Pastikan ID game kamu sudah benar';
-  document.getElementById('orderBody').innerHTML = `
-    <div class="order-row"><span>Layanan</span><span>Top Up Diamond</span></div>
-    <div class="order-row"><span>Jumlah</span><span>${t.amt}</span></div>
-    ${t.bonus ? `<div class="order-row"><span>Bonus</span><span style="color:var(--green)">${t.bonus}</span></div>` : ''}
-    <div class="order-row"><span>Harga</span><span>${t.price}</span></div>
-    <div class="order-row"><span>Proses</span><span>⚡ Instan</span></div>
-  `;
-  document.getElementById('orderModal').classList.add('active');
-}
-
-function closeOrderModal() {
-  document.getElementById('orderModal').classList.remove('active');
-  currentOrder = null;
-}
-
-function confirmOrder() {
-  if (!currentOrder) return;
-  const o = currentOrder;
-  let msg = '';
-  if (o.type === 'joki') {
-    msg = `Halo MABARLAH! Saya mau order Joki Rank %0ATier: ${o.data.name}%0ARange: ${o.data.sub}%0AHarga: Rp ${o.data.price} ${o.data.unit}%0A%0AMohon info lebih lanjut, terima kasih!`;
-  } else {
-    msg = `Halo MABARLAH! Saya mau Top Up Diamond%0AJumlah: ${o.data.amt}%0AHarga: ${o.data.price}%0A%0AMohon info ID game dan metode pembayaran, terima kasih!`;
-  }
-  closeOrderModal();
-  showToast('Mengarahkan ke WhatsApp Admin... ⚡');
-  setTimeout(() => {
-    window.open(`https://wa.me/6281328282930?text=${msg}`, '_blank');
-  }, 600);
-}
-
-// ─── AUTH CHECK ───────────────────────────────────────────────────────────────
-function checkAuth() {
-  const user = localStorage.getItem('mabarlah_user');
-  const userBar = document.getElementById('userBar');
-  const authBtns = document.getElementById('authBtns');
-  const userChip = document.getElementById('userChip');
-  if (user) {
-    userBar.classList.add('visible');
-    authBtns.classList.add('hidden');
-    userChip.textContent = '👤 ' + user;
-  } else {
-    userBar.classList.remove('visible');
-    authBtns.classList.remove('hidden');
-  }
-}
-
-function doLogout() {
-  localStorage.removeItem('mabarlah_user');
-  checkAuth();
-  showToast('Berhasil keluar. Sampai jumpa! 👋');
-}
-
-// ─── TOAST ────────────────────────────────────────────────────────────────────
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3000);
-}
-
-// ─── SCROLL HELPER ────────────────────────────────────────────────────────────
-function scrollTo(id) {
-  document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
-}
-
-// ─── NAV TOGGLE ───────────────────────────────────────────────────────────────
-function toggleMenu() {
-  const nav = document.getElementById('navLinks');
-  const btn = document.getElementById('menuToggle');
-  const right = document.getElementById('navRight');
-  nav.classList.toggle('active');
-  btn.classList.toggle('active');
-  right.classList.toggle('mobile-visible');
-}
-
-// ─── SCROLL REVEAL ────────────────────────────────────────────────────────────
-function initReveal() {
-  const els = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-    });
-  }, {threshold:0.1});
-  els.forEach(el => observer.observe(el));
-}
-
-// ─── COUNTER ANIMATION ────────────────────────────────────────────────────────
-function animateCounter(el, target, suffix, duration) {
-  let start = 0;
-  const step = target / (duration / 16);
-  const timer = setInterval(() => {
-    start = Math.min(start + step, target);
-    el.textContent = Math.floor(start).toLocaleString('id-ID') + suffix;
-    if (start >= target) clearInterval(timer);
-  }, 16);
-}
-
-// ─── CLOSE MODAL ON OVERLAY CLICK ─────────────────────────────────────────────
-document.getElementById('orderModal').addEventListener('click', function(e) {
-  if (e.target === this) closeOrderModal();
-});
-
-// ─── INIT ─────────────────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  renderJoki();
-  renderTopup();
-  renderSteps();
-  renderWhy();
-  renderTesti();
-  checkAuth();
-  setTimeout(initReveal, 100);
-
-  // counter animation on scroll
-  const statCust = document.getElementById('statCust');
-  const statWin  = document.getElementById('statWin');
-  const heroObserver = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      animateCounter(statCust, 5000, '+', 1500);
-      animateCounter(statWin, 98, '%', 1200);
-      heroObserver.disconnect();
-    }
-  }, {threshold:0.5});
-  heroObserver.observe(document.querySelector('.hero-stats'));
-});
-</script>
+<script src="register.js"></script>
 </body>
 </html>

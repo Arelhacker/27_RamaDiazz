@@ -4,46 +4,63 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Daftar — MABARLAH</title>
-<link rel="stylesheet" href="shared.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 <style>
-.auth-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 1rem 4rem;position:relative;z-index:1}
-.auth-page::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(0,229,255,.04) 0%,transparent 70%);pointer-events:none}
+:root{--bg:#04060f;--bg2:#080d1a;--bg3:#0d1424;--gold:#f5c518;--gold2:#e6a800;--cyan:#00e5ff;--red:#ff2d55;--green:#00ff88;--border:#1a2540;--border2:#253050;--text:#e8eaf6;--muted:#7986a8;--white:#ffffff;--card:#0a1020;--radius:4px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Exo 2',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:99px}
 
-.auth-card{width:100%;max-width:460px;background:var(--bg3);border:1px solid var(--border2);border-radius:8px;overflow:hidden;animation:cardIn .4s cubic-bezier(.34,1.56,.64,1)}
+.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(0,229,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.03) 1px,transparent 1px);background-size:60px 60px}
+.bg-orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
+.bg-orb1{width:500px;height:500px;background:rgba(245,197,24,.05);top:-150px;right:-100px}
+.bg-orb2{width:400px;height:400px;background:rgba(0,229,255,.05);bottom:-150px;left:-100px}
+
+.card{position:relative;z-index:1;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;width:100%;max-width:440px;overflow:hidden;animation:cardIn .4s cubic-bezier(.34,1.56,.64,1)}
 @keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
 
-.auth-top{padding:2.5rem 2.5rem 1.5rem;text-align:center;background:linear-gradient(180deg,rgba(0,229,255,.04),transparent);border-bottom:1px solid var(--border)}
-.auth-logo{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:900;color:var(--gold);display:flex;align-items:center;justify-content:center;gap:.5rem;text-decoration:none;margin-bottom:.8rem}
-.auth-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--gold2));clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#000;font-weight:900}
-.auth-title{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
-.auth-subtitle{font-size:.82rem;color:var(--muted);font-family:'Rajdhani',sans-serif;letter-spacing:.04em}
+.card-top{background:linear-gradient(135deg,rgba(245,197,24,.08),rgba(0,229,255,.04));padding:2rem 2rem 1.5rem;text-align:center;border-bottom:1px solid var(--border)}
+.logo{font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;color:var(--gold);letter-spacing:.1em;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;margin-bottom:1.2rem}
+.logo-icon{width:28px;height:28px;background:linear-gradient(135deg,var(--gold),var(--gold2));clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#000;font-weight:900}
+.card-top h2{font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:.3rem}
+.card-top p{font-size:.82rem;color:var(--muted)}
 
-.auth-body{padding:2rem 2.5rem 2.5rem}
+.card-body{padding:2rem}
+.field{margin-bottom:1.2rem}
+.field label{display:block;font-family:'Rajdhani',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.field input{width:100%;background:rgba(255,255,255,.03);border:1px solid var(--border2);border-radius:var(--radius);padding:.75rem 1rem;font-family:'Exo 2',sans-serif;font-size:.9rem;color:var(--text);outline:none;transition:all .2s}
+.field input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,197,24,.08)}
+.field input::placeholder{color:var(--muted);font-size:.85rem}
+.field input.error{border-color:var(--red)}
 
-.form-msg{padding:.65rem 1rem;border-radius:var(--radius);font-size:.82rem;font-family:'Rajdhani',sans-serif;font-weight:600;margin-bottom:1rem;display:none}
-.form-msg.error{background:rgba(255,45,85,.1);border:1px solid rgba(255,45,85,.3);color:var(--red);display:block}
-.form-msg.success{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:var(--green);display:block}
+.field-hint{font-size:.75rem;color:var(--muted);margin-top:.35rem}
+.field-err{font-size:.75rem;color:var(--red);margin-top:.35rem;display:none}
+.field-err.show{display:block}
 
-.form-group{margin-bottom:1.1rem}
-.form-label{display:block;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.45rem}
-.form-input{width:100%;padding:.85rem 1rem;background:rgba(255,255,255,.04);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);font-family:'Exo 2',sans-serif;font-size:.95rem;outline:none;transition:border-color .2s,background .2s}
-.form-input:focus{border-color:var(--cyan);background:rgba(0,229,255,.02)}
-.form-input::placeholder{color:var(--muted);opacity:.6}
+.strength-bar{height:4px;background:var(--border);border-radius:99px;margin-top:.5rem;overflow:hidden}
+.strength-fill{height:100%;width:0;border-radius:99px;transition:all .3s}
 
-.btn-auth{width:100%;padding:.9rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Orbitron',monospace;font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s;margin-top:.3rem}
-.btn-auth:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,197,24,.3)}
-.btn-auth:active{transform:translateY(0)}
+.btn-submit{width:100%;padding:.9rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;font-family:'Orbitron',monospace;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;border:none;border-radius:var(--radius);cursor:pointer;transition:all .3s;clip-path:polygon(6px 0%,100% 0%,100% calc(100% - 6px),calc(100% - 6px) 100%,0% 100%,0% 6px);margin-top:.5rem}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(245,197,24,.35)}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
 
-.auth-footer{text-align:center;margin-top:1.4rem;font-size:.82rem;color:var(--muted);font-family:'Rajdhani',sans-serif;line-height:1.9}
-.auth-footer a{color:var(--gold);text-decoration:none;font-weight:600}
-.auth-footer a:hover{text-decoration:underline}
-
-.divider{display:flex;align-items:center;gap:1rem;margin:1.2rem 0;color:var(--muted);font-size:.75rem;font-family:'Rajdhani',sans-serif;letter-spacing:.1em}
+.divider{display:flex;align-items:center;gap:.8rem;margin:1.2rem 0}
+.divider span{font-size:.75rem;color:var(--muted);font-family:'Rajdhani',sans-serif;white-space:nowrap}
 .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
 
-.perks{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.5rem}
-.perk{display:flex;align-items:center;gap:.4rem;font-size:.75rem;color:var(--muted);font-family:'Rajdhani',sans-serif}
-.perk::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+.link-login{display:block;text-align:center;font-size:.85rem;color:var(--muted)}
+.link-login a{color:var(--gold);text-decoration:none;font-family:'Rajdhani',sans-serif;font-weight:700}.link-login a:hover{text-decoration:underline}
+
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--bg3);border:1px solid var(--gold);border-radius:var(--radius);padding:.9rem 1.4rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;color:var(--gold);z-index:1000;transform:translateY(100px);opacity:0;transition:all .3s;box-shadow:0 8px 30px rgba(245,197,24,.2)}.toast.show{transform:translateY(0);opacity:1}
+.toast.success{border-color:var(--green);color:var(--green)}
+.toast.error-toast{border-color:var(--red);color:var(--red)}
+
+.terms{font-size:.75rem;color:var(--muted);line-height:1.6;margin-top:1rem;text-align:center}
+.terms a{color:var(--gold);text-decoration:none}.terms a:hover{text-decoration:underline}
+
+.spinner{display:none;width:18px;height:18px;border:2px solid rgba(0,0,0,.3);border-top-color:#000;border-radius:50%;animation:spin .6s linear infinite;margin:0 auto}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -51,76 +68,175 @@
 <div class="bg-grid"></div>
 <div class="bg-orb bg-orb1"></div>
 <div class="bg-orb bg-orb2"></div>
-<div class="bg-orb bg-orb3"></div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a class="logo" href="index.html"><div class="logo-icon">⚡</div>MABARLAH</a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html#joki">Joki Rank</a></li>
-      <li><a href="index.html#topup">Top Up</a></li>
-      <li><a href="index.html#cara">Cara Order</a></li>
-      <li><a href="index.html#testi">Testimoni</a></li>
-    </ul>
-    <div class="nav-right" id="navRight">
-      <a class="btn-nav btn-login" href="login/index.html">Masuk</a>
-      <a class="btn-nav btn-register" href="register.html">Daftar</a>
+<div class="card">
+  <div class="card-top">
+    <a class="logo" href="../index.html"><div class="logo-icon">⚡</div>MABARLAH</a>
+    <h2>Buat Akun Baru</h2>
+    <p>Daftar gratis dan mulai order sekarang</p>
+  </div>
+  <div class="card-body">
+
+    <div class="field">
+      <label>Username</label>
+      <input type="text" id="username" placeholder="Contoh: RizkyML123" maxlength="20" oninput="clearErr('username')"/>
+      <div class="field-err" id="err-username">Username minimal 3 karakter, tanpa spasi.</div>
     </div>
-    <button class="menu-toggle" id="menuToggle">
-      <span></span><span></span><span></span>
+
+    <div class="field">
+      <label>Email</label>
+      <input type="email" id="email" placeholder="email@kamu.com" oninput="clearErr('email')"/>
+      <div class="field-err" id="err-email">Masukkan alamat email yang valid.</div>
+    </div>
+
+    <div class="field">
+      <label>No. WhatsApp</label>
+      <input type="tel" id="whatsapp" placeholder="08xxxxxxxxxx" maxlength="15" oninput="clearErr('whatsapp')"/>
+      <div class="field-hint">Dipakai admin untuk konfirmasi pesanan.</div>
+      <div class="field-err" id="err-whatsapp">Nomor WA tidak valid (min. 10 angka).</div>
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="password" placeholder="Min. 6 karakter" oninput="checkStrength(); clearErr('password')"/>
+      <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+      <div class="field-hint" id="strengthLabel">Masukkan password</div>
+      <div class="field-err" id="err-password">Password minimal 6 karakter.</div>
+    </div>
+
+    <div class="field">
+      <label>Konfirmasi Password</label>
+      <input type="password" id="password2" placeholder="Ulangi password" oninput="clearErr('password2')"/>
+      <div class="field-err" id="err-password2">Password tidak cocok.</div>
+    </div>
+
+    <button class="btn-submit" id="btnSubmit" onclick="doRegister()">
+      <span id="btnText">Daftar Sekarang ⚡</span>
+      <div class="spinner" id="spinner"></div>
     </button>
-  </div>
-</nav>
 
-<!-- REGISTER PAGE -->
-<main class="auth-page">
-  <div class="auth-card">
-    <div class="auth-top">
-      <a class="auth-logo" href="index.html">
-        <div class="auth-logo-icon">⚡</div>
-        MABARLAH
-      </a>
-      <div class="auth-title">Buat Akun Gratis</div>
-      <div class="auth-subtitle">Bergabung & mulai order joki atau top up sekarang</div>
-    </div>
-    <div class="auth-body">
-      <div class="perks">
-        <div class="perk">Daftar gratis</div>
-        <div class="perk">Order langsung</div>
-        <div class="perk">Riwayat pesanan</div>
-        <div class="perk">Support 24/7</div>
-      </div>
-      <div class="form-msg" id="registerMsg"></div>
-      <div class="form-group">
-        <label class="form-label" for="regName">Nama Lengkap</label>
-        <input class="form-input" id="regName" type="text" placeholder="Nama kamu" autocomplete="name"/>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="regUser">Username</label>
-        <input class="form-input" id="regUser" type="text" placeholder="Username unik" autocomplete="username"/>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="regGmail">Gmail</label>
-        <input class="form-input" id="regGmail" type="email" placeholder="contoh@gmail.com" autocomplete="email"/>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="regPass">Password</label>
-        <input class="form-input" id="regPass" type="password" placeholder="Min. 6 karakter" autocomplete="new-password"/>
-      </div>
-      <button class="btn-auth" onclick="doRegister()">Buat Akun →</button>
-      <div class="divider">sudah punya akun?</div>
-      <div class="auth-footer">
-        <a href="login/index.html">Masuk sekarang</a><br>
-        <a href="index.html">← Kembali ke Beranda</a>
-      </div>
-    </div>
-  </div>
-</main>
+    <p class="terms">Dengan mendaftar kamu menyetujui <a href="#">Syarat & Ketentuan</a> dan <a href="#">Kebijakan Privasi</a> MABARLAH.</p>
 
-<script src="register.js"></script>
+    <div class="divider"><span>Sudah punya akun?</span></div>
+    <p class="link-login"><a href="login/index.html">Masuk di sini →</a></p>
+
+  </div>
+</div>
+
+<script>
+// ─── PASSWORD STRENGTH ────────────────────────────────────────────────────────
+function checkStrength() {
+  const val = document.getElementById('password').value;
+  const fill = document.getElementById('strengthFill');
+  const label = document.getElementById('strengthLabel');
+  if (!val) { fill.style.width='0'; label.textContent='Masukkan password'; fill.style.background=''; return; }
+  let score = 0;
+  if (val.length >= 6) score++;
+  if (val.length >= 10) score++;
+  if (/[A-Z]/.test(val)) score++;
+  if (/[0-9]/.test(val)) score++;
+  if (/[^A-Za-z0-9]/.test(val)) score++;
+  const levels = [
+    {pct:'20%', color:'var(--red)',   text:'Sangat Lemah'},
+    {pct:'40%', color:'#ff8c00',      text:'Lemah'},
+    {pct:'60%', color:'var(--gold)',  text:'Cukup'},
+    {pct:'80%', color:'#8bc34a',      text:'Kuat'},
+    {pct:'100%',color:'var(--green)', text:'Sangat Kuat'},
+  ];
+  const l = levels[score - 1] || levels[0];
+  fill.style.width = l.pct;
+  fill.style.background = l.color;
+  label.textContent = 'Kekuatan: ' + l.text;
+  label.style.color = l.color;
+}
+
+// ─── VALIDATION ───────────────────────────────────────────────────────────────
+function showErr(id, msg) {
+  const inp = document.getElementById(id);
+  const err = document.getElementById('err-' + id);
+  inp.classList.add('error');
+  if (msg) err.textContent = msg;
+  err.classList.add('show');
+}
+function clearErr(id) {
+  document.getElementById(id)?.classList.remove('error');
+  document.getElementById('err-' + id)?.classList.remove('show');
+}
+
+function validate() {
+  let ok = true;
+  const username = document.getElementById('username').value.trim();
+  const email    = document.getElementById('email').value.trim();
+  const wa       = document.getElementById('whatsapp').value.trim();
+  const pass     = document.getElementById('password').value;
+  const pass2    = document.getElementById('password2').value;
+
+  if (username.length < 3 || /\s/.test(username)) { showErr('username'); ok = false; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))  { showErr('email');    ok = false; }
+  if (!/^\d{10,15}$/.test(wa.replace(/[-+ ]/g,''))) { showErr('whatsapp'); ok = false; }
+  if (pass.length < 6)    { showErr('password');  ok = false; }
+  if (pass !== pass2)     { showErr('password2'); ok = false; }
+  return ok;
+}
+
+// ─── REGISTER ─────────────────────────────────────────────────────────────────
+function doRegister() {
+  if (!validate()) return;
+
+  const username = document.getElementById('username').value.trim();
+  const email    = document.getElementById('email').value.trim();
+  const wa       = document.getElementById('whatsapp').value.trim();
+  const pass     = document.getElementById('password').value;
+
+  // Loading state
+  const btn = document.getElementById('btnSubmit');
+  document.getElementById('btnText').style.display = 'none';
+  document.getElementById('spinner').style.display = 'block';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    // Cek apakah username/email sudah terdaftar
+    const users = JSON.parse(localStorage.getItem('mabarlah_users') || '[]');
+    const exists = users.find(u => u.username === username || u.email === email);
+
+    if (exists) {
+      document.getElementById('btnText').style.display = 'block';
+      document.getElementById('spinner').style.display = 'none';
+      btn.disabled = false;
+      if (exists.username === username) showErr('username', 'Username sudah dipakai, coba yang lain.');
+      else showErr('email', 'Email sudah terdaftar.');
+      return;
+    }
+
+    // Simpan user baru
+    users.push({ username, email, wa, pass });
+    localStorage.setItem('mabarlah_users', JSON.stringify(users));
+
+    // Auto login
+    localStorage.setItem('mabarlah_user', username);
+
+    showToast('Pendaftaran berhasil! Selamat datang, ' + username + ' 🎉', 'success');
+    setTimeout(() => { window.location.href = '../index.html'; }, 1500);
+  }, 1200);
+}
+
+// ─── TOAST ────────────────────────────────────────────────────────────────────
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type ? ' ' + type : '');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ─── ENTER KEY ────────────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => { if (e.key === 'Enter') doRegister(); });
+
+// ─── REDIRECT IF ALREADY LOGGED IN ───────────────────────────────────────────
+if (localStorage.getItem('mabarlah_user')) {
+  window.location.href = '../index.html';
+}
+</script>
 </body>
 </html>
